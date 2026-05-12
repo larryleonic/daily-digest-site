@@ -1,0 +1,77 @@
+# Daily Digest — 用户兴趣画像
+# 可随时编辑，运行 /digest-review 后自动更新
+
+interests:
+  - label: "科技/AI"
+    keywords: ["AI", "LLM", "GPT", "Claude", "产品发布", "开源", "机器学习", "deep learning", "AGI"]
+    weight: 0.9
+    tone: "有趣 > 硬核"
+  - label: "投资/经济"
+    keywords: ["量化", "量化交易", "投资入门", "经济学", "自由职业", "理财", "股票", "crypto"]
+    weight: 0.7
+  - label: "英雄联盟"
+    keywords: ["patch notes", "meta", "champion", "LoL", "League of Legends", "英雄联盟"]
+    weight: 0.6
+  - label: "社会观察/纪录片"
+    keywords: ["纪录片", "社会现象", "采访", "documentary", "人文", "社会学", "真实故事"]
+    weight: 0.6
+  - label: "历史/哲学"
+    keywords: ["历史洞见", "哲学思想", "尼采", "黑格尔", "庄子", "周易", "历史", "philosophy"]
+    weight: 0.5
+
+content_preferences:
+  priority: "趣味性 > 严肃性"
+  style: "洞见 > 信息量"
+  scope: "跨学科关联 > 单一领域深钻"
+  goal: "成为自由职业者"
+
+youtube_channels:
+  - name: Veritasium
+    url: "https://www.youtube.com/@veritasium"
+    category: "科学"
+  - name: 量子位
+    url: "https://www.youtube.com/@量子位"
+    category: "AI"
+  - name: 夸克说
+    url: "https://www.youtube.com/@夸克说"
+    category: "科学/社会"
+  - name: Y Combinator
+    url: "https://www.youtube.com/@ycombinator"
+    category: "创业"
+  - name: 安争鸣
+    url: "https://www.youtube.com/@anzhengming"
+    category: "人文"
+
+websites:
+  - name: "LoL Patch Notes"
+    url: "https://www.leagueoflegends.com/en-us/news/tags/patch-notes/"
+    selector: "a[href*='patch-notes']"
+    frequency: "weekly"
+  - name: "op.gg Tier List"
+    url: "https://www.op.gg/champions"
+    selector: ".champion-trend"
+    frequency: "weekly"
+
+rss_feeds: []
+
+search_topics:
+  - "AI 有趣的新发现 今日"
+  - "值得看的纪录片 推荐"
+  - "量化交易 入门"
+  - "自由职业者 经验"
+
+# 今日一思 — 哲学家语录模块
+daily_wisdom:
+  philosophers:
+    - "尼采"
+    - "黑格尔"
+    - "庄子"
+    - "周易"
+  style: "大白话解释 + 关联现实生活"
+
+# 反馈历史统计（由 review.py 自动更新）
+feedback_stats:
+  total_likes: 0
+  total_dislikes: 0
+  category_scores: {}
+  blocked_sources: []
