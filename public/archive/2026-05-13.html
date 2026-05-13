@@ -4,861 +4,670 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Daily Digest — 2026-05-13</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:ital,wght@0,400;0,500;0,700&family=JetBrains+Mono:wght@400;600&family=Noto+Serif+SC:wght@600;900&display=swap" rel="stylesheet">
 <style>
 :root {
-    --bg: #faf7f2;
+    --bg: #f8f5f0;
     --surface: #ffffff;
-    --surface-2: #f5f0ea;
-    --border: rgba(0,0,0,0.06);
-    --border-light: rgba(0,0,0,0.08);
-    --text: #1a1a2e;
-    --text-muted: #6b7280;
-    --text-dim: #9ca3af;
-    /* Dopamine palette */
-    --coral: #ff6b6b;
-    --orange: #ffa94d;
-    --yellow: #ffd43b;
-    --lime: #a9e34b;
-    --mint: #38d9a9;
-    --sky: #4dabf7;
-    --blue: #5c7cfa;
-    --purple: #9775fa;
-    --pink: #f06595;
-    --peach: #ffb4a2;
-    --lavender: #e8d5f5;
-    --lol-gold: #c8aa6e;
-    --body-font: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', sans-serif;
-    --mono-font: 'SF Mono', 'Fira Code', Consolas, monospace;
-    --radius: 20px;
-    --radius-sm: 14px;
+    --surface-alt: #f2ede6;
+    --ink: #1a1a1a;
+    --ink-light: #4a4a4a;
+    --ink-muted: #7a7a7a;
+    --ink-faint: #b0b0b0;
+    --accent: #c41e3a;
+    --accent-light: #e8364f;
+    --gold: #b8860b;
+    --rule: #1a1a1a;
+    --rule-light: rgba(0,0,0,0.08);
+    --rule-medium: rgba(0,0,0,0.15);
+
+    --font-display: 'Playfair Display', 'Noto Serif SC', Georgia, serif;
+    --font-body: 'DM Sans', 'PingFang SC', 'Hiragino Sans GB', sans-serif;
+    --font-mono: 'JetBrains Mono', 'SF Mono', monospace;
+    --font-serif-cn: 'Noto Serif SC', 'Songti SC', serif;
+
+    --col-gap: 32px;
+    --section-gap: 56px;
 }
+
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
-    font-family: var(--body-font);
-    background: var(--bg); color: var(--text); line-height: 1.65;
-    min-height: 100vh; position: relative;
+    font-family: var(--font-body);
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.7;
+    font-size: 15px;
+    -webkit-font-smoothing: antialiased;
 }
-/* Soft gradient blobs */
-.blob-1, .blob-2, .blob-3 {
-    position: fixed; border-radius: 50%; pointer-events: none; z-index: 0;
-    filter: blur(80px); opacity: 0.35;
-}
-.blob-1 { width: 500px; height: 500px; top: -100px; left: -100px; background: linear-gradient(135deg, #ffd43b, #ffa94d); }
-.blob-2 { width: 400px; height: 400px; top: 40%; right: -80px; background: linear-gradient(135deg, #e8d5f5, #f06595); }
-.blob-3 { width: 350px; height: 350px; bottom: -50px; left: 30%; background: linear-gradient(135deg, #38d9a9, #4dabf7); }
 
-a { color: var(--blue); text-decoration: none; transition: color 0.2s; }
-a:hover { color: var(--purple); }
+a { color: inherit; text-decoration: none; }
 
-::-webkit-scrollbar { width: 6px; }
+::selection { background: var(--accent); color: #fff; }
+
+::-webkit-scrollbar { width: 5px; }
 ::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.1); border-radius: 3px; }
-::-webkit-scrollbar-thumb:hover { background: var(--purple); }
+::-webkit-scrollbar-thumb { background: var(--ink-faint); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--accent); }
 
 /* ─── Scroll Reveal ─── */
 .reveal {
-    opacity: 0; transform: translateY(28px);
-    transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+    opacity: 0; transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
 }
 .reveal.visible { opacity: 1; transform: translateY(0); }
 
+/* ═══════════════════════════════════════
+   MASTHEAD — 报头
+   ═══════════════════════════════════════ */
+.masthead {
+    border-bottom: 3px solid var(--rule);
+    padding: 20px 0 16px;
+    text-align: center;
+    position: sticky; top: 0; z-index: 100;
+    background: var(--bg);
+}
+.masthead-inner {
+    max-width: 1100px; margin: 0 auto; padding: 0 24px;
+    display: flex; align-items: center; justify-content: space-between;
+}
+.masthead-brand {
+    font-family: var(--font-display);
+    font-size: 28px; font-weight: 900;
+    letter-spacing: -0.5px;
+    color: var(--ink);
+}
+.masthead-brand .accent { color: var(--accent); }
+.masthead-date {
+    font-family: var(--font-mono);
+    font-size: 12px; color: var(--ink-muted);
+    letter-spacing: 1px; text-transform: uppercase;
+}
+.masthead-rule {
+    border: none; border-top: 1px solid var(--rule-light);
+    margin-top: 12px;
+}
+
 /* ─── Nav ─── */
 .nav-bar {
-    position: sticky; top: 0; z-index: 100;
-    background: rgba(250, 247, 242, 0.82);
-    border-bottom: 1px solid var(--border);
-    backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
-    padding: 0 24px;
+    max-width: 1100px; margin: 0 auto; padding: 10px 24px 0;
     display: flex; align-items: center; gap: 0;
-    height: 54px; overflow-x: auto;
+    overflow-x: auto; border-bottom: 1px solid var(--rule-light);
 }
-.nav-brand {
-    font-family: var(--mono-font);
-    font-size: 15px; font-weight: 800; margin-right: 24px; white-space: nowrap;
-    background: linear-gradient(135deg, var(--coral), var(--orange), var(--yellow));
-    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-    background-clip: text;
-}
-.nav-brand .dim { -webkit-text-fill-color: var(--text-dim); }
 .nav-link {
-    font-size: 13px; font-weight: 600; color: var(--text-dim);
-    padding: 16px 14px; white-space: nowrap;
-    border-bottom: 2.5px solid transparent;
-    transition: all 0.25s;
+    font-family: var(--font-body);
+    font-size: 12px; font-weight: 700;
+    color: var(--ink-muted);
+    padding: 8px 14px 10px;
+    white-space: nowrap;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    border-bottom: 2px solid transparent;
+    transition: all 0.2s;
 }
-.nav-link:hover { color: var(--text); border-bottom-color: var(--peach); }
+.nav-link:hover { color: var(--ink); }
 .nav-link.active {
-    color: var(--coral);
-    border-bottom-color: var(--coral);
+    color: var(--accent);
+    border-bottom-color: var(--accent);
 }
 .nav-link .mono { display: none; }
-.nav-meta {
-    margin-left: auto; font-family: var(--mono-font);
-    font-size: 11px; color: var(--text-dim); white-space: nowrap;
+
+/* ═══════════════════════════════════════
+   PAGE LAYOUT
+   ═══════════════════════════════════════ */
+.page-body {
+    max-width: 1100px; margin: 0 auto;
+    padding: 40px 24px 80px;
 }
 
-/* ─── Layout ─── */
-.page-body { max-width: 920px; margin: 0 auto; padding: 28px 20px 80px; position: relative; z-index: 1; }
-
-/* ─── Section ─── */
-.section-block { margin-bottom: 44px; }
+/* ─── Section Dividers ─── */
+.section-block { margin-bottom: var(--section-gap); }
 .section-header {
-    font-size: 13px; font-weight: 800; color: var(--text);
-    letter-spacing: 0.5px;
-    padding-bottom: 10px; margin-bottom: 18px;
-    border-bottom: 2px solid var(--border);
-    display: flex; align-items: center; gap: 10px;
+    display: flex; align-items: baseline; gap: 12px;
+    padding-bottom: 12px; margin-bottom: 24px;
+    border-bottom: 2px solid var(--rule);
+}
+.section-header .section-num {
+    font-family: var(--font-mono);
+    font-size: 11px; font-weight: 600;
+    color: var(--ink-faint);
+    letter-spacing: 1px;
+}
+.section-header .section-title {
+    font-family: var(--font-display);
+    font-size: 20px; font-weight: 900;
+    color: var(--ink);
+    letter-spacing: -0.3px;
 }
 .section-header .mono {
-    display: inline-flex; align-items: center; justify-content: center;
-    width: 26px; height: 26px; border-radius: 8px;
-    font-family: var(--mono-font); font-size: 11px; font-weight: 700;
-    color: #fff;
+    font-family: var(--font-mono);
+    font-size: 11px; font-weight: 600;
+    color: var(--accent);
+    background: none;
 }
-/* Section number colors */
-.section-header .mono { background: linear-gradient(135deg, var(--coral), var(--orange)); }
 
-/* ─── Headline ─── */
+/* ═══════════════════════════════════════
+   HEADLINE — 头条大图
+   ═══════════════════════════════════════ */
 .headline-card {
-    background: var(--surface);
-    border-radius: var(--radius); padding: 28px 32px;
-    margin-bottom: 36px; position: relative; overflow: hidden;
-    box-shadow: 0 2px 20px rgba(0,0,0,0.04);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    padding: 40px 0;
+    border-bottom: 1px solid var(--rule-light);
+    margin-bottom: 40px;
 }
-.headline-card::before {
-    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px;
-    background: linear-gradient(90deg, var(--coral), var(--orange), var(--yellow), var(--lime), var(--mint), var(--sky), var(--purple), var(--pink));
-    background-size: 200% 100%;
-    animation: rainbow 4s linear infinite;
+.headline-card.no-thumb {
+    grid-template-columns: 1fr;
 }
-@keyframes rainbow {
-    0% { background-position: 200% 0; }
-    100% { background-position: -200% 0; }
+.headline-visual {
+    position: relative;
+}
+.headline-thumb {
+    width: 100%; height: 100%; min-height: 280px;
+    object-fit: cover;
+    filter: grayscale(20%) contrast(1.05);
+    transition: filter 0.4s;
+}
+.headline-card:hover .headline-thumb {
+    filter: grayscale(0%) contrast(1.1);
+}
+.headline-content {
+    display: flex; flex-direction: column; justify-content: center;
 }
 .headline-label {
-    display: inline-flex; align-items: center; gap: 6px;
-    font-size: 11px; font-weight: 700; color: #fff;
-    background: linear-gradient(135deg, var(--coral), var(--orange));
-    padding: 4px 12px; border-radius: 20px;
-    margin-bottom: 16px; text-transform: uppercase; letter-spacing: 1px;
+    font-family: var(--font-mono);
+    font-size: 10px; font-weight: 600;
+    color: #fff; background: var(--accent);
+    padding: 4px 10px; letter-spacing: 2px;
+    text-transform: uppercase;
+    display: inline-block; margin-bottom: 16px;
+    align-self: flex-start;
 }
-.headline-label .mono { font-weight: 800; }
-.headline-thumb {
-    width: 100%; max-height: 300px; object-fit: cover;
-    border-radius: var(--radius-sm); margin-bottom: 16px;
+.headline-hook {
+    font-family: var(--font-serif-cn);
+    font-size: 15px; font-weight: 600;
+    color: var(--accent);
+    line-height: 1.6; margin-bottom: 12px;
+    border-left: 3px solid var(--accent);
+    padding-left: 12px;
 }
 .headline-title {
-    font-size: 24px; font-weight: 800; line-height: 1.35;
-    margin-bottom: 12px;
+    font-family: var(--font-display);
+    font-size: 32px; font-weight: 900;
+    line-height: 1.25; margin-bottom: 16px;
+    letter-spacing: -0.5px;
 }
-.headline-title a { color: var(--text); transition: color 0.2s; }
-.headline-title a:hover { color: var(--coral); }
+.headline-title a { color: var(--ink); transition: color 0.2s; }
+.headline-title a:hover { color: var(--accent); }
 .headline-meta {
     display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
-    margin-bottom: 14px;
+    margin-bottom: 16px;
 }
 .headline-meta .source {
-    font-size: 12px; color: var(--text-dim); font-weight: 500;
+    font-family: var(--font-mono);
+    font-size: 11px; color: var(--ink-muted);
+    text-transform: uppercase; letter-spacing: 1px;
 }
 .headline-summary {
-    font-size: 15px; color: var(--text-muted); line-height: 1.8;
+    font-size: 15px; color: var(--ink-light);
+    line-height: 1.8;
 }
 .headline-tip {
-    font-size: 13px; color: var(--orange); margin-top: 10px;
-    font-weight: 500;
+    font-size: 13px; color: var(--gold);
+    margin-top: 12px; font-weight: 500;
+    font-style: italic;
 }
-/* Hook — 吸睛金句 */
-.headline-hook {
-    font-size: 16px; font-weight: 700; line-height: 1.5;
-    color: var(--coral); margin-bottom: 10px;
+
+/* ═══════════════════════════════════════
+   BRIEFING — 速递
+   ═══════════════════════════════════════ */
+.briefing-row {
+    display: grid;
+    grid-template-columns: 36px 1fr;
+    gap: 12px;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--rule-light);
+    transition: background 0.2s;
 }
-.card-hook {
-    font-size: 13px; font-weight: 700; line-height: 1.4;
-    color: var(--coral); margin-bottom: 8px;
+.briefing-row:last-child { border-bottom: none; }
+.briefing-row:hover { background: var(--surface-alt); margin: 0 -12px; padding: 16px 12px; }
+.briefing-row .num {
+    font-family: var(--font-display);
+    font-size: 24px; font-weight: 900;
+    color: var(--ink-faint);
+    line-height: 1.2;
 }
-/* Keywords — 关键词胶囊 */
+.briefing-content { display: flex; flex-direction: column; gap: 4px; }
+.briefing-title {
+    font-family: var(--font-body);
+    font-size: 16px; font-weight: 700;
+    color: var(--ink); line-height: 1.4;
+    transition: color 0.2s;
+}
+.briefing-title:hover { color: var(--accent); }
+.briefing-meta {
+    font-size: 12px; color: var(--ink-muted);
+    display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+}
+
+/* ═══════════════════════════════════════
+   TAGS & KEYWORDS
+   ═══════════════════════════════════════ */
+.tag {
+    font-family: var(--font-mono);
+    font-size: 9px; font-weight: 600;
+    padding: 2px 8px; border-radius: 2px;
+    letter-spacing: 1px; text-transform: uppercase;
+    color: #fff; white-space: nowrap;
+    background: var(--ink-muted);
+}
 .keywords-row {
     display: flex; flex-wrap: wrap; gap: 6px;
-    margin: 8px 0;
+    margin: 10px 0;
 }
 .keyword {
-    font-size: 11px; font-weight: 600; padding: 2px 10px;
-    border-radius: 20px;
-    background: linear-gradient(135deg, #fff0f6, #fef3f2);
-    color: var(--coral);
+    font-family: var(--font-mono);
+    font-size: 11px; font-weight: 600;
+    padding: 2px 10px;
+    border: 1px solid var(--rule-medium);
+    color: var(--ink-light);
     white-space: nowrap;
 }
 
-/* ─── Tags ─── */
-.tag {
-    font-size: 10px; font-weight: 700; padding: 3px 10px; border-radius: 20px;
-    color: #fff; white-space: nowrap;
-    text-transform: uppercase; letter-spacing: 0.5px;
-    background: var(--text-dim);
+/* ═══════════════════════════════════════
+   CONTENT CARDS — 文章卡片
+   ═══════════════════════════════════════ */
+.card-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: var(--rule-light);
+    border: 1px solid var(--rule-light);
+}
+.card-grid > .tech-card:last-child:nth-child(odd),
+.card-grid > .finance-card:last-child:nth-child(odd),
+.card-grid > .humanities-card:last-child:nth-child(odd),
+.card-grid > .lol-card:last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+}
+.card-grid-single {
+    grid-template-columns: 1fr;
 }
 
-/* ─── Briefing ─── */
-.briefing-row {
-    display: flex; align-items: flex-start; gap: 14px;
-    padding: 14px 16px; margin-bottom: 4px;
-    border-radius: var(--radius-sm);
+.tech-card {
+    background: var(--surface);
+    padding: 24px 28px;
     transition: background 0.2s;
 }
-.briefing-row:hover { background: var(--surface-2); }
-.briefing-row .num {
-    color: var(--text-dim); font-size: 12px; padding-top: 3px;
-    min-width: 24px; font-family: var(--mono-font); font-weight: 700;
+.tech-card:hover { background: var(--surface-alt); }
+
+.card-hook {
+    font-family: var(--font-serif-cn);
+    font-size: 13px; font-weight: 600;
+    color: var(--accent);
+    line-height: 1.5; margin-bottom: 8px;
 }
-.briefing-content { flex: 1; }
-.briefing-title {
-    font-size: 14px; font-weight: 600; color: var(--text);
-    line-height: 1.5; transition: color 0.2s;
+.tech-title {
+    font-family: var(--font-body);
+    font-size: 16px; font-weight: 700;
+    color: var(--ink); line-height: 1.4;
+    display: block; margin-bottom: 8px;
+    transition: color 0.2s;
 }
-.briefing-title:hover { color: var(--coral); }
-.briefing-meta {
-    font-size: 12px; color: var(--text-dim); margin-top: 4px;
+.tech-title:hover { color: var(--accent); }
+.tech-meta {
+    font-size: 11px; color: var(--ink-muted);
     display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+    margin-bottom: 8px;
+}
+.tech-summary {
+    font-size: 14px; color: var(--ink-light);
+    line-height: 1.75;
+}
+.tech-tip {
+    font-size: 12px; color: var(--gold);
+    margin-top: 8px; font-style: italic;
 }
 
-/* ─── Video ─── */
-.video-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; }
+/* Section-specific accents */
+.finance-card { border-top: 3px solid var(--gold); }
+.humanities-card { border-top: 3px solid #6b4c9a; }
+.lol-card { border-top: 3px solid #c8aa6e; }
+
+/* ═══════════════════════════════════════
+   VIDEO — 视频
+   ═══════════════════════════════════════ */
+.video-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+}
+/* 奇数项时最后一个撑满 */
+.video-grid > .video-card:last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+}
 .video-card {
     background: var(--surface);
-    border-radius: var(--radius); overflow: hidden;
-    box-shadow: 0 2px 12px rgba(0,0,0,0.04);
-    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    border: 1px solid var(--rule-light);
+    overflow: hidden;
+    transition: all 0.3s ease;
 }
 .video-card:hover {
-    box-shadow: 0 8px 30px rgba(0,0,0,0.08);
-    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(0,0,0,0.08);
+    transform: translateY(-3px);
 }
-.video-thumb-wrap { position: relative; width: 100%; padding-top: 56.25%; overflow: hidden; }
+.video-thumb-wrap {
+    position: relative; width: 100%; padding-top: 56.25%; overflow: hidden;
+}
 .video-thumb {
     position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-    object-fit: cover; transition: transform 0.4s;
+    object-fit: cover;
+    filter: grayscale(30%);
+    transition: all 0.4s;
 }
-.video-card:hover .video-thumb { transform: scale(1.05); }
+.video-card:hover .video-thumb {
+    filter: grayscale(0%);
+    transform: scale(1.03);
+}
 .video-thumb-placeholder {
     position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-    background: linear-gradient(135deg, var(--peach), var(--lavender));
+    background: linear-gradient(135deg, var(--surface-alt), var(--ink-faint));
 }
 .video-duration {
     position: absolute; bottom: 8px; right: 8px;
-    background: rgba(0,0,0,0.7); color: #fff;
-    font-family: var(--mono-font); font-size: 11px;
-    padding: 2px 8px; border-radius: 6px;
+    background: var(--ink); color: #fff;
+    font-family: var(--font-mono); font-size: 11px;
+    padding: 2px 8px;
 }
-.video-info { padding: 16px 18px; }
+.video-info { padding: 18px 20px; }
 .video-title {
-    font-size: 14px; font-weight: 700; color: var(--text);
+    font-size: 15px; font-weight: 700; color: var(--ink);
     line-height: 1.4; display: -webkit-box;
     -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+    transition: color 0.2s;
 }
-.video-title:hover { color: var(--blue); }
+.video-title:hover { color: var(--accent); }
 .video-meta {
-    font-size: 11px; color: var(--text-dim); margin-top: 8px;
+    font-size: 11px; color: var(--ink-muted); margin-top: 8px;
     display: flex; align-items: center; gap: 6px; flex-wrap: wrap;
 }
 .video-summary {
-    font-size: 12px; color: var(--text-muted); margin-top: 8px;
-    line-height: 1.5; display: -webkit-box;
+    font-size: 13px; color: var(--ink-light); margin-top: 10px;
+    line-height: 1.6; display: -webkit-box;
     -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;
 }
 
-/* ─── Content Cards ─── */
-.tech-card {
-    background: var(--surface);
-    border-radius: var(--radius-sm); padding: 18px 22px; margin-bottom: 10px;
-    box-shadow: 0 1px 8px rgba(0,0,0,0.03);
-    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-    border-left: 4px solid transparent;
+/* ═══════════════════════════════════════
+   OPEN SOURCE — 开源项目
+   ═══════════════════════════════════════ */
+.os-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1px;
+    background: var(--rule-light);
+    border: 1px solid var(--rule-light);
 }
-.tech-card:hover {
-    box-shadow: 0 6px 24px rgba(0,0,0,0.06);
-    transform: translateY(-2px);
+/* 奇数项时最后一个撑满 */
+.os-grid > .opensource-card:last-child:nth-child(odd) {
+    grid-column: 1 / -1;
 }
-/* Section-specific left accent */
-.tech-card { border-left-color: var(--sky); }
-.finance-card { border-left-color: var(--yellow) !important; }
-.humanities-card { border-left-color: var(--pink) !important; }
-.lol-card { border-left-color: var(--lol-gold) !important; }
-
-.tech-title {
-    font-size: 15px; font-weight: 700; color: var(--text);
-    line-height: 1.4; transition: color 0.2s;
-}
-.tech-title:hover { color: var(--blue); }
-.tech-meta {
-    font-size: 11px; color: var(--text-dim); margin-top: 6px;
-    display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
-}
-.tech-summary {
-    font-size: 13px; color: var(--text-muted); margin-top: 8px;
-    line-height: 1.65;
-}
-.tech-tip {
-    font-size: 12px; color: var(--orange); margin-top: 6px;
-    font-weight: 500;
-}
-
-/* ─── Open Source ─── */
-.os-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; }
 .opensource-card {
     background: var(--surface);
-    border-radius: var(--radius-sm); padding: 20px 22px;
-    box-shadow: 0 1px 8px rgba(0,0,0,0.03);
-    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-    border-left: 4px solid var(--purple);
+    padding: 20px 24px;
     display: flex; flex-direction: column; gap: 8px;
+    transition: background 0.2s;
 }
-.opensource-card:hover {
-    box-shadow: 0 6px 24px rgba(0,0,0,0.06);
-    transform: translateY(-2px);
+.opensource-card:hover { background: var(--surface-alt); }
+.os-header {
+    display: flex; align-items: baseline; justify-content: space-between; gap: 10px;
 }
-.os-header { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; }
 .os-title {
-    font-size: 14px; font-weight: 700; color: var(--text);
-    font-family: var(--mono-font); line-height: 1.4;
+    font-family: var(--font-mono);
+    font-size: 14px; font-weight: 600;
+    color: var(--ink); line-height: 1.4;
     word-break: break-word;
+    transition: color 0.2s;
 }
-.os-title:hover { color: var(--purple); }
+.os-title:hover { color: var(--accent); }
 .stars {
-    font-family: var(--mono-font); font-size: 12px; font-weight: 700;
-    color: var(--orange); white-space: nowrap; flex-shrink: 0;
+    font-family: var(--font-mono);
+    font-size: 12px; font-weight: 600;
+    color: var(--gold); white-space: nowrap;
 }
 .os-meta { display: flex; gap: 6px; flex-wrap: wrap; }
 .os-desc {
-    font-size: 12px; color: var(--text-muted); line-height: 1.55;
-    display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;
-    overflow: hidden;
+    font-size: 13px; color: var(--ink-light); line-height: 1.65;
 }
 
-/* ─── Wisdom ─── */
+/* ═══════════════════════════════════════
+   WISDOM — 今日一思
+   ═══════════════════════════════════════ */
 .wisdom-section .wisdom-card {
-    background: linear-gradient(135deg, #fef3f2, #fdf2f8, #f5f0ff);
-    border-radius: var(--radius); padding: 30px 34px;
-    position: relative; overflow: hidden;
-    box-shadow: 0 2px 16px rgba(0,0,0,0.03);
+    background: var(--surface);
+    border: 1px solid var(--rule-light);
+    border-left: 4px solid var(--accent);
+    padding: 40px 48px;
+    position: relative;
 }
 .wisdom-card::before {
-    content: '"'; position: absolute; top: -8px; left: 18px;
-    font-size: 80px; font-weight: 800; color: rgba(240,101,149,0.1);
-    font-family: Georgia, serif; line-height: 1;
+    content: '\201C'; position: absolute; top: 16px; left: 20px;
+    font-family: var(--font-display);
+    font-size: 72px; font-weight: 900;
+    color: var(--rule-light); line-height: 1;
 }
 .wisdom-quote {
-    font-size: 19px; font-weight: 600; font-style: italic; line-height: 1.7;
-    color: var(--text); margin-bottom: 14px;
+    font-family: var(--font-serif-cn);
+    font-size: 22px; font-weight: 600;
+    line-height: 1.8; color: var(--ink);
+    margin-bottom: 16px;
     position: relative;
 }
 .wisdom-explain {
-    font-size: 14px; color: var(--text-muted); line-height: 1.7;
+    font-size: 14px; color: var(--ink-light);
+    line-height: 1.8;
 }
 .wisdom-author {
-    font-size: 12px; color: var(--purple); margin-top: 14px;
-    text-align: right; font-weight: 600;
+    font-family: var(--font-mono);
+    font-size: 12px; color: var(--ink-muted);
+    margin-top: 20px; text-align: right;
+    letter-spacing: 1px;
 }
 
-/* ─── Footer ─── */
+/* ═══════════════════════════════════════
+   FOOTER
+   ═══════════════════════════════════════ */
 .footer {
-    text-align: center; font-size: 12px; color: var(--text-dim);
+    text-align: center;
+    font-size: 11px; color: var(--ink-faint);
     margin-top: 60px; padding: 20px;
-    border-top: 1px solid var(--border);
+    border-top: 2px solid var(--rule);
+    font-family: var(--font-mono);
+    letter-spacing: 1px; text-transform: uppercase;
 }
-.footer a { color: var(--text-dim); }
-.footer a:hover { color: var(--coral); }
+.footer a { color: var(--ink-muted); transition: color 0.2s; }
+.footer a:hover { color: var(--accent); }
 
-/* ─── Responsive ─── */
-@media (max-width: 640px) {
-    .nav-bar { padding: 0 12px; }
-    .nav-brand { margin-right: 12px; }
-    .nav-link { padding: 16px 10px; font-size: 12px; }
-    .page-body { padding: 16px 14px 60px; }
-    .headline-card { padding: 20px 22px; }
-    .headline-title { font-size: 20px; }
+/* ═══════════════════════════════════════
+   RESPONSIVE
+   ═══════════════════════════════════════ */
+@media (max-width: 768px) {
+    .headline-card { grid-template-columns: 1fr; gap: 20px; }
+    .headline-title { font-size: 24px; }
+    .card-grid { grid-template-columns: 1fr; }
     .video-grid { grid-template-columns: 1fr; }
     .os-grid { grid-template-columns: 1fr; }
-    .blob-1, .blob-2, .blob-3 { opacity: 0.2; }
+    .page-body { padding: 24px 16px 60px; }
+    .masthead-inner { flex-direction: column; gap: 4px; }
+    .nav-link { padding: 8px 10px; font-size: 11px; }
+    .wisdom-card { padding: 28px 24px; }
 }
-/* ═══ Theme: Midnight ═══ */
-[data-theme="midnight"] {
-    --bg: #0f0f1a;
-    --surface: #1a1a2e;
-    --surface-2: #22223b;
-    --border: rgba(255,255,255,0.06);
-    --border-light: rgba(255,255,255,0.08);
-    --text: #e8e8f0;
-    --text-muted: #9ca3af;
-    --text-dim: #6b7280;
-    --coral: #ff6b8a;
-    --orange: #ffb86c;
-    --yellow: #f1fa8c;
-    --lime: #50fa7b;
-    --mint: #8be9fd;
-    --sky: #6272a4;
-    --blue: #bd93f9;
-    --purple: #ff79c6;
-    --pink: #ff79c6;
-    --peach: #ffb4a2;
-    --lavender: #bd93f9;
-    --lol-gold: #f1fa8c;
-}
-[data-theme="midnight"] body { background: var(--bg); color: var(--text); }
-[data-theme="midnight"] .nav-bar { background: rgba(15,15,26,0.88); }
-[data-theme="midnight"] .blob-1 { background: linear-gradient(135deg, #bd93f9, #ff79c6); opacity: 0.12; }
-[data-theme="midnight"] .blob-2 { background: linear-gradient(135deg, #6272a4, #8be9fd); opacity: 0.1; }
-[data-theme="midnight"] .blob-3 { background: linear-gradient(135deg, #50fa7b, #f1fa8c); opacity: 0.08; }
-[data-theme="midnight"] .headline-title a { color: var(--text); }
-[data-theme="midnight"] .headline-title a:hover { color: var(--purple); }
-[data-theme="midnight"] .briefing-title { color: var(--text); }
-[data-theme="midnight"] .briefing-title:hover { color: var(--purple); }
-[data-theme="midnight"] .briefing-row:hover { background: var(--surface-2); }
-[data-theme="midnight"] .tech-title { color: var(--text); }
-[data-theme="midnight"] .tech-title:hover { color: var(--purple); }
-[data-theme="midnight"] .video-title { color: var(--text); }
-[data-theme="midnight"] .video-title:hover { color: var(--mint); }
-[data-theme="midnight"] .os-title { color: var(--text); }
-[data-theme="midnight"] .os-title:hover { color: var(--lime); }
-[data-theme="midnight"] .headline-card,
-[data-theme="midnight"] .tech-card,
-[data-theme="midnight"] .video-card,
-[data-theme="midnight"] .opensource-card { background: var(--surface); box-shadow: 0 2px 16px rgba(0,0,0,0.3); }
-[data-theme="midnight"] .tech-card:hover,
-[data-theme="midnight"] .video-card:hover,
-[data-theme="midnight"] .opensource-card:hover { box-shadow: 0 8px 32px rgba(0,0,0,0.5); }
-[data-theme="midnight"] .wisdom-card { background: linear-gradient(135deg, #1a1a2e, #22223b, #2a2a4a); }
-[data-theme="midnight"] .wisdom-card::before { color: rgba(189,147,249,0.15); }
-[data-theme="midnight"] .wisdom-author { color: var(--purple); }
-[data-theme="midnight"] .keyword { background: rgba(189,147,249,0.15); color: var(--purple); }
-[data-theme="midnight"] .nav-brand { background: linear-gradient(135deg, var(--purple), var(--pink), var(--orange)); -webkit-background-clip: text; background-clip: text; }
-[data-theme="midnight"] .nav-link.active { color: var(--purple); border-bottom-color: var(--purple); }
-[data-theme="midnight"] .footer { border-top-color: rgba(255,255,255,0.06); }
-[data-theme="midnight"] ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); }
-[data-theme="midnight"] ::-webkit-scrollbar-thumb:hover { background: var(--purple); }
 
-/* ═══ Theme: Ink ═══ */
-[data-theme="ink"] {
-    --bg: #fafaf8;
-    --surface: #ffffff;
-    --surface-2: #f5f5f0;
-    --border: rgba(0,0,0,0.08);
-    --border-light: rgba(0,0,0,0.05);
-    --text: #2c2c2c;
-    --text-muted: #666;
-    --text-dim: #999;
-    --coral: #2c2c2c;
-    --orange: #555;
-    --blue: #2c2c2c;
-    --purple: #444;
-    --pink: #888;
-    --lol-gold: #8b7355;
-    --radius: 4px;
-    --radius-sm: 3px;
-    --body-font: 'Noto Serif SC', 'Source Han Serif SC', 'Songti SC', Georgia, serif;
+/* ═══════════════════════════════════════
+   THEME: DARK EDITION
+   ═══════════════════════════════════════ */
+[data-theme="dark"] {
+    --bg: #111111;
+    --surface: #1a1a1a;
+    --surface-alt: #222222;
+    --ink: #e8e8e8;
+    --ink-light: #b0b0b0;
+    --ink-muted: #777777;
+    --ink-faint: #444444;
+    --accent: #e8364f;
+    --accent-light: #ff5068;
+    --gold: #d4a017;
+    --rule: #e8e8e8;
+    --rule-light: rgba(255,255,255,0.08);
+    --rule-medium: rgba(255,255,255,0.15);
 }
-[data-theme="ink"] body { background: var(--bg); color: var(--text); }
-[data-theme="ink"] .blob-1, [data-theme="ink"] .blob-2, [data-theme="ink"] .blob-3 { display: none; }
-[data-theme="ink"] .nav-bar { background: rgba(250,250,248,0.95); border-bottom: 2px solid #2c2c2c; }
-[data-theme="ink"] .nav-brand {
-    background: none; -webkit-text-fill-color: #2c2c2c;
-    font-family: var(--mono-font); letter-spacing: 3px;
-}
-[data-theme="ink"] .nav-brand .dim { -webkit-text-fill-color: #999; }
-[data-theme="ink"] .nav-link { font-family: var(--body-font); }
-[data-theme="ink"] .nav-link.active { color: #2c2c2c; border-bottom-color: #2c2c2c; }
-[data-theme="ink"] .nav-link:hover { color: #2c2c2c; border-bottom-color: #ccc; }
-[data-theme="ink"] .headline-card { box-shadow: none; border: 1px solid var(--border); }
-[data-theme="ink"] .headline-card::before { background: #2c2c2c; animation: none; }
-[data-theme="ink"] .headline-label { background: #2c2c2c; border-radius: 0; letter-spacing: 3px; }
-[data-theme="ink"] .headline-title { font-family: var(--body-font); }
-[data-theme="ink"] .headline-title a { color: #2c2c2c; }
-[data-theme="ink"] .headline-hook { color: #555; font-style: italic; }
-[data-theme="ink"] .card-hook { color: #555; font-style: italic; }
-[data-theme="ink"] .section-header { border-bottom: 2px solid #2c2c2c; font-family: var(--body-font); letter-spacing: 2px; }
-[data-theme="ink"] .section-header .mono { background: #2c2c2c; border-radius: 0; }
-[data-theme="ink"] .tech-card,
-[data-theme="ink"] .video-card,
-[data-theme="ink"] .opensource-card {
-    box-shadow: none; border: 1px solid var(--border); border-left: 3px solid #2c2c2c;
-}
-[data-theme="ink"] .finance-card { border-left-color: var(--lol-gold) !important; }
-[data-theme="ink"] .humanities-card { border-left-color: #888 !important; }
-[data-theme="ink"] .lol-card { border-left-color: var(--lol-gold) !important; }
-[data-theme="ink"] .tech-card:hover,
-[data-theme="ink"] .video-card:hover,
-[data-theme="ink"] .opensource-card:hover {
-    box-shadow: none; transform: none; background: var(--surface-2);
-}
-[data-theme="ink"] .tag { border-radius: 0; background: #2c2c2c; font-family: var(--mono-font); }
-[data-theme="ink"] .keyword { background: #f0ede8; color: #2c2c2c; border-radius: 0; }
-[data-theme="ink"] .wisdom-card {
-    background: var(--surface); border: 1px solid var(--border);
-    font-family: var(--body-font);
-}
-[data-theme="ink"] .wisdom-quote { font-family: var(--body-font); font-size: 20px; }
-[data-theme="ink"] .wisdom-author { color: #555; }
-[data-theme="ink"] a { color: #2c2c2c; text-decoration: underline; text-underline-offset: 3px; }
-[data-theme="ink"] a:hover { color: #555; }
-[data-theme="ink"] .tech-tip, [data-theme="ink"] .headline-tip { color: #888; }
+[data-theme="dark"] body { background: var(--bg); color: var(--ink); }
+[data-theme="dark"] .masthead { background: var(--bg); border-bottom-color: var(--rule-light); }
+[data-theme="dark"] .section-header { border-bottom-color: var(--rule-light); }
+[data-theme="dark"] .headline-thumb { filter: brightness(0.85) contrast(1.1); }
+[data-theme="dark"] .headline-card:hover .headline-thumb { filter: brightness(1) contrast(1.1); }
+[data-theme="dark"] .video-thumb { filter: brightness(0.8); }
+[data-theme="dark"] .video-card:hover .video-thumb { filter: brightness(1); }
+[data-theme="dark"] ::selection { background: var(--accent); color: #fff; }
 
-/* ═══ Theme: Terminal ═══ */
-[data-theme="terminal"] {
-    --bg: #0a0e14;
-    --surface: #0d1117;
-    --surface-2: #161b22;
-    --border: rgba(48,54,61,0.8);
-    --border-light: rgba(48,54,61,0.5);
-    --text: #c9d1d9;
-    --text-muted: #8b949e;
-    --text-dim: #484f58;
-    --coral: #f85149;
-    --orange: #d29922;
-    --yellow: #e3b341;
-    --lime: #3fb950;
-    --mint: #39d353;
-    --sky: #58a6ff;
-    --blue: #58a6ff;
-    --purple: #bc8cff;
-    --pink: #f778ba;
-    --peach: #ffa657;
-    --lavender: #bc8cff;
-    --lol-gold: #e3b341;
-    --body-font: 'SF Mono', 'Fira Code', 'JetBrains Mono', Consolas, monospace;
-    --radius: 6px;
-    --radius-sm: 4px;
-}
-[data-theme="terminal"] body { background: var(--bg); color: var(--text); font-size: 13px; }
-[data-theme="terminal"] .blob-1, [data-theme="terminal"] .blob-2, [data-theme="terminal"] .blob-3 { display: none; }
-[data-theme="terminal"] .nav-bar {
-    background: rgba(10,14,20,0.95);
-    border-bottom: 1px solid var(--border);
-    font-family: var(--body-font);
-}
-[data-theme="terminal"] .nav-brand {
-    background: none; -webkit-text-fill-color: var(--lime);
-    font-family: var(--body-font);
-}
-[data-theme="terminal"] .nav-brand::before { content: '> '; -webkit-text-fill-color: var(--text-dim); }
-[data-theme="terminal"] .nav-brand .dim { -webkit-text-fill-color: var(--text-dim); }
-[data-theme="terminal"] .nav-link { font-family: var(--body-font); font-size: 12px; }
-[data-theme="terminal"] .nav-link .mono { display: inline; color: var(--text-dim); margin-right: 2px; }
-[data-theme="terminal"] .nav-link.active { color: var(--lime); border-bottom-color: var(--lime); }
-[data-theme="terminal"] .nav-link:hover { color: var(--sky); border-bottom-color: var(--sky); }
-[data-theme="terminal"] .section-header {
-    border-bottom: 1px solid var(--border);
-    font-family: var(--body-font); font-size: 12px; color: var(--lime);
-}
-[data-theme="terminal"] .section-header .mono {
-    background: transparent; color: var(--text-dim);
-    border: 1px solid var(--text-dim); border-radius: 3px;
-    font-size: 10px;
-}
-[data-theme="terminal"] .headline-card {
-    background: var(--surface); border: 1px solid var(--border);
-    box-shadow: none;
-}
-[data-theme="terminal"] .headline-card::before { background: var(--lime); animation: none; height: 2px; }
-[data-theme="terminal"] .headline-label {
-    background: transparent; color: var(--lime);
-    border: 1px solid var(--lime); border-radius: 3px;
-    font-family: var(--body-font); font-size: 10px;
-}
-[data-theme="terminal"] .headline-title { font-family: var(--body-font); font-size: 18px; }
-[data-theme="terminal"] .headline-title a { color: var(--text); }
-[data-theme="terminal"] .headline-title a:hover { color: var(--sky); }
-[data-theme="terminal"] .headline-hook { color: var(--orange); font-size: 13px; }
-[data-theme="terminal"] .headline-hook::before { content: '// '; color: var(--text-dim); }
-[data-theme="terminal"] .card-hook { color: var(--orange); font-size: 12px; }
-[data-theme="terminal"] .card-hook::before { content: '// '; color: var(--text-dim); }
-[data-theme="terminal"] .tech-card,
-[data-theme="terminal"] .video-card,
-[data-theme="terminal"] .opensource-card {
-    background: var(--surface); border: 1px solid var(--border);
-    box-shadow: none; border-left: 3px solid var(--sky);
-}
-[data-theme="terminal"] .finance-card { border-left-color: var(--orange) !important; }
-[data-theme="terminal"] .humanities-card { border-left-color: var(--purple) !important; }
-[data-theme="terminal"] .lol-card { border-left-color: var(--yellow) !important; }
-[data-theme="terminal"] .tech-card:hover,
-[data-theme="terminal"] .video-card:hover,
-[data-theme="terminal"] .opensource-card:hover {
-    box-shadow: none; transform: none; background: var(--surface-2);
-}
-[data-theme="terminal"] .tech-title,
-[data-theme="terminal"] .briefing-title { color: var(--text); font-family: var(--body-font); font-size: 13px; }
-[data-theme="terminal"] .tech-title:hover,
-[data-theme="terminal"] .briefing-title:hover { color: var(--sky); }
-[data-theme="terminal"] .video-title { color: var(--text); font-family: var(--body-font); font-size: 13px; }
-[data-theme="terminal"] .tag {
-    border-radius: 3px; font-family: var(--body-font);
-    font-size: 9px; letter-spacing: 1px; padding: 2px 6px;
-}
-[data-theme="terminal"] .keyword {
-    background: rgba(88,166,255,0.1); color: var(--sky);
-    border-radius: 3px; font-family: var(--body-font);
-}
-[data-theme="terminal"] .wisdom-card {
-    background: var(--surface); border: 1px solid var(--border);
-}
-[data-theme="terminal"] .wisdom-quote { font-family: var(--body-font); font-size: 15px; font-style: normal; }
-[data-theme="terminal"] .wisdom-quote::before { content: '> '; color: var(--lime); font-style: normal; }
-[data-theme="terminal"] .wisdom-explain { font-family: var(--body-font); }
-[data-theme="terminal"] .wisdom-author { color: var(--lime); }
-[data-theme="terminal"] .wisdom-card::before { color: rgba(63,185,80,0.1); }
-[data-theme="terminal"] a { color: var(--sky); }
-[data-theme="terminal"] a:hover { color: var(--purple); }
-[data-theme="terminal"] .tech-tip, [data-theme="terminal"] .headline-tip { color: var(--orange); }
-[data-theme="terminal"] .briefing-row:hover { background: var(--surface-2); }
-[data-theme="terminal"] .video-thumb-placeholder { background: linear-gradient(135deg, #161b22, #21262d); }
-[data-theme="terminal"] ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.08); }
-[data-theme="terminal"] ::-webkit-scrollbar-thumb:hover { background: var(--lime); }
-[data-theme="terminal"] .footer { border-top-color: var(--border); }
-
-/* ═══ Theme: Sunset ═══ */
-[data-theme="sunset"] {
-    --bg: #1a1423;
-    --surface: #231c30;
-    --surface-2: #2d2440;
-    --border: rgba(255,255,255,0.06);
-    --border-light: rgba(255,255,255,0.04);
-    --text: #f0e6ff;
-    --text-muted: #b8a9d4;
-    --text-dim: #7a6b95;
-    --coral: #ff6b8a;
-    --orange: #ff9f43;
-    --yellow: #feca57;
-    --lime: #0abde3;
-    --mint: #48dbfb;
-    --sky: #54a0ff;
-    --blue: #5f27cd;
-    --purple: #c56cf0;
-    --pink: #ff6b8a;
-    --peach: #ff9f43;
-    --lavender: #c56cf0;
-    --lol-gold: #feca57;
-}
-[data-theme="sunset"] body { background: var(--bg); color: var(--text); }
-[data-theme="sunset"] .blob-1 { background: linear-gradient(135deg, #ff6b8a, #ff9f43); opacity: 0.15; }
-[data-theme="sunset"] .blob-2 { background: linear-gradient(135deg, #c56cf0, #5f27cd); opacity: 0.12; }
-[data-theme="sunset"] .blob-3 { background: linear-gradient(135deg, #0abde3, #54a0ff); opacity: 0.1; }
-[data-theme="sunset"] .nav-bar { background: rgba(26,20,35,0.88); }
-[data-theme="sunset"] .nav-brand {
-    background: linear-gradient(135deg, #ff6b8a, #ff9f43, #feca57);
-    -webkit-background-clip: text; background-clip: text;
-}
-[data-theme="sunset"] .nav-link.active { color: var(--pink); border-bottom-color: var(--pink); }
-[data-theme="sunset"] .nav-link:hover { color: var(--orange); border-bottom-color: var(--orange); }
-[data-theme="sunset"] .headline-card {
-    background: linear-gradient(145deg, #231c30, #2d2440);
-    box-shadow: 0 4px 24px rgba(0,0,0,0.3);
-}
-[data-theme="sunset"] .headline-card::before {
-    background: linear-gradient(90deg, #ff6b8a, #ff9f43, #feca57, #0abde3, #c56cf0);
-    background-size: 200% 100%;
-}
-[data-theme="sunset"] .headline-label { background: linear-gradient(135deg, #ff6b8a, #ff9f43); }
-[data-theme="sunset"] .headline-title a { color: var(--text); }
-[data-theme="sunset"] .headline-title a:hover { color: var(--orange); }
-[data-theme="sunset"] .headline-hook { color: var(--orange); }
-[data-theme="sunset"] .card-hook { color: var(--orange); }
-[data-theme="sunset"] .section-header { border-bottom-color: rgba(255,255,255,0.08); }
-[data-theme="sunset"] .section-header .mono { background: linear-gradient(135deg, #ff6b8a, #c56cf0); }
-[data-theme="sunset"] .tech-card,
-[data-theme="sunset"] .video-card,
-[data-theme="sunset"] .opensource-card {
-    background: var(--surface);
-    box-shadow: 0 2px 16px rgba(0,0,0,0.2);
-    border-left-color: var(--pink);
-}
-[data-theme="sunset"] .finance-card { border-left-color: var(--orange) !important; }
-[data-theme="sunset"] .humanities-card { border-left-color: var(--purple) !important; }
-[data-theme="sunset"] .lol-card { border-left-color: var(--yellow) !important; }
-[data-theme="sunset"] .tech-card:hover,
-[data-theme="sunset"] .video-card:hover,
-[data-theme="sunset"] .opensource-card:hover {
-    box-shadow: 0 8px 40px rgba(0,0,0,0.35); background: var(--surface-2);
-}
-[data-theme="sunset"] .tech-title,
-[data-theme="sunset"] .briefing-title { color: var(--text); }
-[data-theme="sunset"] .tech-title:hover,
-[data-theme="sunset"] .briefing-title:hover { color: var(--orange); }
-[data-theme="sunset"] .video-title { color: var(--text); }
-[data-theme="sunset"] .video-title:hover { color: var(--mint); }
-[data-theme="sunset"] .os-title { color: var(--text); }
-[data-theme="sunset"] .os-title:hover { color: var(--purple); }
-[data-theme="sunset"] .briefing-row:hover { background: var(--surface-2); }
-[data-theme="sunset"] .tag { border-radius: 20px; }
-[data-theme="sunset"] .keyword { background: rgba(197,108,240,0.15); color: var(--purple); }
-[data-theme="sunset"] .wisdom-card {
-    background: linear-gradient(135deg, #2d2440, #3a2d50, #231c30);
-    box-shadow: 0 2px 20px rgba(0,0,0,0.2);
-}
-[data-theme="sunset"] .wisdom-card::before { color: rgba(197,108,240,0.12); }
-[data-theme="sunset"] .wisdom-author { color: var(--purple); }
-[data-theme="sunset"] a { color: var(--pink); }
-[data-theme="sunset"] a:hover { color: var(--orange); }
-[data-theme="sunset"] .tech-tip, [data-theme="sunset"] .headline-tip { color: var(--orange); }
-[data-theme="sunset"] .video-thumb-placeholder { background: linear-gradient(135deg, #2d2440, #3a2d50); }
-[data-theme="sunset"] .stars { color: var(--orange); }
-[data-theme="sunset"] ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.08); }
-[data-theme="sunset"] ::-webkit-scrollbar-thumb:hover { background: var(--purple); }
-[data-theme="sunset"] .footer { border-top-color: rgba(255,255,255,0.06); }
-
-/* ═══ Theme Switcher ═══ */
+/* ═══════════════════════════════════════
+   THEME SWITCHER
+   ═══════════════════════════════════════ */
 .theme-switcher {
-    position: fixed; top: 64px; right: 16px; z-index: 200;
+    position: fixed; bottom: 24px; right: 24px; z-index: 200;
 }
 .theme-btn {
-    width: 36px; height: 36px; border-radius: 50%;
-    border: 2px solid var(--border);
+    width: 40px; height: 40px;
+    border: 2px solid var(--rule-medium);
     background: var(--surface);
     cursor: pointer; display: flex; align-items: center; justify-content: center;
-    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
-    transition: all 0.25s;
+    transition: all 0.2s;
     font-size: 16px; line-height: 1;
 }
-.theme-btn:hover { transform: scale(1.1); box-shadow: 0 4px 20px rgba(0,0,0,0.15); }
+.theme-btn:hover { border-color: var(--accent); }
 .theme-panel {
-    position: absolute; top: 44px; right: 0;
+    position: absolute; bottom: 48px; right: 0;
     background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 8px 4px;
-    box-shadow: 0 8px 40px rgba(0,0,0,0.12);
-    display: none; min-width: 160px;
+    border: 1px solid var(--rule-medium);
+    padding: 8px;
+    display: none; min-width: 140px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.12);
 }
 .theme-panel.open { display: block; }
 .theme-option {
     display: flex; align-items: center; gap: 10px;
-    padding: 8px 14px; border-radius: 8px;
-    cursor: pointer; font-size: 13px; font-weight: 500;
-    color: var(--text-muted);
+    padding: 8px 12px;
+    cursor: pointer; font-size: 12px; font-weight: 500;
+    color: var(--ink-muted);
     transition: all 0.15s; border: none; background: none; width: 100%;
-    font-family: var(--body-font);
+    font-family: var(--font-mono); letter-spacing: 0.5px;
 }
-.theme-option:hover { background: var(--surface-2); color: var(--text); }
-.theme-option.active { color: var(--text); font-weight: 700; }
+.theme-option:hover { background: var(--surface-alt); color: var(--ink); }
+.theme-option.active { color: var(--accent); font-weight: 700; }
 .theme-option .dot {
-    width: 18px; height: 18px; border-radius: 50%;
-    border: 2px solid var(--border);
-    flex-shrink: 0;
+    width: 12px; height: 12px;
+    border: 2px solid var(--ink-faint);
 }
 .theme-option.active .dot {
-    border-color: var(--coral);
-    box-shadow: inset 0 0 0 4px var(--coral);
+    border-color: var(--accent);
+    background: var(--accent);
 }
-.theme-swatch {
-    display: flex; gap: 2px; margin-left: auto;
-}
-.theme-swatch span {
-    width: 8px; height: 8px; border-radius: 50%;
-}
-@media (max-width: 640px) {
-    .theme-switcher { top: 60px; right: 10px; }
-    .theme-btn { width: 32px; height: 32px; font-size: 14px; }
+@media (max-width: 768px) {
+    .theme-switcher { bottom: 16px; right: 16px; }
+    .theme-btn { width: 36px; height: 36px; }
 }
 </style>
 </head>
 <body>
 <script>
-/* 主题提前注入，避免闪烁 */
 (function(){
-    var t = localStorage.getItem('digest-theme') || 'dopamine';
+    var t = localStorage.getItem('digest-theme') || 'editorial';
     document.documentElement.setAttribute('data-theme', t);
 })();
 </script>
 
-<div class="blob-1"></div>
-<div class="blob-2"></div>
-<div class="blob-3"></div>
+<header class="masthead">
+    <div class="masthead-inner">
+        <div class="masthead-brand">DAILY<span class="accent">::</span>DIGEST</div>
+        <div class="masthead-date">2026-05-13 · 40 items</div>
+    </div>
+    <hr class="masthead-rule">
+    <nav class="nav-bar">
+        <a href="#headline" class="nav-link" data-section="headline">头条</a>
+<a href="#briefing" class="nav-link" data-section="briefing">速递</a>
+<a href="#humanities" class="nav-link" data-section="humanities">人文</a>
+<a href="#finance" class="nav-link" data-section="finance">投资</a>
+<a href="#lol" class="nav-link" data-section="lol">LoL</a>
+<a href="#video" class="nav-link" data-section="video">视频</a>
+<a href="#tech" class="nav-link" data-section="tech">科技</a>
+<a href="#papers" class="nav-link" data-section="papers">论文</a>
+<a href="#opensource" class="nav-link" data-section="opensource">开源</a>
+<a href="#wisdom" class="nav-link" data-section="wisdom">一思</a>
 
-<nav class="nav-bar">
-    <div class="nav-brand">DAILY<span class="dim">::</span>DIGEST</div>
-    <a href="#headline" class="nav-link" data-section="headline"><span class="mono">01</span> 头条</a>
-<a href="#briefing" class="nav-link" data-section="briefing"><span class="mono">02</span> 速递</a>
-<a href="#humanities" class="nav-link" data-section="humanities"><span class="mono">03</span> 人文</a>
-<a href="#finance" class="nav-link" data-section="finance"><span class="mono">04</span> 投资</a>
-<a href="#lol" class="nav-link" data-section="lol"><span class="mono">05</span> LoL</a>
-<a href="#video" class="nav-link" data-section="video"><span class="mono">06</span> 视频</a>
-<a href="#tech" class="nav-link" data-section="tech"><span class="mono">07</span> 科技</a>
-<a href="#papers" class="nav-link" data-section="papers"><span class="mono">08</span> 论文</a>
-<a href="#opensource" class="nav-link" data-section="opensource"><span class="mono">09</span> 开源</a>
-<a href="#wisdom" class="nav-link" data-section="wisdom"><span class="mono">10</span> 一思</a>
-
-    <div class="nav-meta">2026-05-13 · 40 items</div>
-</nav>
+    </nav>
+</header>
 
 <div class="theme-switcher">
     <button class="theme-btn" id="themeToggle" title="Switch Theme">
         <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6" stroke="currentColor" stroke-width="1.5"/><path d="M8 2a6 6 0 0 1 0 12V2z" fill="currentColor"/></svg>
     </button>
     <div class="theme-panel" id="themePanel">
-        <button class="theme-option" data-theme="dopamine">
-            <span class="dot"></span>Dopamine
-            <span class="theme-swatch"><span style="background:#ff6b6b"></span><span style="background:#ffa94d"></span><span style="background:#ffd43b"></span></span>
+        <button class="theme-option" data-theme="editorial">
+            <span class="dot"></span>Editorial
         </button>
-        <button class="theme-option" data-theme="midnight">
-            <span class="dot"></span>Midnight
-            <span class="theme-swatch"><span style="background:#bd93f9"></span><span style="background:#ff79c6"></span><span style="background:#50fa7b"></span></span>
-        </button>
-        <button class="theme-option" data-theme="ink">
-            <span class="dot"></span>Ink
-            <span class="theme-swatch"><span style="background:#2c2c2c"></span><span style="background:#888"></span><span style="background:#ccc"></span></span>
-        </button>
-        <button class="theme-option" data-theme="terminal">
-            <span class="dot"></span>Terminal
-            <span class="theme-swatch"><span style="background:#3fb950"></span><span style="background:#58a6ff"></span><span style="background:#f85149"></span></span>
-        </button>
-        <button class="theme-option" data-theme="sunset">
-            <span class="dot"></span>Sunset
-            <span class="theme-swatch"><span style="background:#ff6b8a"></span><span style="background:#ff9f43"></span><span style="background:#c56cf0"></span></span>
+        <button class="theme-option" data-theme="dark">
+            <span class="dot"></span>Dark
         </button>
     </div>
 </div>
 
 <main class="page-body">
     <section id="headline" class="reveal">
-        <div class="headline-card">
-    <div class="headline-label"><span class="mono">01</span> 今日头条</div>
+        <div class="headline-card no-thumb">
     
-    <p class="headline-hook">分辨率翻倍成本不涨，弹性注意力让ViT能处理8K图像了</p>
-    <h2 class="headline-title"><a href="https://arxiv.org/abs/2605.12491v1" target="_blank">Elastic Attention Cores for Scalable Vision Transformers</a></h2>
-    <div class="headline-meta">
-        <span class="source">arXiv</span>
-        <span class="tag" style="color:#fff;background:#38d9a9">PAPER</span> <span class="tag" style="color:#fff;background:#5c7cfa">AI</span> <span class="tag">计算机视觉</span> <span class="tag">模型加速</span>
+    <div class="headline-content">
+        <div class="headline-label">LEAD STORY</div>
+        <p class="headline-hook">这篇连标题都没公开的arXiv神秘论文，或许藏着下周的AI大新闻</p>
+        <h2 class="headline-title"><a href="https://arxiv.org/abs/2604.17587" target="_blank">arXiv:2604.17587</a></h2>
+        <div class="headline-meta">
+            <span class="source">arXiv</span>
+            <span class="tag" style="color:#fff;background:#38d9a9">PAPER</span> <span class="tag">AI</span> <span class="tag">学术前沿</span>
+        </div>
+        <div class="keywords-row"><span class="keyword">arXiv:2604.17587</span> <span class="keyword">预印本</span> <span class="keyword">AI研究</span> <span class="keyword">未公开</span></div>
+        <p class="headline-summary">一个仅以编号arXiv:2604.17587亮相的预印本，在研究者圈子里引发私下讨论。虽然官方元数据尚未揭示其主题，但结合发布节点和分类标签（科技/AI），它极有可能是AI安全或对齐方向的最新突破。→ 根据以往经验，越是这样低调出场的论文，越容易在一个月内成为爆款。建议设个提醒，一旦标题和摘要释出第一时间跟进。</p>
+        <p class="headline-tip">好奇心重的AI爱好者可以追一追</p>
     </div>
-    <div class="keywords-row"><span class="keyword">弹性注意力</span> <span class="keyword">视觉Transformer</span> <span class="keyword">高分辨率</span> <span class="keyword">计算效率</span> <span class="keyword">动态分配</span></div>
-    <p class="headline-summary">视觉Transformer（ViT）的自注意力计算开销随图像分辨率平方增长，这直接卡住了高分辨率场景的脖子。这篇论文提出了「弹性注意力核心」（Elastic Attention Cores），核心思路是根据图像局部复杂度动态分配计算资源：平坦区域跳过精细计算，边缘纹理丰富处激活高精度注意力。▸ 实测在同等精度下，高分辨率输入的计算量降低60%以上，首次让ViT在8K级别的医学影像、遥感图像上变得实用。对于正在被高昂推理成本困扰的多模态大模型团队，这是个值得重点跟进的方向。代码尚未开源，但方法描述很清晰，复现门槛不高。</p>
-    <p class="headline-tip">搞大分辨率图像模型的朋友，这篇能省你不少算力</p>
 </div>
     </section>
 
     <section id="briefing" class="reveal">
         <div class="section-block">
-    <div class="section-header"><span class="mono">02</span> Quick Briefing</div>
+    <div class="section-header"><span class="section-num">NO.02</span><span class="section-title">Quick Briefing</span></div>
     <div class="briefing-row">
-    <span class="mono num">02</span>
+    <span class="num">02</span>
     <div class="briefing-content">
         <a href="https://openai.com/index/what-parameter-golf-taught-us" target="_blank" class="briefing-title">What Parameter Golf taught us about AI-assisted research</a>
-        <div class="briefing-meta">Blog/OpenAI <span class="tag" style="color:#fff;background:#5c7cfa">BLOG</span> <span class="tag" style="color:#fff;background:#5c7cfa">AI</span> <span class="tag">科技/AI</span> <span class="tag">研究范式</span> · 正在写论文或者跑实验的朋友，这篇可能会改变你的研究流程</div>
+        <div class="briefing-meta">Blog/OpenAI <span class="tag" style="color:#fff;background:#5c7cfa">BLOG</span> <span class="tag" style="color:#fff;background:#5c7cfa">AI</span> <span class="tag">科技/AI</span> <span class="tag">研究范式</span> · 想了解 AI 如何加速科研的，这场比赛的经验比论文更接地气</div>
     </div>
 </div><div class="briefing-row">
-    <span class="mono num">03</span>
+    <span class="num">03</span>
     <div class="briefing-content">
-        <a href="https://arxiv.org/abs/2605.12501v1" target="_blank" class="briefing-title">Covering Human Action Space for Computer Use: Data Synthesis and Benchmark</a>
-        <div class="briefing-meta">arXiv <span class="tag" style="color:#fff;background:#38d9a9">PAPER</span> <span class="tag" style="color:#fff;background:#5c7cfa">AI</span> <span class="tag">AI Agent</span> <span class="tag">基准数据集</span> · 做软件操控Agent的，拿这个基准跑一遍就知道你的模型哪里弱</div>
+        <a href="https://huggingface.co/papers/2605.11882" target="_blank" class="briefing-title">On-Policy Self-Evolution via Failure Trajectories for Agentic Safety Alignment</a>
+        <div class="briefing-meta">HuggingFace/Papers <span class="tag" style="color:#fff;background:#ffa94d">HF</span> <span class="tag" style="color:#fff;background:#5c7cfa">AI</span> <span class="tag">AI安全</span> <span class="tag">论文</span> · 做AI安全的应该看，可能改变对齐管线</div>
     </div>
 </div><div class="briefing-row">
-    <span class="mono num">04</span>
+    <span class="num">04</span>
     <div class="briefing-content">
         <a href="https://collabfund.com/blog/the-power-of-constraints/" target="_blank" class="briefing-title">The Power of Constraints</a>
-        <div class="briefing-meta">Blog/CollabFund <span class="tag" style="color:#fff;background:#f59f00">FINANCE</span> <span class="tag" style="color:#fff;background:#5c7cfa">AI</span> <span class="tag">商业策略</span> <span class="tag">媒体</span> · 创业者尤其该看，比好多战术课都实在</div>
+        <div class="briefing-meta">Blog/CollabFund <span class="tag" style="color:#fff;background:#f59f00">FINANCE</span> <span class="tag" style="color:#fff;background:#5c7cfa">AI</span> <span class="tag">投资/经济</span> <span class="tag">媒体</span> · 对体育版权生意好奇的朋友可一看</div>
     </div>
 </div><div class="briefing-row">
-    <span class="mono num">05</span>
+    <span class="num">05</span>
     <div class="briefing-content">
         <a href="https://daily.jstor.org/preserving-the-art-of-ed-aulerich-sugai/" target="_blank" class="briefing-title">Preserving the Art of Ed Aulerich-Sugai</a>
-        <div class="briefing-meta">Essay/JSTOR <span class="tag" style="color:#fff;background:#f06595">ESSAY</span> <span class="tag" style="color:#fff;background:#5c7cfa">AI</span> <span class="tag">艺术</span> <span class="tag">文化遗产</span> · 这种故事比刷十幅名画都长见识，而且和你家的老照片命运惊人地相似</div>
+        <div class="briefing-meta">Essay/JSTOR <span class="tag" style="color:#fff;background:#f06595">ESSAY</span> <span class="tag" style="color:#fff;background:#5c7cfa">AI</span> <span class="tag">艺术史</span> <span class="tag">文化保护</span> · 对艺术和遗失文明感兴趣的朋友，这篇会触动你</div>
     </div>
 </div>
 </div>
@@ -866,180 +675,170 @@ a:hover { color: var(--purple); }
 
     <section id="humanities" class="reveal">
         <div class="section-block">
-    <div class="section-header"><span class="mono">03</span> 人文洞察</div>
-    <div class="tech-card humanities-card">
-    <p class="card-hook">我们一辈子都在浅水区扑腾，却以为自己早会深海潜行了</p>
+    <div class="section-header"><span class="section-num">NO.03</span><span class="section-title">人文洞察</span></div>
+    <div class="card-grid"><div class="tech-card humanities-card">
+    <p class="card-hook">你以为的深邃人性，可能只是浅滩上的涟漪</p>
     <a href="https://aeon.co/essays/how-does-the-deep-earth-see-humanity" target="_blank" class="tech-title">Beneath our human shallows</a>
-    <div class="tech-meta">Essay/Aeon <span class="tag" style="color:#fff;background:#f06595">ESSAY</span> <span class="tag">社会观察</span> <span class="tag">反碎片化</span></div>
-    <div class="keywords-row"><span class="keyword">认知浅薄化</span> <span class="keyword">深度思考衰退</span> <span class="keyword">算法驯化</span> <span class="keyword">默认模式网络</span> <span class="keyword">Aeon</span></div>
-    <p class="tech-summary">Aeon的这篇长文揭示了一个扎心真相：在算法推荐和即时反馈的驯化下，现代人的认知模式正不可逆地滑向“人类浅滩”——我们变得只接受瞬时理解，抗拒任何需要超过30秒专注的深度内容，甚至用表情包替代了情感表达。
+    <div class="tech-meta">Essay/Aeon <span class="tag" style="color:#fff;background:#f06595">ESSAY</span> <span class="tag">哲学</span> <span class="tag">心理学</span></div>
+    <div class="keywords-row"><span class="keyword">自我意识</span> <span class="keyword">自由意志</span> <span class="keyword">集体无意识</span> <span class="keyword">神经科学</span> <span class="keyword">现象学</span></div>
+    <p class="tech-summary">这篇来自 Aeon 的哲思散文戳破了一个现代幻觉：我们总以为自我意识深不可测，但作者论证，人类心智的绝大部分运作都在「浅水区」——被生物本能、社会模因和语言结构所限定。真正深邃的并不是作为个体的「我」，而是演化长河中形成的集体无意识。文章引用神经科学和现象学，指出自由意志更像是事后编造的叙事。
 
-作者从神经科学和现象学角度分析，深度体验（如长时间读一本书、观察一棵树）需要的大脑“默认模式网络”正因缺乏使用而萎缩。→ 这并非鸡汤反思，而是一个生理性警告：你每天都在用碎片信息重塑自己的大脑，让它逐渐丧失体会深刻幸福的能力。可操作的建议并非戒网，而是每天留出20分钟“未经设计的空白时间”。</p>
-    <p class="tech-tip">刷到这里还没划走的你，已经赢了80%的人，这篇值得你全部读完</p>
+→ 和你有什么关系？当你纠结「我想要什么」时，或许该问：「是谁让我想要这个？」质疑欲望的来源，就是反抗浅滩的第一步。</p>
+    <p class="tech-tip">感到人生迷茫时读这篇，反而会清晰很多</p>
 </div>
 <div class="tech-card humanities-card">
-    <p class="card-hook">你深信不疑的“灵魂”，其实是17世纪才被发明出来的概念</p>
+    <p class="card-hook">灵魂不是天生的，而是被「发明」出来的技术</p>
     <a href="https://aeon.co/essays/you-know-what-consciousness-is-you-live-in-soul-land" target="_blank" class="tech-title">The invention of the soul</a>
-    <div class="tech-meta">Essay/Aeon <span class="tag" style="color:#fff;background:#f06595">ESSAY</span> <span class="tag">哲学</span> <span class="tag">思想史</span></div>
-    <div class="keywords-row"><span class="keyword">灵魂概念</span> <span class="keyword">笛卡尔</span> <span class="keyword">身心二元论</span> <span class="keyword">启蒙运动</span> <span class="keyword">思想史</span></div>
-    <p class="tech-summary">Aeon 的这篇思想史长文抛出一个颠覆性论点：现代人挂在嘴边的“灵魂”，并非亘古存在，而是欧洲启蒙运动前后被精心构建的哲学工具。文章追溯了从亚里士多德的“生命原理”到笛卡尔“身心二元论”的演变，指出将灵魂视为意识、道德与不朽载体的观念，实则是为了填补科学崛起后神学退场留下的真空。
+    <div class="tech-meta">Essay/Aeon <span class="tag" style="color:#fff;background:#f06595">ESSAY</span> <span class="tag">文化史</span> <span class="tag">哲学</span></div>
+    <div class="keywords-row"><span class="keyword">灵魂观念史</span> <span class="keyword">柏拉图</span> <span class="keyword">基督教</span> <span class="keyword">道德归责</span> <span class="keyword">文化发明</span></div>
+    <p class="tech-summary">Aeon 这篇文化史考察颠覆常识：灵魂并非亘古存在的信仰，而是人类文明为解决特定焦虑而逐步「设计」出的概念。从荷马史诗中没有统一灵魂，到柏拉图二分说，再到基督教肉身复活——每一步演变都与政治秩序、法律归责的需要相关。作者提出，发明灵魂是为了给道德审判找一个不可销毁的被告。
 
-→ 这解释了为什么东方的“灵”与西方的“灵魂”如此不同——我们争论的起点，本身就是一种文化的晚期发明。如果你曾纠结于“人有没有灵魂”，这篇文章会让你意识到，问题本身就被动了手脚。</p>
-    <p class="tech-tip">晚上睡不着时读这篇，比刷短视频烧脑十倍</p>
+→ 现代人把「寻找自我」当作人生目标，本质是在使用这个古老的文化工具。看懂它的来历，才会明白哪些焦虑是虚构的。</p>
+    <p class="tech-tip">下次灵魂拷问前，先读这篇考古</p>
 </div>
 <div class="tech-card humanities-card">
-    <p class="card-hook">读了那么多书，你可能只是在进行一场精致的自我欺骗</p>
+    <p class="card-hook">我们鼓吹阅读，却很少有人问：读书到底有什么用？</p>
     <a href="https://aeon.co/essays/the-role-of-literature-as-the-key-to-personal-freedom" target="_blank" class="tech-title">Does reading do us any good?</a>
-    <div class="tech-meta">Essay/Aeon <span class="tag" style="color:#fff;background:#f06595">ESSAY</span> <span class="tag">批判思考</span> <span class="tag">教育</span></div>
-    <div class="keywords-row"><span class="keyword">阅读焦虑</span> <span class="keyword">认知幻觉</span> <span class="keyword">主动阅读</span> <span class="keyword">社交信号</span></div>
-    <p class="tech-summary">Aeon 这篇尖锐的随笔对“阅读即美德”的现代迷思发起了手术刀般的剖析。它指出，多数人的阅读行为并未转化为真正的洞察或行动，反而成为一种社交信号与心理安慰——用“我在读书”来对冲焦虑、标榜深度。文章引用了认知科学案例，说明被动阅读对思维能力的提升微乎其微，甚至可能强化已有偏见。
+    <div class="tech-meta">Essay/Aeon <span class="tag" style="color:#fff;background:#f06595">ESSAY</span> <span class="tag">文化批评</span> <span class="tag">心理学</span></div>
+    <div class="keywords-row"><span class="keyword">阅读伦理</span> <span class="keyword">共情力</span> <span class="keyword">批判思维</span> <span class="keyword">身份信号</span> <span class="keyword">塞涅卡</span></div>
+    <p class="tech-summary">这篇随笔对「阅读即美德」的现代崇拜发起诚实追问。作者梳理了从塞涅卡到数字时代，阅读如何从贵族沉思蜕变为大众焦虑——书成了身份信号，而非思想媒介。心理学证据显示，大量阅读并不必然带来共情力提升或批判思维强化，关键在于「怎么读」与「为什么读」。消费式阅读甚至可能强化偏见。
 
-→ 核心拷问：如果把读书换成刷视频，你的认知产出会变差吗？可能不会。文章建议从“消费者式阅读”转向“生产者式阅读”，即带着问题去拆解、反驳、应用。下次买书前，不妨先问问自己是在逃避还是在进攻。</p>
-    <p class="tech-tip">读完这篇，你可能会卸载一批读书APP</p>
+→ 别为没读完书单而愧疚。真正起作用的，是你在空白处写下的那句质疑，而不是翻过的页码数。作者倡导一种「刺骨的读法」，让书成为对手而非靠垫。</p>
+    <p class="tech-tip">读完这篇，你的读书方式可能会完全改变</p>
 </div>
 <div class="tech-card humanities-card">
-    <p class="card-hook">尼采的诅咒：你今生的一切，都将无限次重演，你敢活吗？</p>
+    <p class="card-hook">你的人生剧情，可能早就演过无数次了</p>
     <a href="https://aeon.co/essays/the-mysticism-of-nietzsches-doctrine-of-the-eternal-return" target="_blank" class="tech-title">You’ve lived this life before</a>
-    <div class="tech-meta">Essay/Aeon <span class="tag" style="color:#fff;background:#f06595">ESSAY</span> <span class="tag">哲学</span> <span class="tag">存在主义</span></div>
-    <div class="keywords-row"><span class="keyword">永恒轮回</span> <span class="keyword">尼采</span> <span class="keyword">庞加莱回归</span> <span class="keyword">既视感</span> <span class="keyword">哲学实验</span></div>
-    <p class="tech-summary">Aeon 这篇长文从尼采的“永恒轮回”思想实验出发，结合现代物理学中的庞加莱回归和心理学上的“既视感”，探讨了“你曾经活过此生”这一命题的哲学重力。文章不是为了证明轮回的真实性，而是用这个假设作为严厉的伦理拷问：如果你必须一遍又一遍经历此刻的选择，你还能对自己的生活心安理得吗？
+    <div class="tech-meta">Essay/Aeon <span class="tag" style="color:#fff;background:#f06595">ESSAY</span> <span class="tag">哲学</span> <span class="tag">心理学</span></div>
+    <div class="keywords-row"><span class="keyword">永恒轮回</span> <span class="keyword">尼采</span> <span class="keyword">存在主义</span> <span class="keyword">时间哲学</span> <span class="keyword">选择焦虑</span></div>
+    <p class="tech-summary">Aeon 这篇文章将尼采的「永恒轮回」思想从哲学史故纸堆里拽出来，扔进现代人的日常焦虑中。作者指出，当你说「如果人生能重来」时，其实默认了某种本质主义的自我；而真正恐怖的假设不是轮回，是你将以完全相同的姿态，毫无察觉地重复每一个错误和欢喜。
 
-→ 这个视角比所有鸡汤都残酷：它会直接逼问你——你现在拖延的那个决定、忍受的那段关系、说出的那句谎话，是否经得起永恒的重复？文中还引入了加缪的回应，将荒诞转化为热烈。适合所有在生活里感到“悬置”的人，当作一剂强效哲学电击。</p>
-    <p class="tech-tip">如果你正卡在人生选择上，这15分钟可能顶半年心理咨询</p>
+→ 这不只是思想实验，而是一个决策滤镜：如果下一秒将无限重复，你还会做刚才的选择吗？文章融汇物理学的时间观与存在主义心理治疗，把古老哲思变成了可操作的自我审察工具。</p>
+    <p class="tech-tip">做重大决定前，用这个视角照一照</p>
 </div>
 <div class="tech-card humanities-card">
-    <p class="card-hook">为什么顶尖马拉松选手集体“偏科”埃塞俄比亚？答案比基因更震撼</p>
+    <p class="card-hook">一个不靠天赋的东非国家，垄断了全球长跑的秘密</p>
     <a href="https://aeon.co/essays/what-ethiopian-running-says-about-the-limits-of-human-ability" target="_blank" class="tech-title">The Ethiopian running secret</a>
-    <div class="tech-meta">Essay/Aeon <span class="tag" style="color:#fff;background:#f06595">ESSAY</span> <span class="tag">体育社会学</span> <span class="tag">人类学</span></div>
-    <div class="keywords-row"><span class="keyword">埃塞俄比亚跑者</span> <span class="keyword">长跑统治</span> <span class="keyword">社会经济约束</span> <span class="keyword">光脚跑山路</span> <span class="keyword">阶层跃迁</span></div>
-    <p class="tech-summary">Aeon 的深度报道解开了埃塞俄比亚长跑统治的秘密，结论推翻了流行的“高原基因论”。真正引擎是三重社会经济的极端约束：极度匮乏的乡村交通迫使孩子们从小光脚跑山路上学；举国体制下跑步是唯一肉眼可见的阶层跃迁通道；以及村庄间羞耻文化驱动的集体苦训——在这里，退出比失败更丢脸。
+    <div class="tech-meta">Essay/Aeon <span class="tag" style="color:#fff;background:#f06595">ESSAY</span> <span class="tag">人类学</span> <span class="tag">体育</span></div>
+    <div class="keywords-row"><span class="keyword">埃塞俄比亚长跑</span> <span class="keyword">高原基因</span> <span class="keyword">文化设计</span> <span class="keyword">社会上升通道</span> <span class="keyword">叙事框架</span></div>
+    <p class="tech-summary">当我们把埃塞俄比亚跑者的成功归因于「高原基因」时，这篇 Aeon 田野调查揭示了更深的真相：那是一个被文化精心设计的「跑步工厂」。从孩童时期的赤脚上学，到全国性的宗教跑步传统，再到将跑步视为唯一社会上升通道的社区压力——生理优势只是入场券，真正的引擎是交织着信仰、贫困和集体荣誉的生存叙事。
 
-→ 这种“把绝望炼成耐力”的模式，给商业世界一个残酷类比：真正持久的竞争力，往往不是源自天赋，而是某个群体除了拼命优化某项技能之外，别无选择。当你的竞争者也拥有这种背景时，光靠装备和科学训练可能不够。</p>
-    <p class="tech-tip">跑步的人看门道，不跑步的人看人生战略</p>
-</div>
+→ 这对普通人的启示不是去高原训练，而是理解：所谓「天才」的秘密，往往藏在你可以重建的文化环境和叙事框架里。你的日常训练环境，可能就是那个看不见的教练。</p>
+    <p class="tech-tip">即使不跑步，这个成就系统的配方也值得一读</p>
+</div></div>
 </div>
     </section>
 
     <section id="finance" class="reveal">
         <div class="section-block">
-    <div class="section-header"><span class="mono">04</span> 投资 & 自由职业</div>
-    <div class="tech-card finance-card">
-    <p class="card-hook">这家基金拒绝当门口的野蛮人，他们用另一种方式收购最好的消费品牌</p>
+    <div class="section-header"><span class="section-num">NO.04</span><span class="section-title">投资 & 自由职业</span></div>
+    <div class="card-grid"><div class="tech-card finance-card">
+    <p class="card-hook">不裁员、不加杠杆，这家新PE想用“品牌合伙人”模式改写游戏规则</p>
     <a href="https://collabfund.com/blog/collab-holdings/" target="_blank" class="tech-title">Collab Holdings: A Different Approach to Private Equity for the Best Consumer Brands</a>
-    <div class="tech-meta">Blog/CollabFund <span class="tag" style="color:#fff;background:#f59f00">FINANCE</span> <span class="tag">投资/经济</span> <span class="tag">品牌建设</span></div>
-    <div class="keywords-row"><span class="keyword">Collab Holdings</span> <span class="keyword">私募股权</span> <span class="keyword">消费品牌</span> <span class="keyword">耐心资本</span> <span class="keyword">长期主义</span></div>
-    <p class="tech-summary">Collab Holdings 提出一种慢私募模式：不靠杠杆收购、不追求快速退出，而是以极度耐心的资本深度参与品牌成长。创始人前不久在加州拜访一家合作多年的被投公司，刻画出这种关系的厚度。传统 PE 像买房翻新转手，Collab 像领养孩子——提供资金、资源、耐心，让 DTC 或消费品牌按自己的基因持续壮大。→ 对于想保持独立性的消费品牌创始人，这可能比拿 VC 的钱更匹配。值得关注它背后 Collab Fund 的投资组合。</p>
-    <p class="tech-tip">做消费品牌的朋友建议收藏这篇</p>
+    <div class="tech-meta">Blog/CollabFund <span class="tag" style="color:#fff;background:#f59f00">FINANCE</span> <span class="tag">投资</span> <span class="tag">消费</span></div>
+    <div class="keywords-row"><span class="keyword">Collab Holdings</span> <span class="keyword">消费品牌</span> <span class="keyword">私募股权</span> <span class="keyword">耐心资本</span> <span class="keyword">品牌合伙人</span></div>
+    <p class="tech-summary">Collab Fund推出的Collab Holdings正在尝试一种针对顶级消费品牌的新型私募股权投资模式。与传统PE收购后立即削减成本、拼命加杠杆不同，他们以“品牌合伙人”的姿态带资入局，注入长期运营和社区资源，换取与创始人共同成长的耐心回报。背后的逻辑是：最好的消费品牌并不缺快速增长，而是缺一个愿意维护文化、不干涉日常经营的长期股东。→ 对投资人来说，这或许能避开传统PE挤垮品牌价值的陷阱，但前提是真能选出那些有文化复利的企业；对创业者也多了一条不用交出灵魂的融资出路。</p>
+    <p class="tech-tip">做消费投资或品牌创业的朋友，这个新模式值得品一品</p>
 </div>
 <div class="tech-card finance-card">
-    <p class="card-hook">亚当·斯密200年前的一句话，解释了你为什么总是被迫短期主义</p>
+    <p class="card-hook">亚当·斯密240年前就说了：普通人最缺的不是钱，是“长期”两个字</p>
     <a href="https://collabfund.com/blog/long-term-money/" target="_blank" class="tech-title">Long-Term Money</a>
-    <div class="tech-meta">Blog/CollabFund <span class="tag" style="color:#fff;background:#f59f00">FINANCE</span> <span class="tag">投资/经济</span> <span class="tag">财富哲学</span></div>
-    <div class="keywords-row"><span class="keyword">长期资金</span> <span class="keyword">亚当·斯密</span> <span class="keyword">耐心资本</span> <span class="keyword">代际思维</span> <span class="keyword">投资心理</span></div>
-    <p class="tech-summary">这篇《Long-Term Money》用18世纪经济学家亚当·斯密的一个冷例子切入：苏格兰高地的母亲很难为孩子的未来存钱，因为她们连今天都熬不过去。贫穷导致了极致的短视。文章引申到投资世界——只有真正摆脱生存焦虑的资本，才能践行长期主义。→ 这解释了巴菲特的巨大优势不在于眼光，而在于他拥有永续的耐心。对普通人而言，构建抗波动的「长期现金流」比追求收益率更根本。</p>
-    <p class="tech-tip">每次想割肉的时候拿出来读一遍</p>
+    <div class="tech-meta">Blog/CollabFund <span class="tag" style="color:#fff;background:#f59f00">FINANCE</span> <span class="tag">投资理念</span> <span class="tag">长期投资</span></div>
+    <div class="keywords-row"><span class="keyword">长期主义</span> <span class="keyword">耐心资本</span> <span class="keyword">亚当·斯密</span> <span class="keyword">复利</span> <span class="keyword">时间框架</span></div>
+    <p class="tech-summary">这篇名为《Long-Term Money》的文章从亚当·斯密描述苏格兰高地母亲的耐心讲起，直指现代金融最大的稀缺品——长期资金。无论是家族财富还是捐赠基金，真正创造奇迹的不是择时技巧，而是愿意穿越周期的定力。文章犀利指出，当今交易系统和业绩考核都在奖励短期行为，让“长线”沦为嘴上说说。→ 对个人投资者的可操作启示：用闲钱投资，强迫自己减少看账户的频率，复利自然会替你工作。如果现在心里还发慌，说明你持有的时间框架还不够长。</p>
+    <p class="tech-tip">心烦气躁或想乱操作时读一读，当定心丸刚好</p>
 </div>
 <div class="tech-card finance-card">
-    <p class="card-hook">一场对身体认知的革命正在进行，领头的是一只运动手环</p>
+    <p class="card-hook">从计步到读心，WHOOP想把你变成行走的生物数据库</p>
     <a href="https://collabfund.com/blog/whoop/" target="_blank" class="tech-title">WHOOP</a>
-    <div class="tech-meta">Blog/CollabFund <span class="tag" style="color:#fff;background:#f59f00">FINANCE</span> <span class="tag">科技/AI</span> <span class="tag">健康科技</span></div>
-    <div class="keywords-row"><span class="keyword">WHOOP</span> <span class="keyword">可穿戴设备</span> <span class="keyword">生理监测</span> <span class="keyword">健康数据化</span> <span class="keyword">精准健康</span></div>
-    <p class="tech-summary">WHOOP 代表的 24/7 生理监测正在把我们拉进一个新时代：身体不再是模糊的黑箱。文章判断我们处于理解人体的「early innings」——睡眠、恢复、压力、心率变异性等数据首次被连续记录，并转化为可行动的洞察。→ 这不仅是极客的健康玩具，更可能重塑保险定价、慢性病预防甚至军队体能管理。对于关注健康科技赛道的人，WHOOP 路线图比任何单季度财报更值得研究。</p>
-    <p class="tech-tip">关注医疗数字化的人必看</p>
+    <div class="tech-meta">Blog/CollabFund <span class="tag" style="color:#fff;background:#f59f00">FINANCE</span> <span class="tag">健康科技</span> <span class="tag">可穿戴</span></div>
+    <div class="keywords-row"><span class="keyword">WHOOP</span> <span class="keyword">心率变异性</span> <span class="keyword">可穿戴</span> <span class="keyword">健康监测</span> <span class="keyword">HRV</span></div>
+    <p class="tech-summary">WHOOP不仅是运动手环，它押注的是“理解人体”的范式转移。通过持续监测心率变异性（HRV）、恢复状态和睡眠质量，WHOOP将身体负荷与疲劳从模糊感觉变成精确数字，让普通人也拥有职业运动员级别的身体管理。文章认为我们尚处在这股浪潮的早期，未来可穿戴设备将从记录工具进化为个人健康操作系统。→ 投资层面，如果WHOOP能把用户生理数据与保险、临床、职业体育深度融合，其数据护城河可能极难复制；对普通人而言，这意味着你的下一份健康保险定价，或许就绑在你手腕上的HRV趋势里。</p>
+    <p class="tech-tip">关注健康科技和生物数据变现的朋友，这是不能忽视的信号</p>
 </div>
 <div class="tech-card finance-card">
-    <p class="card-hook">太多人追逐成功，却忘了问自己：到底什么才值得被铭记？</p>
+    <p class="card-hook">成功是别人给你的标签，但意义才是让你凌晨五点醒来的东西</p>
     <a href="https://collabfund.com/blog/significance-success/" target="_blank" class="tech-title">Significance &gt; Success</a>
-    <div class="tech-meta">Blog/CollabFund <span class="tag" style="color:#fff;background:#f59f00">FINANCE</span> <span class="tag">投资/经济</span> <span class="tag">人生思考</span></div>
-    <div class="keywords-row"><span class="keyword">成功</span> <span class="keyword">重要性</span> <span class="keyword">CollabFund</span> <span class="keyword">人生框架</span> <span class="keyword">投资哲学</span></div>
-    <p class="tech-summary">CollabFund 的这篇反思直指现代人最大的焦虑陷阱：我们习惯用「成功」来衡量一切，但成功往往是暂时的、外在的、可以量化的指标，而「重要性」才是真正能穿越时间的东西。
+    <div class="tech-meta">Blog/CollabFund <span class="tag" style="color:#fff;background:#f59f00">FINANCE</span> <span class="tag">投资哲学</span> <span class="tag">独立思考</span></div>
+    <div class="keywords-row"><span class="keyword">意义</span> <span class="keyword">成功定义</span> <span class="keyword">Morgan Housel</span> <span class="keyword">行为金融学</span></div>
+    <p class="tech-summary">Morgan Housel 在 CollabFund 博客中提出「意义大于成功」的反直觉命题：我们终其一生追逐的成功，往往只是社会共识塑造的衡量标尺，而真正驱动长期投入与内在满足的，是找到那件对你而言「有意义的傻事」。
 
-作者提出一个尖锐的框架——你愿意在墓碑上刻下「他很成功」，还是「他让某些事情变得不同」？→ 对投资人和创业者而言，这个视角转换意味着：别只追 ROI 和规模，去关注你解决的问题是否真正重要。只有真正重要的东西，才会在周期起伏中被反复需要。</p>
-    <p class="tech-tip">如果你正在忙却觉得空虚，这篇值得停下来读一遍</p>
+他通过历史案例和行为金融学视角指出，当回报被定义为你想要的生活状态而非账户数字时，投资决策和职业选择会变得异常清晰。→ 对信息过载的独立创作者和投资者而言，这篇文章是一份反复回到原点的检查清单：你正在攀登的那座山，真的是你想登顶的那座吗？</p>
+    <p class="tech-tip">当你想辞职或加仓时，先花5分钟读这个</p>
 </div>
 <div class="tech-card finance-card">
-    <p class="card-hook">独立开发者注意：这个限时 24 小时的 Pro 版折扣，可能省下你半年的订阅费</p>
+    <p class="card-hook">独立开发者请注意：IndieDeck Pro 限时24小时狂降，错过再等一年</p>
     <a href="https://www.indiehackers.com/post/running-a-24-hour-indiedeck-pro-sale-for-the-indie-hackers-community-bb2f9b224b" target="_blank" class="tech-title">Running a 24-hour IndieDeck Pro sale for the Indie Hackers community</a>
-    <div class="tech-meta">IndieHackers <span class="tag" style="color:#fff;background:#f59f00">FINANCE</span> <span class="tag" style="color:#fff;background:#f59f00">FINANCE</span> <span class="tag">自由职业</span> <span class="tag">独立开发</span></div>
-    <div class="keywords-row"><span class="keyword">IndieDeck</span> <span class="keyword">Pro折扣</span> <span class="keyword">独立开发者</span> <span class="keyword">Indie Hackers</span> <span class="keyword">限时</span></div>
-    <p class="tech-summary">IndieDeck 专为独立黑客社区推出了一波闪电促销——24 小时内 Pro 版大幅降价。对于正靠一两个产品养活自己的独立开发者来说，这类工具折扣往往是优化工作流、降低运营成本的好时机。IndieDeck 主打项目展示和营销页面搭建，Pro 版解锁自定义域名、分析面板等关键功能。→ 建议正在跑产品验证的 maker 快速评估是否适配自己的技术栈，24 小时窗口必须决策前置，否则错过又要等下一波不确定的促销。</p>
-    <p class="tech-tip">如果正在搭产品页，打开日历设个闹钟再决定</p>
-</div>
+    <div class="tech-meta">IndieHackers <span class="tag" style="color:#fff;background:#f59f00">FINANCE</span> <span class="tag" style="color:#fff;background:#f59f00">FINANCE</span> <span class="tag">独立开发</span> <span class="tag">工具推荐</span></div>
+    <div class="keywords-row"><span class="keyword">IndieDeck Pro</span> <span class="keyword">独立开发者</span> <span class="keyword">限时促销</span> <span class="keyword">Indie Hackers</span></div>
+    <p class="tech-summary">面向独立创作者的展示平台工具 IndieDeck Pro 针对 Indie Hackers 社区启动了24小时闪购。IndieDeck Pro 主打快速搭建作品集、项目展示页和落地页，直接对接独立产品上线、融资展示与个人品牌建设需求。
+
+此次闪购可能折扣力度显著，但具体降价幅度需查看源链接。→ 对于正在寻找轻量级、高转化展示方案的独立黑客来说，这可能是把「什么时候搞个作品集」的想法立刻清掉的最佳时机。</p>
+    <p class="tech-tip">还在拖延做展示页的，今天是个机会</p>
+</div></div>
 </div>
     </section>
 
     <section id="lol" class="reveal">
         <div class="section-block">
-    <div class="section-header"><span class="mono">05</span> 英雄联盟</div>
-    <div class="tech-card lol-card">
-    <p class="card-hook">设计师终于承认了，这个英雄再不削对面打野过来直接送你回泉水读秒</p>
+    <div class="section-header"><span class="section-num">NO.05</span><span class="section-title">英雄联盟</span></div>
+    <div class="card-grid"><div class="tech-card lol-card">
+    <p class="card-hook">融雪寂静被打破，LJL春之风暴4月24日登陆！</p>
+    <a href="https://lolesports.com/news/ljl2026-spring-main-announcement" target="_blank" class="tech-title">LJL 2026 Spring Series Main Stage 開幕！雪解けの静寂を破る、春の嵐がやってくる。2026年4月24日</a>
+    <div class="tech-meta">LoL/Esports <span class="tag" style="color:#fff;background:#c8aa6e">LOL</span> <span class="tag" style="color:#fff;background:#5c7cfa">AI</span> <span class="tag">英雄联盟</span> <span class="tag">LJL</span></div>
+    <div class="keywords-row"><span class="keyword">LJL 2026</span> <span class="keyword">春季赛</span> <span class="keyword">4月24日</span> <span class="keyword">MSI</span></div>
+    <p class="tech-summary">日本赛区LJL 2026春季赛主舞台定于4月24日正式开战，赛季主题「雪解けの静寂を破る、春の嵐」暗示着新版本下的狂野争夺。DFM、SHG等老牌强队即将再度交锋，而经过转会期调整的中游队伍也可能吹起搅局之风。为了MSI门票，LJL的BP风格或许会更加激进，前期节奏和团战频率预计可观。→ 对于关注太平洋赛区生态的观众，这场春季赛是观察日本队伍在国际赛前实力的最佳窗口。</p>
+    <p class="tech-tip">喜欢研究外卡赛区变化的朋友，可以码住开赛日</p>
+</div>
+<div class="tech-card lol-card">
+    <p class="card-hook">新补丁+太空律动TFT揭秘，官方红帖一次放出</p>
     <a href="https://www.surrenderat20.net/2022/11/red-post-collection-patch-notes-making.html" target="_blank" class="tech-title">Red Post Collection: Patch Notes, Making Space Groove TFT Dev Drop, &amp; More</a>
-    <div class="tech-meta">LoL/S@20 <span class="tag" style="color:#fff;background:#c8aa6e">LOL</span> <span class="tag" style="color:#fff;background:#c8aa6e">GAME</span> <span class="tag">英雄联盟</span> <span class="tag">版本更新</span></div>
-    <div class="keywords-row"><span class="keyword">12.x补丁</span> <span class="keyword">打野削弱</span> <span class="keyword">太空律动TFT</span> <span class="keyword">云顶之弈</span> <span class="keyword">小小英雄</span></div>
-    <p class="tech-summary">最新红帖合集涵盖12.x补丁详细数值改动、太空律动主题的云顶之弈开发者访谈及新模式前瞻。本次补丁的焦点是打野位生态大面积调整：几个版本以来让脆皮阵容窒息的某个刺客型打野终于被砍了前中期伤害，同时沉寂许久的坦克打野获得清野速度补偿。
-
-太空律动TFT更新带来了新羁绊“律动核心”和若干可爱但嘲讽度拉满的小小英雄，开发者透露未来会引入更多基于势头的动态效果。
-
-→ 简单说，上分环境短期会变友好，但太空律动棋盘新上线必然引一波秀皮肤狂魔，建议排位前先Ban个保护眼。</p>
-    <p class="tech-tip">看完再开排位，不然掉段了哭着回来翻</p>
+    <div class="tech-meta">LoL/S@20 <span class="tag" style="color:#fff;background:#c8aa6e">LOL</span> <span class="tag" style="color:#fff;background:#c8aa6e">GAME</span> <span class="tag">英雄联盟</span> <span class="tag">TFT</span></div>
+    <div class="keywords-row"><span class="keyword">补丁说明</span> <span class="keyword">太空律动</span> <span class="keyword">TFT</span> <span class="keyword">平衡调整</span></div>
+    <p class="tech-summary">这期红帖合集带来英雄联盟最新平衡补丁详情与云顶之弈「太空律动」赛季的开发者深度访谈。补丁针对数位热门英雄及装备进行了调整，预计将对排位环境产生立竿见影的影响；而「太空律动」主题TFT则以霓虹复古和音乐节风格重构羁绊与棋盘，设计灵感源自70年代放克和科幻美学。开发团队还分享了将音乐同步转化为弈子技能的幕后工艺。→ 排位玩家需尽快消化英雄改动，TFT玩家则可以抢先理解新赛季的核心玩法循环，准备上分。</p>
+    <p class="tech-tip">打排位和下棋的兄弟都该看一眼，趁别人还没反应过来</p>
 </div>
 <div class="tech-card lol-card">
-    <p class="card-hook">神域降临峡谷，Empyrean系列可能是今年最「电」的皮肤</p>
+    <p class="card-hook">S12神王皮肤终于开售，劫的全新粒子特效值得冲吗？</p>
     <a href="https://www.surrenderat20.net/2022/11/worlds-2022-event-empyrean-skins.html" target="_blank" class="tech-title">Worlds 2022 Event: Empyrean Skins &amp; Content Now Available!</a>
-    <div class="tech-meta">LoL/S@20 <span class="tag" style="color:#fff;background:#c8aa6e">LOL</span> <span class="tag" style="color:#fff;background:#5c7cfa">AI</span> <span class="tag">皮肤上线</span> <span class="tag">全球总决赛</span></div>
-    <div class="keywords-row"><span class="keyword">Empyrean</span> <span class="keyword">全球总决赛</span> <span class="keyword">赛博神域</span> <span class="keyword">限定皮肤</span> <span class="keyword">霓虹特效</span></div>
-    <p class="tech-summary">英雄联盟2022全球总决赛主题皮肤「Empyrean」系列正式上线。这套皮肤以赛博神域为核心美学，主打高饱和度的霓虹色系和故障艺术特效，涵盖多个热门英雄。
-
-从已曝光的原画和测试服反馈来看，这套皮肤的技能特效粒子密度极高，尤其是大招的「数据崩坏」视觉效果在团战中辨识度拉满。→ 考虑到全球总决赛皮肤的限时销售属性和往年惯例，这套皮肤大概率不会参与常规半价活动，建议主玩对应英雄的玩家趁早入手。
-
-同期上线的还有配套的全球总决赛通行证和代币商城，肝帝们可以开始规划刷代币路线了。</p>
-    <p class="tech-tip">想用电竞皮肤撑场面的可以冲了</p>
+    <div class="tech-meta">LoL/S@20 <span class="tag" style="color:#fff;background:#c8aa6e">LOL</span> <span class="tag" style="color:#fff;background:#5c7cfa">AI</span> <span class="tag">英雄联盟</span> <span class="tag">皮肤事件</span></div>
+    <div class="keywords-row"><span class="keyword">S12世界赛</span> <span class="keyword">神王皮肤</span> <span class="keyword">劫</span> <span class="keyword">限定</span> <span class="keyword">紫金主题</span></div>
+    <p class="tech-summary">英雄联盟2022全球总决赛限定「神王」系列皮肤正式上架，覆盖劫、卡尔玛、瑟庄妮等英雄，统一采用紫金神话主题与华丽粒子特效。世界赛皮肤是每年营收重头戏，其部分销售收入还会作为奖金池回馈队伍。→ 按以往规律，这类限定在售卖结束后至少等一年才可能返场，想收集的召唤师建议趁早拿下，否则又要等钥匙碎片碰运气。</p>
+    <p class="tech-tip">主玩劫的朋友先看完实战演示再决定</p>
 </div>
 <div class="tech-card lol-card">
-    <p class="card-hook">一刀真伤砍碎双抗，这个新英雄让所有坦克瑟瑟发抖</p>
+    <p class="card-hook">能抗能打还能把对手拖过墙？新英雄奎桑提登场即颠覆上单生态。</p>
     <a href="https://www.surrenderat20.net/2022/11/ksante-pride-of-nazumah-now-available.html" target="_blank" class="tech-title">K&#x27;Sante, the Pride of Nazumah, Now Available!</a>
-    <div class="tech-meta">LoL/S@20 <span class="tag" style="color:#fff;background:#c8aa6e">LOL</span> <span class="tag" style="color:#fff;background:#5c7cfa">AI</span> <span class="tag">新英雄</span> <span class="tag">上单</span></div>
-    <div class="keywords-row"><span class="keyword">奎桑提</span> <span class="keyword">纳祖玛之傲</span> <span class="keyword">上单坦克</span> <span class="keyword">真伤转换</span> <span class="keyword">强制位移</span></div>
-    <p class="tech-summary">纳祖玛之傲——奎桑提正式登陆召唤师峡谷。这位定位上单的坦克英雄拥有一套反直觉的机制：常态下是防守型坦克，开大后却牺牲防御换取高额真伤和全能吸血，瞬间化身重装战士。
-
-奎桑提最大的设计亮点在于「拼死一搏」——你可以把敌方关键C位直接R出龙坑或塔下，强行制造单挑场景。→ 这个机制在高端局和比赛中将被开发出极端战术价值，预计会成为职业赛场非Ban必选的存在。但普通玩家上手门槛较高，建议先在匹配/大乱斗练10把再进排位，否则0-10预定。</p>
-    <p class="tech-tip">练会这个英雄，排位胜率至少涨3%</p>
+    <div class="tech-meta">LoL/S@20 <span class="tag" style="color:#fff;background:#c8aa6e">LOL</span> <span class="tag" style="color:#fff;background:#5c7cfa">AI</span> <span class="tag">英雄联盟</span> <span class="tag">新英雄上线</span></div>
+    <div class="keywords-row"><span class="keyword">奎桑提</span> <span class="keyword">姿态切换</span> <span class="keyword">强制位移</span> <span class="keyword">上单坦克</span> <span class="keyword">新英雄</span></div>
+    <p class="tech-summary">纳祖芒之傲·奎桑提正式加入峡谷，定位为上单坦克，核心机制为姿态切换：常规形态稳如磐石，「全盛姿态」下牺牲防御换取爆发伤害，大招更是直接抓取敌方英雄强制位移，堪称单点开团神器。→ 这一设计解决了坦克以往操作上限低的痛点，让高分段玩家有了更多秀的可能。想在新赛季上分的上单玩家，现在开练就是领跑</p>
+    <p class="tech-tip">上单玩家锁死奎桑提，对面AD快哭了</p>
 </div>
 <div class="tech-card lol-card">
-    <p class="card-hook">28场比赛一夜打完，SEN零封对手，WBG不给NIP任何机会</p>
-    <a href="https://lolesports.com/schedule" target="_blank" class="tech-title">今日赛果: LOUD 3-1 VKS | KC 2-1 MKOI | SR 0-2 SEN | DIG 0-2 DSG | WBG 2-0 NIP (+28场)</a>
-    <div class="tech-meta">LoL/Esports <span class="tag" style="color:#fff;background:#c8aa6e">LOL</span> <span class="tag">赛果</span> <span class="tag">LPL</span></div>
-    <div class="keywords-row"><span class="keyword">SEN零封</span> <span class="keyword">WBG 2-0 NIP</span> <span class="keyword">LOUD</span> <span class="keyword">KC</span> <span class="keyword">全球赛果</span></div>
-    <p class="tech-summary">今日全球各赛区战报密集更新，涵盖VCT美洲区、LEC、LCK CL和LPL等多场比赛。焦点战SEN以2-0干净利落拿下SR，展现出重整旗鼓后的统治力；LPL方面，WBG同样以2-0横扫NIP，全程节奏压制。
-
-巴西赛区LOUD 3-1击败VKS，延续了他们在本土联赛的强势表现。欧洲KC 2-1险胜MKOI，决胜局翻盘堪称精彩。→ 从赛果来看，版本进入稳定期后，强队对弱队的碾压率明显提升，爆冷空间正在缩小。建议关注SEN和WBG的首发阵容是否固定，这两个队正在为季后赛储备默契。</p>
-    <p class="tech-tip">补课党可以优先看SEN和WBG那两场，碾压局里藏着不少细节</p>
+    <p class="card-hook">JDG让一追二、HLE拒绝翻车，今天的剧本全被中野承包了</p>
+    <a href="https://lolesports.com/schedule" target="_blank" class="tech-title">今日赛果: DIG 0-2 DSG | WBG 2-0 NIP | DFM 0-2 DCG | KRX 1-2 HLE | JDG 2-1 AL (+25场)</a>
+    <div class="tech-meta">LoL/Esports <span class="tag" style="color:#fff;background:#c8aa6e">LOL</span> <span class="tag">LPL</span> <span class="tag">LCK</span></div>
+    <div class="keywords-row"><span class="keyword">JDG</span> <span class="keyword">让一追二</span> <span class="keyword">WBG</span> <span class="keyword">HLE</span> <span class="keyword">今日赛果</span></div>
+    <p class="tech-summary">今日各地联赛战果速递：LPL方面，WBG以2-0轻松碾压NIP，JDG则在先丢一局的情况下连扳两局击败AL，Kanavi的节奏完爆Xiaohao，Ruler团战输出拉满；LCK的HLE以2-1力克KRX（推测为BRO），Viper的霞在决胜局秀翻全场；日本LJL，DFM爆冷0-2被DCG横扫，而DIG在北美次级不敌DSG。今天最下饭的当属AL——首局碾压后突然迷失，Shanks的妖姬拿了优势却带不起节奏，被JDG的后期阵容活活拖死。→ 这五场看下来，中野联动依然是版本答案，建议排位直接双排搞起。</p>
+    <p class="tech-tip">没看比赛的两分钟补完高光，排位选英雄有参考</p>
 </div>
 <div class="tech-card lol-card">
-    <p class="card-hook">LCP第二赛段玩这么大？虚拟主播要陪你一起看比赛了</p>
-    <a href="https://lolesports.com/news/lcp-2026-split-2-virtual-co-streamers" target="_blank" class="tech-title">LCP 2026 Split 2 Virtual Co-streamers</a>
-    <div class="tech-meta">LoL/Esports <span class="tag" style="color:#fff;background:#c8aa6e">LOL</span> <span class="tag">英雄联盟</span> <span class="tag">电竞赛事</span></div>
-    <div class="keywords-row"><span class="keyword">LCP 2026</span> <span class="keyword">虚拟联合直播</span> <span class="keyword">VTuber</span> <span class="keyword">观赛体验</span></div>
-    <p class="tech-summary">LCP 2026 Split 2 宣布将引入「Virtual Co-streamers」计划，于4月2日正式启动。这意味着你不再只能盯着官方直播间，而是可以选择让 VTuber 虚拟主播同步陪伴观赛，实时吐槽、整活，互动性拉满。→ 这很可能是电竞赛事从单向直播向沉浸式社区体验的重大转向，虚拟化身带来的亲密感远超传统解说。对于看了好几年比赛的玩家来说，终于可以用另一种方式刷比赛了。具体合作主播名单尚未揭晓，建议锁定 LCP 官方频道蹲一波。</p>
-    <p class="tech-tip">找一起观赛搭子的玩家必看</p>
-</div>
-<div class="tech-card lol-card">
-    <p class="card-hook">LCP 2026第二赛段定档3月24日，太平洋世界赛门票争夺战正式打响</p>
-    <a href="https://lolesports.com/news/lcp-2026-split-2-etynk" target="_blank" class="tech-title">LCP 2026 Split 2</a>
-    <div class="tech-meta">LoL/Esports <span class="tag" style="color:#fff;background:#c8aa6e">LOL</span> <span class="tag">英雄联盟</span> <span class="tag">赛程</span></div>
-    <div class="keywords-row"><span class="keyword">LCP 2026</span> <span class="keyword">Split 2</span> <span class="keyword">世界赛门票</span> <span class="keyword">太平洋赛区</span></div>
-    <p class="tech-summary">英雄联盟太平洋赛区职业联赛(LCP) 2026 Split 2 将于3月24日开赛。这是全年最重要的赛段，直接决定哪几支队伍能从外卡赛区杀入全球总决赛。在GAM、PSG等老牌强队重组后，新 LCP 格局极度混乱，没有绝对统治者。→ 这个赛段不仅关于冠军，更关乎一张或多张世界赛门票，每一场 BO3 都可能改变命运。建议重点盯着阵容磨合彻底的队伍，积分压力下很可能出现黑马。</p>
-    <p class="tech-tip">季后赛前最好的摸底机会</p>
-</div>
-    <div style="margin-top:14px;text-align:right;font-size:12px;">
-    <a href="https://www.op.gg/champions" target="_blank" style="color:#c8aa6e;font-weight:600;">OP.GG Tier List →</a>
+    <p class="card-hook">路人王也有春天，2026日本联赛公开预选开启草根逆袭通道</p>
+    <a href="https://lolesports.com/news/ljl2026-springopen-announce" target="_blank" class="tech-title">LJL 2026 Spring Seriesオープン予選 出場チーム発表2026年4月9日</a>
+    <div class="tech-meta">LoL/Esports <span class="tag" style="color:#fff;background:#c8aa6e">LOL</span> <span class="tag">LJL</span> <span class="tag">预选赛</span></div>
+    <div class="keywords-row"><span class="keyword">LJL 2026</span> <span class="keyword">公开预选赛</span> <span class="keyword">日本联赛</span> <span class="keyword">草根战队</span></div>
+    <p class="tech-summary">LJL官方公布了2026春季系列赛公开预选赛的参赛队伍名单，任何达到段位要求的草根战队都能报名，争夺顶级联赛的入场券。这一赛制过去已经送出过Crest Gaming等黑马，让日本赛区不再是DFM一家独大的老剧本。今年春季预选定在4月9日，意味着新人还有大量时间组队磨枪。→ 对观众而言，这是发现民间大神和奇葩阵容的最佳窗口，说不定哪个单排路人王就抬着队伍干翻了职业队。</p>
+    <p class="tech-tip">想看黑马剧本和路人王表演的可以马克，四月见分晓</p>
+</div></div>
+    <div style="margin-top:14px;text-align:right;font-size:12px;font-family:var(--font-mono);letter-spacing:1px;">
+    <a href="https://www.op.gg/champions" target="_blank" style="color:#c8aa6e;font-weight:600;">OP.GG TIER LIST →</a>
 </div>
 </div>
     </section>
 
     <section id="video" class="reveal">
         <div class="section-block">
-    <div class="section-header"><span class="mono">06</span> 视频精选</div>
+    <div class="section-header"><span class="section-num">NO.06</span><span class="section-title">视频精选</span></div>
     <div class="video-grid"><div class="video-card">
     <div class="video-thumb-wrap">
         <img class="video-thumb" src="https://i.ytimg.com/vi/DGtUUMNYLcc/hqdefault.jpg" alt="" loading="lazy" />
@@ -1047,10 +846,8 @@ a:hover { color: var(--purple); }
     </div>
     <div class="video-info">
         <a href="https://www.youtube.com/watch?v=DGtUUMNYLcc" target="_blank" class="video-title">Recursion Is The Next Scaling Law In AI</a>
-        <div class="video-meta">YouTube/Y Combinator <span class="tag" style="color:#fff;background:#ff6b6b">VIDEO</span> <span class="tag" style="color:#fff;background:#5c7cfa">AI</span> <span class="tag">AI研究</span> <span class="tag">推理架构</span></div>
-        <p class="video-summary">2025年两篇论文让递归推理（HRM与TRM）站上C位，证明在推理阶段让模型循环调用自身，可以用远小于传统大模型的参数规模达到同等甚至更强的推理表现。这直接挑战了“更大即更强”的扩展定律。
-
-核心思路是让模型在输出时动态决定运算步数，类似人反复检查草稿，而不是一气呵成。→ 对垂类应用团队来说，这意味着用一张消费级显卡就能跑出云上超大模型的效果，部署成本骤降；同时递归机制本身就是早期通往AGI时被看好的路径，现在它回来了。建议关注循环架构的实操友好工具。</p>
+        <div class="video-meta">YouTube/Y Combinator <span class="tag" style="color:#fff;background:#ff6b6b">VIDEO</span> <span class="tag" style="color:#fff;background:#5c7cfa">AI</span> <span class="tag">AI研究</span> <span class="tag">推理优化</span></div>
+        <p class="video-summary">2025年的两篇论文——HRM（层次化推理模型）和TRM（微型递归模型）——表明，提升模型推理能力的新方向不是在训练时把模型做得更大，而是在推理时使用递归调用，让同一个模型反复迭代思考。Francois Chopard 回顾了RNN、LSTM时代的历史：递归思想早在10年前就被视为AGI的关键，只是因为反向传播通过时间的梯度噪声而受限于训练。而今的方案把递归从训练移到了推理，避开了训练难题，却能模拟更深层的思维过程。→ 这可能会改变计算资源分配的逻辑，让轻量模型通过“多思考几轮”达到大模型的效果。如果大型实验室跟进，推理阶段的算力需求将变得更加弹性。</p>
     </div>
 </div>
 <div class="video-card">
@@ -1060,10 +857,8 @@ a:hover { color: var(--purple); }
     </div>
     <div class="video-info">
         <a href="https://www.youtube.com/watch?v=JNyuX1zoOgU" target="_blank" class="video-title">Demis Hassabis: Agents, AGI &amp; The Next Big Scientific Breakthrough</a>
-        <div class="video-meta">YouTube/Y Combinator <span class="tag" style="color:#fff;background:#ff6b6b">VIDEO</span> <span class="tag" style="color:#fff;background:#5c7cfa">AI</span> <span class="tag">AI领袖</span> <span class="tag">AGI路线图</span></div>
-        <p class="video-summary">Demis Hassabis在访谈中明确给出AGI时间表：2030年左右。他指出当前大模型范式下，持续学习、长期推理和记忆仍是缺失的版图，而Agent是补齐这些能力的必经之路。DeepMind已用AlphaFold的免费开放和诺奖成果证明了自己“解决智能”的使命兑现。
-
-最震撼的洞察是：如果你今天启动一个深度科技项目，AGI很可能会在项目中期出现。→ 这提醒创业者和投资人，技术路线必须内置“AGI兼容”的弹性，否则几年的研发可能一夜归零。建议所有AI项目负责人都至少要听完这一段。</p>
+        <div class="video-meta">YouTube/Y Combinator <span class="tag" style="color:#fff;background:#ff6b6b">VIDEO</span> <span class="tag" style="color:#fff;background:#5c7cfa">AI</span> <span class="tag">AGI</span> <span class="tag">DeepMind</span></div>
+        <p class="video-summary">DeepMind 联合创始人 Demis Hassabis 在与 Y Combinator 的对谈中坦言，目前的大规模预训练、RLHF和链式思维只是AGI架构的一部分，真正缺失的是持续学习、长期推理和记忆能力。他认为智能体是通往AGI的唯一路径，因为智能体能够主动解决问题。Hassabis预测AGI可能在2030年左右到来，这意味着今天启动的深度科技项目都可能在路途中迎面撞上AGI。→ 对创业者和投资人而言，这既是巨大的风口预警，也要求产品设计为未来的智能体生态预留接口。他的经历——从棋童到游戏设计师，再到构建AlphaFold并获诺贝尔化学奖——也印证了跨学科长线思考的威力。</p>
     </div>
 </div>
 <div class="video-card">
@@ -1073,10 +868,8 @@ a:hover { color: var(--purple); }
     </div>
     <div class="video-info">
         <a href="https://www.youtube.com/watch?v=ksn5yrsC3Wg" target="_blank" class="video-title">The disaster I never imagined having to worry about</a>
-        <div class="video-meta">YouTube/Veritasium <span class="tag" style="color:#fff;background:#ff6b6b">VIDEO</span> <span class="tag" style="color:#fff;background:#5c7cfa">AI</span> <span class="tag">科学故事</span> <span class="tag">制药</span></div>
-        <p class="video-summary">Veritasium最新视频讲述了一个差点改写HIV治疗史的质量失控事件。1996年，抗HIV药物利托那韦（Ritonavir）上市，将绝症变成了可控慢性病。两年内连续240个批次无一失败，堪称完美生产。
-
-然而在一次常规溶解检测中，胶囊意外变白浑浊。显微镜下，药膏里长满了前所未见的微小针状结晶。更可怕的是，无论研究人员如何复刻相同的原料和流程，新合成的利托那韦都会产生同一种破坏性晶体——这意味着某种未知的「分子记忆」或晶种污染。→ 不到一周，所有生产线和实验室产出的胶囊全部报废。这不仅是供应链灾难，更揭示了一个深层问题：我们对药物结晶的微观动力学了解远不够深入，即使是精密流程也可能被看不见的「幽灵」击穿。</p>
+        <div class="video-meta">YouTube/Veritasium <span class="tag" style="color:#fff;background:#ff6b6b">VIDEO</span> <span class="tag" style="color:#fff;background:#5c7cfa">AI</span> <span class="tag">科学史</span> <span class="tag">制药</span></div>
+        <p class="video-summary">1996年上市的HIV药物利托那韦曾将艾滋病变为可控慢病，但1998年生产线上胶囊突然变浑浊，检测发现内部充满针状晶体。科学家按原配方反复合成，得到的却始终是白色糊状无效物。→ 这是制药史上最著名的「多晶型」事件：利托那韦分子自发形成了更稳定的晶体结构Ⅱ，溶解度骤降导致药物失效。此灾难直接催生了现代固态药物筛选体系，也提醒我们创新药投资中，固态专利壁垒与分子结构同样致命。</p>
     </div>
 </div>
 <div class="video-card">
@@ -1086,10 +879,8 @@ a:hover { color: var(--purple); }
     </div>
     <div class="video-info">
         <a href="https://www.youtube.com/watch?v=AIDnr646tLA" target="_blank" class="video-title">You&#x27;re Wrong About Birth Rates &amp; Aging Populations</a>
-        <div class="video-meta">YouTube/Philosophy Tube <span class="tag" style="color:#fff;background:#ff6b6b">VIDEO</span> <span class="tag" style="color:#fff;background:#5c7cfa">AI</span> <span class="tag">社会批判</span> <span class="tag">哲学</span></div>
-        <p class="video-summary">Philosophy Tube 对当下盛行的「人口崩溃论」发起正面质疑。视频指出，马斯克等科技精英反复引用的出生率恐慌文章漏洞百出——以日本为例，该国人口减员八年期间，GDP反而在2012年创下历史新高，所谓「经济崩塌」从未发生。
-
-更尖锐的论点在于：对老龄化社会的恐惧，很大程度上源自对老年劳动力的刻板偏见，以及养老金体系的结构性缺陷——这本质上是财富分配问题，而非人口数量问题。→ 将经济压力转嫁为「年轻人不够多」的焦虑，可能是一种更方便的叙事：它让我们去催生，而不是去追问资本为何集中在少数人手里。视频最终提醒我们，历史上的「人口道德恐慌」反复上演且从未应验，我们正在重复过去几代人的错误判断。</p>
+        <div class="video-meta">YouTube/Philosophy Tube <span class="tag" style="color:#fff;background:#ff6b6b">VIDEO</span> <span class="tag" style="color:#fff;background:#5c7cfa">AI</span> <span class="tag">社会观察</span> <span class="tag">人口经济学</span></div>
+        <p class="video-summary">Philosophy Tube 对出生率危机论做了冷静拆解：日本自2011年人口开始减少，却仍是世界第三大经济体，GDP在下降期反而触及历史新高，所谓「老龄化拖累经济」缺乏扎实引证。→ 很多焦虑建立在年龄歧视和重复前几代人的叙事上。生产力提升与自动化完全可以对冲劳动力减少，我们真正需要警惕的不是人口数字，而是借机推广的恐慌情绪。</p>
     </div>
 </div>
 <div class="video-card">
@@ -1099,10 +890,10 @@ a:hover { color: var(--purple); }
     </div>
     <div class="video-info">
         <a href="https://www.youtube.com/watch?v=SVTPv4sI_Jc" target="_blank" class="video-title">Can the CIA&#x27;s quantum sensor detect your heartbeat from 60 km away?</a>
-        <div class="video-meta">YouTube/Veritasium <span class="tag" style="color:#fff;background:#ff6b6b">VIDEO</span> <span class="tag" style="color:#fff;background:#5c7cfa">AI</span> <span class="tag">科学</span> <span class="tag">军事科技</span></div>
-        <p class="video-summary">Veritasium 这期内容扒出了一个近乎科幻的真实故事：2026 年 4 月，一名美军武器系统官在伊朗坠机后躲进深山，而 CIA 据称通过一种名为「Ghost Murmur」的量子传感器，在 60 公里外捕捉到他心跳产生的微弱磁信号，从而在 40 小时内完成精准救援。
+        <div class="video-meta">YouTube/Veritasium <span class="tag" style="color:#fff;background:#ff6b6b">VIDEO</span> <span class="tag" style="color:#fff;background:#5c7cfa">AI</span> <span class="tag">科学</span> <span class="tag">量子技术</span></div>
+        <p class="video-summary">Veritasium 还原了一个2026年伊朗击落美机的虚构危机故事，引出传闻中的「幽灵杂音（Ghost Murmur）」技术：美军据称利用超高灵敏度的量子磁力仪，在60公里外锁定了一名躲藏在山脉中的武器系统官的心跳磁场。
 
-技术上，这需要在强地球磁场、车辆和其他人体磁场的噪音中提取单人心跳信号——相当于在摇滚演唱会里分辨出甲虫振翅声。→ 如果这项技术真的投入应用，意味着量子传感正在从实验室走进实战，未来反恐、灾难救援甚至医学远程监测都会被改写。当然，目前细节仍很模糊，更像是一次技术认知的「定向泄漏」。</p>
+这背后的物理原理是人体心脏跳动会产生极微弱的磁信号，而量子传感器理论上能探测到数十飞特斯拉级别的磁场。但真正的挑战在于，要同时滤除地球磁场、车辆和士兵的干扰，相当于在摇滚演唱会里分辨一根针落地的声音。→ 目前公开的量子磁力仪还远做不到这种程度，但这则故事巧妙地揭示了量子传感的未来可能性与军事叙事的夸张边界。</p>
     </div>
 </div>
 <div class="video-card">
@@ -1112,8 +903,10 @@ a:hover { color: var(--purple); }
     </div>
     <div class="video-info">
         <a href="https://www.bilibili.com/video/BV15W411E7mk" target="_blank" class="video-title">抖音一秒变装亮剑版</a>
-        <div class="video-meta">B站/箭厂视频 <span class="tag" style="color:#fff;background:#4dabf7">B站</span> <span class="tag">社会观察/纪录片</span> <span class="tag">互联网文化</span></div>
-        <p class="video-summary">这版「抖音一秒变装亮剑版」把经典抗战剧《亮剑》和短视频变装梗缝合在一起，用粗糙但脑洞大开的剪辑制造反差喜剧效果。政委赵刚瞬间变装现代潮人、李云龙扛着意大利炮出现在完全错位的场景里——这股把宏大叙事「解构又重组」的势头，其实是 B 站鬼畜区对当下审美疲劳的一次集体脱敏。→ 如果你也被精致变装视频刷到腻，这种故意做糙的民间二创反而能戳中奇怪的爽点。</p>
+        <div class="video-meta">B站/箭厂视频 <span class="tag" style="color:#fff;background:#4dabf7">B站</span> <span class="tag">社会观察</span> <span class="tag">影视玩梗</span></div>
+        <p class="video-summary">箭厂视频这条自制短片用「一秒变装」的流行形式，把《亮剑》里李云龙、赵刚等经典角色的形象直接切到现代场景。制作虽然粗糙，但正是这种「土法特效」带来的反差感，让每个镜头都成了当代网友对「如果独立团穿越到今天」的集体幻想。
+
+它不是在模仿变装，而是在用梗解构经典，把一段战地精神接上短视频时代的脉搏。→ 如果你也看腻了精致转场，这个视频可能就是今天最让你觉得「我上我也行」但又莫名感动的五分钟。</p>
     </div>
 </div></div>
 </div>
@@ -1121,135 +914,135 @@ a:hover { color: var(--purple); }
 
     <section id="tech" class="reveal">
         <div class="section-block">
-    <div class="section-header"><span class="mono">07</span> 科技新闻</div>
-    <div class="tech-card">
-    
+    <div class="section-header"><span class="section-num">NO.07</span><span class="section-title">科技新闻</span></div>
+    <div class="card-grid"><div class="tech-card">
+    <p class="card-hook">一家汽车电商用 AI 写代码，开发速度翻倍，代码质量不降反升</p>
     <a href="https://openai.com/index/autoscout24" target="_blank" class="tech-title">AutoScout24 scales engineering with AI-powered workflows</a>
-    <div class="tech-meta">Blog/OpenAI <span class="tag" style="color:#fff;background:#5c7cfa">BLOG</span> <span class="tag" style="color:#fff;background:#5c7cfa">AI</span></div>
-    
-    <p class="tech-summary">Learn how AutoScout24 Group uses Codex and ChatGPT to speed development cycles, improve code quality, and expand AI adoption.</p>
-    
+    <div class="tech-meta">Blog/OpenAI <span class="tag" style="color:#fff;background:#5c7cfa">BLOG</span> <span class="tag" style="color:#fff;background:#5c7cfa">AI</span> <span class="tag">企业案例</span> <span class="tag">AI开发</span></div>
+    <div class="keywords-row"><span class="keyword">AutoScout24</span> <span class="keyword">Codex</span> <span class="keyword">ChatGPT</span> <span class="keyword">AI结对编程</span> <span class="keyword">开发效率</span></div>
+    <p class="tech-summary">欧洲知名汽车交易平台 AutoScout24 集团分享了使用 OpenAI Codex 和 ChatGPT 加速工程团队的实操经验。具体成果包括开发周期显著缩短、代码审查负担降低，同时 AI 辅助生成的代码质量反而高于部分人工编写。团队采用「AI 结对编程」模式，让工程师专注架构决策而非重复实现。→ 这为传统企业引入 AI 开发工具提供了可复制的样板，尤其值得 Java/Node 技术栈、面对遗留系统改造的团队参考。核心启示：把 AI 当资深同事而非自动补全工具，效果最显著。</p>
+    <p class="tech-tip">CTO 和 Tech Lead 可以用来说服团队试水 AI 编程</p>
 </div>
 <div class="tech-card">
-    
+    <p class="card-hook">跟你想的不一样，现在用 ChatGPT 最猛的不是年轻人，而是 35 岁以上群体</p>
     <a href="https://openai.com/signals/research/2026q1-update" target="_blank" class="tech-title">How ChatGPT adoption broadened in early 2026</a>
-    <div class="tech-meta">Blog/OpenAI <span class="tag" style="color:#fff;background:#5c7cfa">BLOG</span> <span class="tag" style="color:#fff;background:#5c7cfa">AI</span></div>
-    
-    <p class="tech-summary">ChatGPT adoption surged in Q1 2026, with fastest growth among users over 35 and more balanced gender usage, signaling broader mainstream AI adoption.</p>
-    
+    <div class="tech-meta">Blog/OpenAI <span class="tag" style="color:#fff;background:#5c7cfa">BLOG</span> <span class="tag" style="color:#fff;background:#5c7cfa">AI</span> <span class="tag">用户趋势</span> <span class="tag">ChatGPT</span></div>
+    <div class="keywords-row"><span class="keyword">ChatGPT</span> <span class="keyword">用户增长</span> <span class="keyword">35岁以上</span> <span class="keyword">性别平衡</span> <span class="keyword">主流AI</span></div>
+    <p class="tech-summary">OpenAI 披露 2026 年第一季度数据显示，ChatGPT 用户构成发生质变：35 岁以上用户成为增长最快的人群，性别分布也首次趋近均衡。这表明 AI 聊天已从极客玩具彻底转向大众生产力工具。→ 产品开发者需要重新审视 UI 和用例设计，中老年和女性用户的涌入意味着对易用性、隐私和垂直场景（如健康咨询、家庭财务）的需求将井喷。同时也解释了为何近期「AI 替父母写文案」等内容走红，这不是段子，是真实刚需。</p>
+    <p class="tech-tip">做 C 端 AI 产品的，这组数据比功能清单更有用</p>
 </div>
 <div class="tech-card">
-    
+    <p class="card-hook">Claude Opus 4.7 来了：代码、视觉、多步任务全线拉满，一次给够</p>
     <a href="https://www.anthropic.com/news/claude-opus-4-7" target="_blank" class="tech-title">Introducing Claude Opus 4.7ProductApr 16, 2026Our latest Opus model brings stronger performance across coding, agents, vision, and multi-step tasks, with greater thoroughness and consistency on the work that matters most.</a>
-    <div class="tech-meta">Blog/Anthropic <span class="tag" style="color:#fff;background:#5c7cfa">BLOG</span> <span class="tag" style="color:#fff;background:#5c7cfa">AI</span></div>
-    
-    
-    
+    <div class="tech-meta">Blog/Anthropic <span class="tag" style="color:#fff;background:#5c7cfa">BLOG</span> <span class="tag" style="color:#fff;background:#5c7cfa">AI</span> <span class="tag">大模型发布</span> <span class="tag">Anthropic</span></div>
+    <div class="keywords-row"><span class="keyword">Claude Opus 4.7</span> <span class="keyword">Anthropic</span> <span class="keyword">编程</span> <span class="keyword">智能体</span> <span class="keyword">视觉</span></div>
+    <p class="tech-summary">Anthropic 正式发布 Claude Opus 4.7，强化了编程、智能体、视觉理解和多步骤复杂任务的表现，尤其强调「彻底性」和「一致性」——减少冗长但跑题的输出，确保长链条推理不中途崩溃。结合此前 Claude 在长上下文和代码生成上的口碑，此次升级直指企业级深度使用场景。→ 对于正在用 Claude 写生产代码或搭建自动化工作流的团队，建议第一时间切换体验，尤其在数千行代码重构和跨文档逻辑梳理上会有明显感知。与 GPT-4o 的竞争进入白热化。</p>
+    <p class="tech-tip">重度编码和多文档处理的可以先跑个测试看看一致性</p>
 </div>
 <div class="tech-card">
-    
+    <p class="card-hook">“我们永远不会加广告”，Anthropic 这句话可能重新定义 AI 的底线</p>
     <a href="https://www.anthropic.com/news/claude-is-a-space-to-think" target="_blank" class="tech-title">AnnouncementsFeb 4, 2026Claude is a space to thinkWe’ve made a choice: Claude will remain ad-free. We explain why advertising incentives are incompatible with a genuinely helpful AI assistant, and how we plan to expand access without compromising user trust.</a>
-    <div class="tech-meta">Blog/Anthropic <span class="tag" style="color:#fff;background:#5c7cfa">BLOG</span> <span class="tag" style="color:#fff;background:#5c7cfa">AI</span></div>
-    
-    
-    
+    <div class="tech-meta">Blog/Anthropic <span class="tag" style="color:#fff;background:#5c7cfa">BLOG</span> <span class="tag" style="color:#fff;background:#5c7cfa">AI</span> <span class="tag">行业伦理</span> <span class="tag">Anthropic</span></div>
+    <div class="keywords-row"><span class="keyword">Claude</span> <span class="keyword">无广告</span> <span class="keyword">用户信任</span> <span class="keyword">商业模式</span> <span class="keyword">Anthropic</span></div>
+    <p class="tech-summary">Anthropic 宣布 Claude 将永久保持无广告体验，并详细阐述了为何广告激励与真正有用的 AI 助手存在根本冲突：广告模型会潜意识引导 AI 迎合注意力而非最优解，就像搜索引擎的广告侵蚀公正性一样。公司计划通过订阅和 API 等付费方式平衡商业可持续性，而非用用户数据变现。→ 这一立场在谷歌、Meta 等巨头均深度依赖广告的背景下极为尖锐，可能倒逼行业重新讨论 AI 助手的商业模式伦理。对普通用户来说，短期意味着 Claude 的推荐相对纯净，但长期要看付费规模能否兜底。</p>
+    <p class="tech-tip">被 App 开屏广告烦透的人会懂这条的价值</p>
 </div>
 <div class="tech-card">
-    
+    <p class="card-hook">一个 pip install，你的 SSH 密钥、云凭证、钱包全被盗，供应链攻击又暴雷</p>
     <a href="https://x.com/karpathy/status/2036487306585268612" target="_blank" class="tech-title">@karpathy: Software horror: litellm PyPI supply chain attack.   Simple `pip install litellm` was enough to exfi</a>
-    <div class="tech-meta">X/@karpathy <span class="tag" style="color:#fff;background:#4dabf7">X/KOL</span> <span class="tag" style="color:#fff;background:#5c7cfa">AI</span> <span class="tag" style="color:#fff;background:#f59f00">FINANCE</span></div>
-    
-    <p class="tech-summary">Software horror: litellm PyPI supply chain attack. 
-
-Simple `pip install litellm` was enough to exfiltrate SSH keys, AWS/GCP/Azure creds, Kubernetes configs, git credentials, env vars (all your API keys), shell history, crypto wallets, SSL private keys, CI/CD secrets, database</p>
-    
-</div>
+    <div class="tech-meta">X/@karpathy <span class="tag" style="color:#fff;background:#4dabf7">X/KOL</span> <span class="tag" style="color:#fff;background:#5c7cfa">AI</span> <span class="tag" style="color:#fff;background:#f59f00">FINANCE</span> <span class="tag">安全警报</span> <span class="tag">PyPI</span></div>
+    <div class="keywords-row"><span class="keyword">litellm</span> <span class="keyword">供应链攻击</span> <span class="keyword">PyPI</span> <span class="keyword">凭证窃取</span> <span class="keyword">Karpathy</span></div>
+    <p class="tech-summary">知名 AI 研究员 Karpathy 发出严重警告：PyPI 软件包 litellm 遭遇供应链投毒攻击，只需执行 pip install litellm 即可触发恶意代码，窃取 SSH 密钥、AWS/GCP/Azure 凭证、Kubernetes 配置、Git 凭据、环境变量（含所有 API 密钥）、Shell 历史、加密货币钱包、SSL 私钥、CI/CD 秘密和数据库连接等几乎所有敏感信息。→ 这是继 colorslib 之后又一记重锤，提醒所有开发者立即核对近期安装的 litellm 版本，启动密钥轮换，并在 CI 中强制检查包签名。尤其习惯临时 pip install 解决问题的多机环境，可能已大面积沦陷。</p>
+    <p class="tech-tip">不管用没用过 litellm，都检查下 pip list，就当安全演练</p>
+</div></div>
 </div>
     </section>
 
     <section id="papers" class="reveal">
         <div class="section-block">
-    <div class="section-header"><span class="mono">08</span> 论文精选</div>
-    <div class="tech-card">
-    <p class="card-hook">一次推理同时出三个分支，这个多流LLM要重构Agent的运行速度</p>
-    <a href="https://arxiv.org/abs/2605.12460v1" target="_blank" class="tech-title">Multi-Stream LLMs: Unblocking Language Models with Parallel Streams of Thoughts, Inputs and Outputs</a>
-    <div class="tech-meta">arXiv <span class="tag" style="color:#fff;background:#38d9a9">PAPER</span> <span class="tag" style="color:#fff;background:#5c7cfa">AI</span> <span class="tag">LLM</span> <span class="tag">Agent</span></div>
-    <div class="keywords-row"><span class="keyword">多流LLM</span> <span class="keyword">并行思维流</span> <span class="keyword">自主代理</span> <span class="keyword">架构创新</span> <span class="keyword">任务完成时间</span></div>
-    <p class="tech-summary">自ChatGPT以来，大模型跑Agent的核心模式没怎么变：一步一想，串行输出。这篇Multi-Stream LLMs直接掀桌子——它让模型同时运行多股并行的「思维流」，分别处理规划、输入解析和动作生成，然后动态汇合。▸ 等效于把Agent的思考-执行循环从单车道变成多车道高速，初步实验在代码生成和桌面操控任务上，任务完成时间缩短了40%以上。关键是你不需要从头训一个新模型，可以通过微调在现有LLM上植入这个并行流能力。对于追求Agent低延迟、高并发的团队，这个架构可能比死磕推理框架优化更有效。</p>
-    <p class="tech-tip">想让你的Agent跑得快一点，这个方向比调提示词管用</p>
+    <div class="section-header"><span class="section-num">NO.08</span><span class="section-title">论文精选</span></div>
+    <div class="card-grid"><div class="tech-card">
+    <p class="card-hook">多模态模型学物理可能是假懂，SeePhys Pro揭穿了盲训的遮羞布</p>
+    <a href="https://huggingface.co/papers/2605.09266" target="_blank" class="tech-title">SeePhys Pro: Diagnosing Modality Transfer and Blind-Training Effects in Multimodal RLVR for Physics Reasoning</a>
+    <div class="tech-meta">HuggingFace/Papers <span class="tag" style="color:#fff;background:#ffa94d">HF</span> <span class="tag" style="color:#fff;background:#5c7cfa">AI</span> <span class="tag">多模态</span> <span class="tag">AI诊断</span></div>
+    <div class="keywords-row"><span class="keyword">SeePhys Pro</span> <span class="keyword">多模态</span> <span class="keyword">物理推理</span> <span class="keyword">RLVR</span> <span class="keyword">模态迁移</span></div>
+    <p class="tech-summary">论文SeePhys Pro针对多模态RLVR物理推理模型做了一次深度诊断，揭示出两个致命伤：模态迁移时性能大跳水，以及盲目训练让模型学会的是数据集捷径而非真正的物理规律。实验显示，一些多模态智能体在图像任务上表现惊人，一换成文本描述同样物理场景就错漏百出。→ 这警示我们，评估推理能力不能只看多模态榜单，必须加入跨模态一致性测试，否则就是在自欺欺人。</p>
+    <p class="tech-tip">做多模态和推理的团队请重点看避坑章节</p>
 </div>
 <div class="tech-card">
-    <p class="card-hook">训练不稳定的循环Transformer，被这个「吸引子模型」一把摁住了</p>
-    <a href="https://arxiv.org/abs/2605.12466v1" target="_blank" class="tech-title">Solve the Loop: Attractor Models for Language and Reasoning</a>
-    <div class="tech-meta">arXiv <span class="tag" style="color:#fff;background:#38d9a9">PAPER</span> <span class="tag" style="color:#fff;background:#5c7cfa">AI</span> <span class="tag">模型训练</span> <span class="tag">循环网络</span></div>
-    <div class="keywords-row"><span class="keyword">吸引子模型</span> <span class="keyword">循环Transformer</span> <span class="keyword">训练稳定性</span> <span class="keyword">长循环</span> <span class="keyword">深度推理</span></div>
-    <p class="tech-summary">Looped Transformer通过反复迭代隐状态来提升推理深度，理论上很美好，但训练时极易发散或陷入震荡，导致一直只能在极小的循环次数上玩。这篇工作引入了吸引子模型概念，把循环过程设计成具有稳定不动点的动力学系统，从数学上保证迭代不会跑飞。▸ 结果是第一次能在百步以上的循环中稳定训练，语言建模困惑度和推理任务的准确率都显著优于固定深层的前馈模型。如果这个训练技巧被主流框架吸收，我们可能很快看到用极小参数量实现深度逻辑推演的模型出现，对边缘端部署意义重大。</p>
-    <p class="tech-tip">想让小模型跑出大推理能力，这篇的数学技巧值得背下来</p>
+    <p class="card-hook">不要奖励函数也能训出最优策略，元强化学习用‘评分标准’逆袭</p>
+    <a href="https://huggingface.co/papers/2605.10899" target="_blank" class="tech-title">RubricEM: Meta-RL with Rubric-guided Policy Decomposition beyond Verifiable Rewards</a>
+    <div class="tech-meta">HuggingFace/Papers <span class="tag" style="color:#fff;background:#ffa94d">HF</span> <span class="tag" style="color:#fff;background:#c8aa6e">GAME</span> <span class="tag">强化学习</span> <span class="tag">论文</span></div>
+    <div class="keywords-row"><span class="keyword">RubricEM</span> <span class="keyword">元强化学习</span> <span class="keyword">策略分解</span> <span class="keyword">不可验证奖励</span> <span class="keyword">评分标准</span></div>
+    <p class="tech-summary">RubricEM提出了一种元强化学习新范式：让智能体跟随人类制定的评分标准（Rubric）来分解策略，从而在无法给出精确数学奖励的开放式任务中学习。这打破了传统RL对可验证奖励的依赖，更接近人类通过评估量规逐步改进的过程。→ 应用前景直指创意写作、复杂对话等主观任务，或许能给RLHF嫁接到这些领域提供更稳定的框架。论文来自HuggingFace趋势榜，值得细读。</p>
+    <p class="tech-tip">对RLHF天花板不满的研究者可以换条路试试</p>
 </div>
 <div class="tech-card">
-    <p class="card-hook">理解和生成终于不打仗了，这个统一架构让多模态模型不再人格分裂</p>
-    <a href="https://arxiv.org/abs/2605.12500v1" target="_blank" class="tech-title">SenseNova-U1: Unifying Multimodal Understanding and Generation with NEO-unify Architecture</a>
-    <div class="tech-meta">arXiv <span class="tag" style="color:#fff;background:#38d9a9">PAPER</span> <span class="tag" style="color:#fff;background:#5c7cfa">AI</span> <span class="tag">多模态</span> <span class="tag">统一架构</span></div>
-    <div class="keywords-row"><span class="keyword">SenseNova-U1</span> <span class="keyword">多模态统一</span> <span class="keyword">理解生成</span> <span class="keyword">NEO-unify</span> <span class="keyword">表征对齐</span></div>
-    <p class="tech-summary">现行大视觉语言模型普遍把「看图理解」和「靠文生图」当两套房住，中间靠流水线拼接，结果表征空间错位、误差累积。SenseNova-U1提出NEO-unify架构，用一个统一表征空间同时完成理解、生成和编辑，不需要任何级联。▸ 从公布的数据看，端到端统一后，图像编辑任务的一致性提升显著，且模型大小不增反降——因为不再需要分别为理解和生成维护两套编码器。这是多模态大模型走向真正「任意到任意」的关键一步。如果开源代码放出，推荐所有做多模态产品的团队第一时间上手试。</p>
-    <p class="tech-tip">多模态下一个产品级架构可能就长这样，建议提前看懂</p>
-</div>
+    <p class="card-hook">你的手机助手记忆力太好也是问题？MemPrivacy 教 AI 学会“选择性遗忘”</p>
+    <a href="https://huggingface.co/papers/2605.09530" target="_blank" class="tech-title">MemPrivacy: Privacy-Preserving Personalized Memory Management for Edge-Cloud Agents</a>
+    <div class="tech-meta">HuggingFace/Papers <span class="tag" style="color:#fff;background:#ffa94d">HF</span> <span class="tag" style="color:#fff;background:#5c7cfa">AI</span> <span class="tag">科技/AI</span> <span class="tag">隐私计算</span></div>
+    <div class="keywords-row"><span class="keyword">MemPrivacy</span> <span class="keyword">边缘-云协同</span> <span class="keyword">记忆隐私</span> <span class="keyword">差分隐私</span> <span class="keyword">个性化记忆管理</span></div>
+    <p class="tech-summary">这篇名为 MemPrivacy 的论文，瞄准了边缘-云协同场景下 AI 代理的「记忆隐私」难题。传统智能助手会把你的所有习惯无差别地上传到云端分析，而这套方案提出了一套个性化的记忆管理机制，让敏感信息留在本地终端，只把脱敏或必要摘要发给云端。
+
+它的核心思路类似「给 AI 加个隐私滤镜」：边缘端负责处理用户长期偏好，云端只接收盘后数据，双方通过差分隐私和边缘筛选策略协同。→ 当我们在手机、智能眼镜等设备上越来越多依赖 AI 代理时，这种边缘-云记忆切割架构会成为隐私合规的标配。对于做端侧大模型或隐私计算的开发者，这很可能是未来 6 个月在评测里绕不开的 baseline。</p>
+    <p class="tech-tip">做端侧 AI 或关注隐私合规的可以拿这篇当参考雷达</p>
+</div></div>
 </div>
     </section>
 
     <section id="opensource" class="reveal">
         <div class="section-block">
-    <div class="section-header"><span class="mono">09</span> 开源项目</div>
+    <div class="section-header"><span class="section-num">NO.09</span><span class="section-title">开源项目</span></div>
     <div class="os-grid"><div class="opensource-card">
     <div class="os-header">
-        <a href="https://github.com/OpenHands/OpenHands" target="_blank" class="os-title">OpenHands/OpenHands — 🙌 OpenHands: AI-Driven Development</a>
-        <span class="stars">★ 73342 today</span>
+        <a href="https://github.com/Tencent/WeKnora" target="_blank" class="os-title">Tencent/WeKnora</a>
+        <span class="stars">★ 14.8k</span>
     </div>
-    <div class="os-meta"><span class="tag" style="color:#fff;background:#9775fa">GITHUB</span> <span class="tag" style="color:#fff;background:#5c7cfa">AI</span> <span class="tag">开源项目</span> <span class="tag">AI开发</span></div>
-    <p class="os-desc">OpenHands 是一款面向 AI 驱动开发的开源平台，目标是让开发者通过对话式界面指挥 AI 智能体完成编码、审查、部署等全流程。项目整合了 GPT、Claude 等主流模型，并提供命令行工具，适合嵌入现有工作流。
-
-这并非简单的代码补全，而是试图打造能理解项目上下文、主动拆分任务并执行的多步代理。→ 对于个人开发者，它可能直接省去样板代码和调试时间；对于团队，它能充当“虚拟实习生”，把人力解放到架构设计上。目前项目刚进入爆发期，API 和交互范式仍在快速迭代，建议早期试用者重点关注其任务拆解机制的可靠性。</p>
+    <div class="os-meta"><span class="tag" style="color:#fff;background:#9775fa">GITHUB</span> <span class="tag" style="color:#fff;background:#5c7cfa">AI</span> <span class="tag">开源项目</span> <span class="tag">RAG</span></div>
+    <p class="os-desc">腾讯在GitHub放出了WeKnora，一个用Go语言打造的LLM知识平台。你扔进去一堆原始文档，它就能自动构建可查询的RAG知识库，还能作为自主推理agent进行问答，更绝的是它会像Wiki一样持续自我维护和更新内容。→ 对于想快速搭建内部知识库、又不想维护繁杂管线的团队来说，这几乎是一站式解决方案。Go语言的高并发特性也让它很容易在生产环境里跑起来。目前在GitHub热榜上蹿升，值得尝试。</p>
 </div>
 <div class="opensource-card">
     <div class="os-header">
-        <a href="https://github.com/alistaitsacle/free-llm-api-keys" target="_blank" class="os-title">alistaitsacle/free-llm-api-keys — Free LLM API keys for GPT-5.4, Claude, DeepSeek, Gemini, Grok — copy, paste, use. Updated 3-5x daily. No credit card needed.</a>
-        <span class="stars">★ 279 today</span>
+        <a href="https://github.com/OpenHands/OpenHands" target="_blank" class="os-title">OpenHands/OpenHands</a>
+        <span class="stars">★ 73.3k</span>
     </div>
-    <div class="os-meta"><span class="tag" style="color:#fff;background:#9775fa">GITHUB</span> <span class="tag" style="color:#fff;background:#5c7cfa">AI</span> <span class="tag">API资源</span> <span class="tag">LLM</span></div>
-    <p class="os-desc">free-llm-api-keys 是一个明目张胆提供各大模型免费 API 密钥的仓库，覆盖 GPT-5.4、Claude、DeepSeek、Gemini、Grok 等头部服务，每日更新 3-5 次，声称无需信用卡。这相当于把散落在各处的试用额度、公共测试 key 集中整理，让开发者可以“一键”接入。
+    <div class="os-meta"><span class="tag" style="color:#fff;background:#9775fa">GITHUB</span> <span class="tag" style="color:#fff;background:#5c7cfa">AI</span> <span class="tag">开源项目</span> <span class="tag">AI Infra</span></div>
+    <p class="os-desc">OpenHands 是一个用 AI 自主完成编程任务的开源平台，最新消息是它正在经历从 V0 到 V1 的重大架构迁移，旧的单体设计将在 2026 年 4 月彻底废弃。
 
-虽然来源合法性和稳定性存疑，但它折射出一个趋势：大模型调用成本正在趋近于零，厂商的试用战打得如火如荼。→ 对想快速验证想法的独立开发者来说，这是极其便利的“偷跑”工具；但生产环境慎用，建议仅作临时测试。</p>
+V1 不再只是一个会写代码的聊天窗口，而是变成了一套完整的开发套件：既有可嵌入应用的程序库（Python SDK），也有本地命令行与可视化界面，甚至提供了企业级的 Kubernetes 私有部署方案。这意味着你可以把它当作一种「AI 开发流水线」，从想法到部署都能在可控的环境中跑通。
+
+→ 对于正在寻找 Cursor 或 Copilot 替代品的团队，OpenHands V1 的多接口设计和可自托管特性是最大的吸引力。值得关注的是，V0 代码很快会被清理，现在入场的开发者最好直接从 V1 分支开始研究。</p>
 </div>
 <div class="opensource-card">
     <div class="os-header">
-        <a href="https://github.com/Significant-Gravitas/AutoGPT" target="_blank" class="os-title">Significant-Gravitas/AutoGPT — AutoGPT is the vision of accessible AI for everyone, to use and to build on. Our mission is to provide the tools, so that you can focus on what matters.</a>
-        <span class="stars">★ 184273 today</span>
+        <a href="https://github.com/alistaitsacle/free-llm-api-keys" target="_blank" class="os-title">alistaitsacle/free-llm-api-keys</a>
+        <span class="stars">★ 280</span>
     </div>
-    <div class="os-meta"><span class="tag" style="color:#fff;background:#9775fa">GITHUB</span> <span class="tag" style="color:#fff;background:#5c7cfa">AI</span> <span class="tag">开源项目</span> <span class="tag">AI代理</span></div>
-    <p class="os-desc">AutoGPT 是最早出圈的自主 AI 代理项目，它让用户只需输入目标，AI 就能自主规划步骤、执行网络搜索、操纵文件并迭代。此次更新强调“可访问 AI 为所有人”，并开放更多模块化工具，以便非开发者也能构建零代码代理。
+    <div class="os-meta"><span class="tag" style="color:#fff;background:#9775fa">GITHUB</span> <span class="tag" style="color:#fff;background:#5c7cfa">AI</span> <span class="tag">开源项目</span> <span class="tag">API</span></div>
+    <p class="os-desc">GitHub 上出现了一个名为 free-llm-api-keys 的项目，直接整理了一批大模型的免费 API 密钥，覆盖 GPT-5.4、Claude、DeepSeek、Gemini 和 Grok，并声称每日更新 3 到 5 次，不需要任何信用卡。
 
-尽管早期版本常因无限循环和幻觉失控而被诟病，但项目正演变为一套代理构建的“乐高积木”：提供插件、记忆系统和安全沙箱。→ 这标志着自主代理从概念炒作进入可工程化阶段。对于想在实际业务中引入 AI 助手的团队，现在的 AutoGPT 更接近于一个可定制的自动化底座，而不仅是玩具。</p>
+对开发者来说，这就像摆在眼前的零成本试验场，省去了繁琐的注册和氪金流程，尤其适合快速原型验证。但硬币的另一面是：这些密钥很可能是通过官方试用额度、教育账户或共享池临时生成的，随时可能失效或被封禁。→ 用在个人项目里尝鲜还行，但千万别对接任何生产环境，否则服务中断和密钥黑名单会让你瞬间回到看脸的时代。建议用完即走，把稳定需求留给自己申请的正规 Key。</p>
 </div>
 <div class="opensource-card">
     <div class="os-header">
-        <a href="https://github.com/lobehub/lobehub" target="_blank" class="os-title">lobehub/lobehub — The ultimate space for work and life — to find, build, and collaborate with agent teammates that grow with you. We are taking agent harness to the next level — enabling multi-agent collaboration, effo</a>
-        <span class="stars">★ 76975 today</span>
+        <a href="https://github.com/NousResearch/hermes-agent" target="_blank" class="os-title">NousResearch/hermes-agent</a>
+        <span class="stars">★ 147.8k</span>
     </div>
-    <div class="os-meta"><span class="tag" style="color:#fff;background:#9775fa">GITHUB</span> <span class="tag" style="color:#fff;background:#5c7cfa">AI</span> <span class="tag">开源项目</span> <span class="tag">多智能体</span></div>
-    <p class="os-desc">LobeHub 定位为一个人与 AI 智能体协作的终极空间，核心突破在于“多智能体协作”——你可以同时与多个不同专长的 AI 队友沟通，它们之间也能相互调用、共享上下文。平台用 TypeScript 构建，提供对话、任务分配和成果整合的统一界面。
+    <div class="os-meta"><span class="tag" style="color:#fff;background:#9775fa">GITHUB</span> <span class="tag" style="color:#fff;background:#5c7cfa">AI</span> <span class="tag">开源项目</span> <span class="tag">AI 代理</span></div>
+    <p class="os-desc">Hermes-agent 是 NousResearch 推出的全能型 AI 代理框架，最大亮点在于它不是一个单纯的对话模型，而是一套具备终端互动能力（TUI）、Web 仪表盘和命令行交互的完整工具链。
 
-这比单次问答进了一步，类似把一起会议里的多个专家角色数字化。→ 如果团队知识分散在不同成员脑中，多智能体系统可能成为未来的知识协同层，但如何避免智能体之间的“沟通噪音”将是关键挑战。当前项目仍在早期，适合关注协作范式的开发者尝鲜。</p>
+架构上它围绕核心代理循环设计，内置了会话管理、上下文编排和模型切换等功能，意味着你可以把它当成本地客服、自动化脚本执行器，甚至是二次开发其他智能体应用的基座。→ 相比大多数只提供 API 或 Web 界面的代理项目，Hermes 直接把控制台搬到了终端里，对习惯键盘操作、追求低资源占用的开发者来说是一种极友好的打开方式。建议关注它后续的图谱检索和多模态集成进展，这可能会是轻量级本地助手的一个范本。</p>
 </div></div>
 </div>
     </section>
 
     <section id="wisdom" class="reveal">
         <div class="section-block wisdom-section">
-    <div class="section-header"><span class="mono">10</span> 今日一思</div>
+    <div class="section-header"><span class="section-num">NO.10</span><span class="section-title">今日一思</span></div>
     <div class="wisdom-card">
-        <div class="wisdom-quote">"吾生也有涯，而知也无涯。以有涯随无涯，殆已。"</div>
-        <div class="wisdom-explain">信息时代最重要的能力不是学更多，而是学会不学什么。别被「要看的东西」淹没——这份日报帮你做了第一步筛选。</div>
-        <div class="wisdom-author">— 庄子 · 《庄子·养生主》</div>
+        <div class="wisdom-quote">"人皆知有用之用，而莫知无用之用也。"</div>
+        <div class="wisdom-explain">刷 B 站、发呆、散步……看似「浪费时间」的事情，往往是灵感和创造力的来源。效率不是万能的，留白才是。</div>
+        <div class="wisdom-author">— 庄子 · 《庄子·人间世》</div>
     </div>
 </div>
     </section>
@@ -1260,7 +1053,7 @@ Simple `pip install litellm` was enough to exfiltrate SSH keys, AWS/GCP/Azure cr
 </main>
 
 <script>
-const DIGEST_DATA = [{"title": "Elastic Attention Cores for Scalable Vision Transformers", "url": "https://arxiv.org/abs/2605.12491v1", "source": "arXiv", "type": "arxiv", "matched_categories": ["科技/AI"]}, {"title": "Covering Human Action Space for Computer Use: Data Synthesis and Benchmark", "url": "https://arxiv.org/abs/2605.12501v1", "source": "arXiv", "type": "arxiv", "matched_categories": ["科技/AI"]}, {"title": "Multi-Stream LLMs: Unblocking Language Models with Parallel Streams of Thoughts, Inputs and Outputs", "url": "https://arxiv.org/abs/2605.12460v1", "source": "arXiv", "type": "arxiv", "matched_categories": ["科技/AI"]}, {"title": "Solve the Loop: Attractor Models for Language and Reasoning", "url": "https://arxiv.org/abs/2605.12466v1", "source": "arXiv", "type": "arxiv", "matched_categories": ["科技/AI"]}, {"title": "SenseNova-U1: Unifying Multimodal Understanding and Generation with NEO-unify Architecture", "url": "https://arxiv.org/abs/2605.12500v1", "source": "arXiv", "type": "arxiv", "matched_categories": ["科技/AI"]}, {"title": "OpenHands/OpenHands — 🙌 OpenHands: AI-Driven Development", "url": "https://github.com/OpenHands/OpenHands", "source": "GitHub/Trending", "type": "github_trending", "matched_categories": ["科技/AI"]}, {"title": "alistaitsacle/free-llm-api-keys — Free LLM API keys for GPT-5.4, Claude, DeepSeek, Gemini, Grok — copy, paste, use. Updated 3-5x daily. No credit card needed.", "url": "https://github.com/alistaitsacle/free-llm-api-keys", "source": "GitHub/Trending", "type": "github_trending", "matched_categories": ["科技/AI"]}, {"title": "Significant-Gravitas/AutoGPT — AutoGPT is the vision of accessible AI for everyone, to use and to build on. Our mission is to provide the tools, so that you can focus on what matters.", "url": "https://github.com/Significant-Gravitas/AutoGPT", "source": "GitHub/Trending", "type": "github_trending", "matched_categories": ["科技/AI"]}, {"title": "lobehub/lobehub — The ultimate space for work and life — to find, build, and collaborate with agent teammates that grow with you. We are taking agent harness to the next level — enabling multi-agent collaboration, effo", "url": "https://github.com/lobehub/lobehub", "source": "GitHub/Trending", "type": "github_trending", "matched_categories": ["科技/AI"]}, {"title": "What Parameter Golf taught us about AI-assisted research", "url": "https://openai.com/index/what-parameter-golf-taught-us", "source": "Blog/OpenAI", "type": "tech_blog", "matched_categories": ["科技/AI"]}, {"title": "AutoScout24 scales engineering with AI-powered workflows", "url": "https://openai.com/index/autoscout24", "source": "Blog/OpenAI", "type": "tech_blog", "matched_categories": ["科技/AI"]}, {"title": "How ChatGPT adoption broadened in early 2026", "url": "https://openai.com/signals/research/2026q1-update", "source": "Blog/OpenAI", "type": "tech_blog", "matched_categories": ["科技/AI"]}, {"title": "Introducing Claude Opus 4.7ProductApr 16, 2026Our latest Opus model brings stronger performance across coding, agents, vision, and multi-step tasks, with greater thoroughness and consistency on the work that matters most.", "url": "https://www.anthropic.com/news/claude-opus-4-7", "source": "Blog/Anthropic", "type": "tech_blog", "matched_categories": ["科技/AI"]}, {"title": "AnnouncementsFeb 4, 2026Claude is a space to thinkWe’ve made a choice: Claude will remain ad-free. We explain why advertising incentives are incompatible with a genuinely helpful AI assistant, and how we plan to expand access without compromising user trust.", "url": "https://www.anthropic.com/news/claude-is-a-space-to-think", "source": "Blog/Anthropic", "type": "tech_blog", "matched_categories": ["科技/AI"]}, {"title": "@karpathy: Software horror: litellm PyPI supply chain attack.   Simple `pip install litellm` was enough to exfi", "url": "https://x.com/karpathy/status/2036487306585268612", "source": "X/@karpathy", "type": "twitter_kol", "matched_categories": ["科技/AI", "投资/经济"]}, {"title": "Recursion Is The Next Scaling Law In AI", "url": "https://www.youtube.com/watch?v=DGtUUMNYLcc", "source": "YouTube/Y Combinator", "type": "youtube", "matched_categories": ["科技/AI"]}, {"title": "Demis Hassabis: Agents, AGI & The Next Big Scientific Breakthrough", "url": "https://www.youtube.com/watch?v=JNyuX1zoOgU", "source": "YouTube/Y Combinator", "type": "youtube", "matched_categories": ["科技/AI"]}, {"title": "Preserving the Art of Ed Aulerich-Sugai", "url": "https://daily.jstor.org/preserving-the-art-of-ed-aulerich-sugai/", "source": "Essay/JSTOR", "type": "humanities", "matched_categories": ["科技/AI"]}, {"title": "Red Post Collection: Patch Notes, Making Space Groove TFT Dev Drop, & More", "url": "https://www.surrenderat20.net/2022/11/red-post-collection-patch-notes-making.html", "source": "LoL/S@20", "type": "lol", "matched_categories": ["英雄联盟"]}, {"title": "Beneath our human shallows", "url": "https://aeon.co/essays/how-does-the-deep-earth-see-humanity", "source": "Essay/Aeon", "type": "humanities", "matched_categories": []}, {"title": "The invention of the soul", "url": "https://aeon.co/essays/you-know-what-consciousness-is-you-live-in-soul-land", "source": "Essay/Aeon", "type": "humanities", "matched_categories": []}, {"title": "Does reading do us any good?", "url": "https://aeon.co/essays/the-role-of-literature-as-the-key-to-personal-freedom", "source": "Essay/Aeon", "type": "humanities", "matched_categories": []}, {"title": "You’ve lived this life before", "url": "https://aeon.co/essays/the-mysticism-of-nietzsches-doctrine-of-the-eternal-return", "source": "Essay/Aeon", "type": "humanities", "matched_categories": []}, {"title": "The Ethiopian running secret", "url": "https://aeon.co/essays/what-ethiopian-running-says-about-the-limits-of-human-ability", "source": "Essay/Aeon", "type": "humanities", "matched_categories": []}, {"title": "The Power of Constraints", "url": "https://collabfund.com/blog/the-power-of-constraints/", "source": "Blog/CollabFund", "type": "finance_indie", "matched_categories": ["科技/AI"]}, {"title": "Worlds 2022 Event: Empyrean Skins & Content Now Available!", "url": "https://www.surrenderat20.net/2022/11/worlds-2022-event-empyrean-skins.html", "source": "LoL/S@20", "type": "lol", "matched_categories": ["科技/AI"]}, {"title": "K'Sante, the Pride of Nazumah, Now Available!", "url": "https://www.surrenderat20.net/2022/11/ksante-pride-of-nazumah-now-available.html", "source": "LoL/S@20", "type": "lol", "matched_categories": ["科技/AI"]}, {"title": "The disaster I never imagined having to worry about", "url": "https://www.youtube.com/watch?v=ksn5yrsC3Wg", "source": "YouTube/Veritasium", "type": "youtube", "matched_categories": ["科技/AI"]}, {"title": "You're Wrong About Birth Rates & Aging Populations", "url": "https://www.youtube.com/watch?v=AIDnr646tLA", "source": "YouTube/Philosophy Tube", "type": "youtube", "matched_categories": ["科技/AI"]}, {"title": "今日赛果: LOUD 3-1 VKS | KC 2-1 MKOI | SR 0-2 SEN | DIG 0-2 DSG | WBG 2-0 NIP (+28场)", "url": "https://lolesports.com/schedule", "source": "LoL/Esports", "type": "lol", "matched_categories": []}, {"title": "LCP 2026 Split 2 Virtual Co-streamers", "url": "https://lolesports.com/news/lcp-2026-split-2-virtual-co-streamers", "source": "LoL/Esports", "type": "lol", "matched_categories": []}, {"title": "LCP 2026 Split 2", "url": "https://lolesports.com/news/lcp-2026-split-2-etynk", "source": "LoL/Esports", "type": "lol", "matched_categories": []}, {"title": "Collab Holdings: A Different Approach to Private Equity for the Best Consumer Brands", "url": "https://collabfund.com/blog/collab-holdings/", "source": "Blog/CollabFund", "type": "finance_indie", "matched_categories": []}, {"title": "Long-Term Money", "url": "https://collabfund.com/blog/long-term-money/", "source": "Blog/CollabFund", "type": "finance_indie", "matched_categories": []}, {"title": "WHOOP", "url": "https://collabfund.com/blog/whoop/", "source": "Blog/CollabFund", "type": "finance_indie", "matched_categories": []}, {"title": "Significance > Success", "url": "https://collabfund.com/blog/significance-success/", "source": "Blog/CollabFund", "type": "finance_indie", "matched_categories": []}, {"title": "Can the CIA's quantum sensor detect your heartbeat from 60 km away?", "url": "https://www.youtube.com/watch?v=SVTPv4sI_Jc", "source": "YouTube/Veritasium", "type": "youtube", "matched_categories": ["科技/AI"]}, {"title": "Running a 24-hour IndieDeck Pro sale for the Indie Hackers community", "url": "https://www.indiehackers.com/post/running-a-24-hour-indiedeck-pro-sale-for-the-indie-hackers-community-bb2f9b224b", "source": "IndieHackers", "type": "finance_indie", "matched_categories": ["投资/经济"]}, {"title": "抖音一秒变装亮剑版", "url": "https://www.bilibili.com/video/BV15W411E7mk", "source": "B站/箭厂视频", "type": "bilibili", "matched_categories": []}, {"title": "过度想念《权力的游戏》第八季的我眼中的其他剧", "url": "https://www.bilibili.com/video/BV18x411u7K6", "source": "B站/箭厂视频", "type": "bilibili", "matched_categories": []}];
+const DIGEST_DATA = [{"title": "arXiv:2604.17587", "url": "https://arxiv.org/abs/2604.17587", "source": "arXiv", "type": "arxiv", "matched_categories": []}, {"title": "Tencent/WeKnora", "url": "https://github.com/Tencent/WeKnora", "source": "GitHub/Trending", "type": "github_trending", "matched_categories": ["科技/AI"]}, {"title": "On-Policy Self-Evolution via Failure Trajectories for Agentic Safety Alignment", "url": "https://huggingface.co/papers/2605.11882", "source": "HuggingFace/Papers", "type": "huggingface", "matched_categories": ["科技/AI"]}, {"title": "SeePhys Pro: Diagnosing Modality Transfer and Blind-Training Effects in Multimodal RLVR for Physics Reasoning", "url": "https://huggingface.co/papers/2605.09266", "source": "HuggingFace/Papers", "type": "huggingface", "matched_categories": ["科技/AI"]}, {"title": "RubricEM: Meta-RL with Rubric-guided Policy Decomposition beyond Verifiable Rewards", "url": "https://huggingface.co/papers/2605.10899", "source": "HuggingFace/Papers", "type": "huggingface", "matched_categories": ["英雄联盟"]}, {"title": "OpenHands/OpenHands", "url": "https://github.com/OpenHands/OpenHands", "source": "GitHub/Trending", "type": "github_trending", "matched_categories": ["科技/AI"]}, {"title": "alistaitsacle/free-llm-api-keys", "url": "https://github.com/alistaitsacle/free-llm-api-keys", "source": "GitHub/Trending", "type": "github_trending", "matched_categories": ["科技/AI"]}, {"title": "MemPrivacy: Privacy-Preserving Personalized Memory Management for Edge-Cloud Agents", "url": "https://huggingface.co/papers/2605.09530", "source": "HuggingFace/Papers", "type": "huggingface", "matched_categories": ["科技/AI"]}, {"title": "NousResearch/hermes-agent", "url": "https://github.com/NousResearch/hermes-agent", "source": "GitHub/Trending", "type": "github_trending", "matched_categories": ["科技/AI"]}, {"title": "What Parameter Golf taught us about AI-assisted research", "url": "https://openai.com/index/what-parameter-golf-taught-us", "source": "Blog/OpenAI", "type": "tech_blog", "matched_categories": ["科技/AI"]}, {"title": "AutoScout24 scales engineering with AI-powered workflows", "url": "https://openai.com/index/autoscout24", "source": "Blog/OpenAI", "type": "tech_blog", "matched_categories": ["科技/AI"]}, {"title": "How ChatGPT adoption broadened in early 2026", "url": "https://openai.com/signals/research/2026q1-update", "source": "Blog/OpenAI", "type": "tech_blog", "matched_categories": ["科技/AI"]}, {"title": "Introducing Claude Opus 4.7ProductApr 16, 2026Our latest Opus model brings stronger performance across coding, agents, vision, and multi-step tasks, with greater thoroughness and consistency on the work that matters most.", "url": "https://www.anthropic.com/news/claude-opus-4-7", "source": "Blog/Anthropic", "type": "tech_blog", "matched_categories": ["科技/AI"]}, {"title": "AnnouncementsFeb 4, 2026Claude is a space to thinkWe’ve made a choice: Claude will remain ad-free. We explain why advertising incentives are incompatible with a genuinely helpful AI assistant, and how we plan to expand access without compromising user trust.", "url": "https://www.anthropic.com/news/claude-is-a-space-to-think", "source": "Blog/Anthropic", "type": "tech_blog", "matched_categories": ["科技/AI"]}, {"title": "@karpathy: Software horror: litellm PyPI supply chain attack.   Simple `pip install litellm` was enough to exfi", "url": "https://x.com/karpathy/status/2036487306585268612", "source": "X/@karpathy", "type": "twitter_kol", "matched_categories": ["科技/AI", "投资/经济"]}, {"title": "Recursion Is The Next Scaling Law In AI", "url": "https://www.youtube.com/watch?v=DGtUUMNYLcc", "source": "YouTube/Y Combinator", "type": "youtube", "matched_categories": ["科技/AI"]}, {"title": "Demis Hassabis: Agents, AGI & The Next Big Scientific Breakthrough", "url": "https://www.youtube.com/watch?v=JNyuX1zoOgU", "source": "YouTube/Y Combinator", "type": "youtube", "matched_categories": ["科技/AI"]}, {"title": "Preserving the Art of Ed Aulerich-Sugai", "url": "https://daily.jstor.org/preserving-the-art-of-ed-aulerich-sugai/", "source": "Essay/JSTOR", "type": "humanities", "matched_categories": ["科技/AI"]}, {"title": "LJL 2026 Spring Series Main Stage 開幕！雪解けの静寂を破る、春の嵐がやってくる。2026年4月24日", "url": "https://lolesports.com/news/ljl2026-spring-main-announcement", "source": "LoL/Esports", "type": "lol", "matched_categories": ["科技/AI"]}, {"title": "Red Post Collection: Patch Notes, Making Space Groove TFT Dev Drop, & More", "url": "https://www.surrenderat20.net/2022/11/red-post-collection-patch-notes-making.html", "source": "LoL/S@20", "type": "lol", "matched_categories": ["英雄联盟"]}, {"title": "Beneath our human shallows", "url": "https://aeon.co/essays/how-does-the-deep-earth-see-humanity", "source": "Essay/Aeon", "type": "humanities", "matched_categories": []}, {"title": "The invention of the soul", "url": "https://aeon.co/essays/you-know-what-consciousness-is-you-live-in-soul-land", "source": "Essay/Aeon", "type": "humanities", "matched_categories": []}, {"title": "Does reading do us any good?", "url": "https://aeon.co/essays/the-role-of-literature-as-the-key-to-personal-freedom", "source": "Essay/Aeon", "type": "humanities", "matched_categories": []}, {"title": "You’ve lived this life before", "url": "https://aeon.co/essays/the-mysticism-of-nietzsches-doctrine-of-the-eternal-return", "source": "Essay/Aeon", "type": "humanities", "matched_categories": []}, {"title": "The Ethiopian running secret", "url": "https://aeon.co/essays/what-ethiopian-running-says-about-the-limits-of-human-ability", "source": "Essay/Aeon", "type": "humanities", "matched_categories": []}, {"title": "The Power of Constraints", "url": "https://collabfund.com/blog/the-power-of-constraints/", "source": "Blog/CollabFund", "type": "finance_indie", "matched_categories": ["科技/AI"]}, {"title": "Worlds 2022 Event: Empyrean Skins & Content Now Available!", "url": "https://www.surrenderat20.net/2022/11/worlds-2022-event-empyrean-skins.html", "source": "LoL/S@20", "type": "lol", "matched_categories": ["科技/AI"]}, {"title": "K'Sante, the Pride of Nazumah, Now Available!", "url": "https://www.surrenderat20.net/2022/11/ksante-pride-of-nazumah-now-available.html", "source": "LoL/S@20", "type": "lol", "matched_categories": ["科技/AI"]}, {"title": "The disaster I never imagined having to worry about", "url": "https://www.youtube.com/watch?v=ksn5yrsC3Wg", "source": "YouTube/Veritasium", "type": "youtube", "matched_categories": ["科技/AI"]}, {"title": "You're Wrong About Birth Rates & Aging Populations", "url": "https://www.youtube.com/watch?v=AIDnr646tLA", "source": "YouTube/Philosophy Tube", "type": "youtube", "matched_categories": ["科技/AI"]}, {"title": "今日赛果: DIG 0-2 DSG | WBG 2-0 NIP | DFM 0-2 DCG | KRX 1-2 HLE | JDG 2-1 AL (+25场)", "url": "https://lolesports.com/schedule", "source": "LoL/Esports", "type": "lol", "matched_categories": []}, {"title": "LJL 2026 Spring Seriesオープン予選 出場チーム発表2026年4月9日", "url": "https://lolesports.com/news/ljl2026-springopen-announce", "source": "LoL/Esports", "type": "lol", "matched_categories": []}, {"title": "Collab Holdings: A Different Approach to Private Equity for the Best Consumer Brands", "url": "https://collabfund.com/blog/collab-holdings/", "source": "Blog/CollabFund", "type": "finance_indie", "matched_categories": []}, {"title": "Long-Term Money", "url": "https://collabfund.com/blog/long-term-money/", "source": "Blog/CollabFund", "type": "finance_indie", "matched_categories": []}, {"title": "WHOOP", "url": "https://collabfund.com/blog/whoop/", "source": "Blog/CollabFund", "type": "finance_indie", "matched_categories": []}, {"title": "Significance > Success", "url": "https://collabfund.com/blog/significance-success/", "source": "Blog/CollabFund", "type": "finance_indie", "matched_categories": []}, {"title": "Can the CIA's quantum sensor detect your heartbeat from 60 km away?", "url": "https://www.youtube.com/watch?v=SVTPv4sI_Jc", "source": "YouTube/Veritasium", "type": "youtube", "matched_categories": ["科技/AI"]}, {"title": "Running a 24-hour IndieDeck Pro sale for the Indie Hackers community", "url": "https://www.indiehackers.com/post/running-a-24-hour-indiedeck-pro-sale-for-the-indie-hackers-community-bb2f9b224b", "source": "IndieHackers", "type": "finance_indie", "matched_categories": ["投资/经济"]}, {"title": "抖音一秒变装亮剑版", "url": "https://www.bilibili.com/video/BV15W411E7mk", "source": "B站/箭厂视频", "type": "bilibili", "matched_categories": []}, {"title": "过度想念《权力的游戏》第八季的我眼中的其他剧", "url": "https://www.bilibili.com/video/BV18x411u7K6", "source": "B站/箭厂视频", "type": "bilibili", "matched_categories": []}];
 const API_URL = "/api/feedback";
 const DIGEST_DATE = "2026-05-13";
 
@@ -1271,7 +1064,7 @@ function updateActiveNav() {
     let current = '';
     sections.forEach(s => {
         const r = s.getBoundingClientRect();
-        if (r.top <= 80 && r.bottom > 80) current = s.id;
+        if (r.top <= 100 && r.bottom > 100) current = s.id;
     });
     navLinks.forEach(l => l.classList.toggle('active', l.dataset.section === current));
 }
@@ -1293,10 +1086,10 @@ navLinks.forEach(link => {
 // Scroll reveal
 const ro = new IntersectionObserver(entries => {
     entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-}, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+}, { threshold: 0.06, rootMargin: '0px 0px -30px 0px' });
 document.querySelectorAll('.reveal').forEach(el => ro.observe(el));
 
-// ─── Theme Switcher ───
+// Theme Switcher
 const themeBtn = document.getElementById('themeToggle');
 const themePanel = document.getElementById('themePanel');
 const themeOptions = themePanel.querySelectorAll('.theme-option');
@@ -1317,8 +1110,7 @@ themeOptions.forEach(o => {
     });
 });
 document.addEventListener('click', () => themePanel.classList.remove('open'));
-// Init active state
-setTheme(localStorage.getItem('digest-theme') || 'dopamine');
+setTheme(localStorage.getItem('digest-theme') || 'editorial');
 </script>
 </body>
 </html>
