@@ -1,13 +1,13 @@
-# Daily Digest — 用户兴趣画像
-# 可随时编辑，运行 /digest-review 后自动更新
+# Daily Digest — 用户兴趣画像 (v4 全信源)
+# 核心理念：信源质量 > 内容数量，0-hop > N-hop
 
 interests:
   - label: "科技/AI"
-    keywords: ["AI", "LLM", "GPT", "Claude", "产品发布", "开源", "机器学习", "deep learning", "AGI"]
+    keywords: ["AI", "LLM", "GPT", "Claude", "产品发布", "开源", "机器学习", "deep learning", "AGI", "Agent", "RAG", "多模态", "transformer", "reasoning", "scaling"]
     weight: 0.9
     tone: "有趣 > 硬核"
   - label: "投资/经济"
-    keywords: ["量化", "量化交易", "投资入门", "经济学", "自由职业", "理财", "股票", "crypto"]
+    keywords: ["量化", "量化交易", "投资入门", "经济学", "自由职业", "理财", "股票", "crypto", "fintech", "indie hacker"]
     weight: 0.7
   - label: "英雄联盟"
     keywords: ["patch notes", "meta", "champion", "LoL", "League of Legends", "英雄联盟"]
@@ -16,7 +16,7 @@ interests:
     keywords: ["纪录片", "社会现象", "采访", "documentary", "人文", "社会学", "真实故事"]
     weight: 0.6
   - label: "历史/哲学"
-    keywords: ["历史洞见", "哲学思想", "尼采", "黑格尔", "庄子", "周易", "历史", "philosophy"]
+    keywords: ["历史洞见", "哲学思想", "尼采", "黑格尔", "庄子", "周易", "历史", "philosophy", "essay"]
     weight: 0.5
 
 content_preferences:
@@ -25,6 +25,52 @@ content_preferences:
   scope: "跨学科关联 > 单一领域深钻"
   goal: "成为自由职业者"
 
+# ─── 一手信源 (0-hop) ───
+
+# arXiv: 原始论文
+arxiv:
+  categories: ["cs.AI", "cs.CL", "cs.LG", "cs.CV"]
+  max_results: 20
+  days_back: 3
+
+# GitHub: 原始代码仓库
+github_trending:
+  focus: ["ai", "llm", "agent", "tool", "cli"]
+
+# ─── 策展信源 (1-hop) ───
+
+# HuggingFace: 社区策展论文
+huggingface:
+  max_papers: 15
+
+# Twitter KOL: 作者原创观点
+twitter_kols:
+  - handle: "AnthropicAI"
+    name: "Anthropic"
+    topic: "AI safety Claude"
+  - handle: "OpenAI"
+    name: "OpenAI"
+    topic: "AI models"
+  - handle: "garrytan"
+    name: "Garry Tan"
+    topic: "startup YC"
+  - handle: "swyx"
+    name: "swyx"
+    topic: "AI engineering"
+  - handle: "dotey"
+    name: "宝玉"
+    topic: "AI tech 中文"
+  - handle: "karpathy"
+    name: "Karpathy"
+    topic: "AI research"
+
+# ─── 社区策展 (2-hop) ───
+
+# Hacker News: 社区投票筛选
+hackernews:
+  max_stories: 20
+
+# YouTube: 作者自制内容
 youtube_channels:
   - name: Veritasium
     url: "https://www.youtube.com/@veritasium"
@@ -41,6 +87,25 @@ youtube_channels:
   - name: 安争鸣
     url: "https://www.youtube.com/@anzhengming"
     category: "人文"
+  - name: Andrej Karpathy
+    url: "https://www.youtube.com/@karpathy"
+    category: "AI底层"
+  - name: Philosophy Tube
+    url: "https://www.youtube.com/@PhilosophyTube"
+    category: "哲学"
+
+# B站频道
+bilibili_channels:
+  - name: "史图馆"
+    mid: "1425145"
+    category: "历史/哲学"
+    max_videos: 3
+  - name: "箭厂视频"
+    mid: "13303681"
+    category: "社会观察/纪录片"
+    max_videos: 3
+
+# ─── 官方页面监控 (1-hop) ───
 
 websites:
   - name: "LoL Patch Notes"
@@ -54,22 +119,19 @@ websites:
 
 rss_feeds: []
 
+# ─── 低质量信源 (4-hop, 默认关闭) ───
+# web search 只作为 fallback，需要 --with search 启用
 search_topics:
-  - "AI 有趣的新发现 今日"
-  - "值得看的纪录片 推荐"
-  - "量化交易 入门"
-  - "自由职业者 经验"
+  - "AI Agent 框架 最新发布 2026"
+  - "LLM 开源模型 新突破"
+  - "量化交易 Python 策略 入门"
 
-# 今日一思 — 哲学家语录模块
+# 今日一思
 daily_wisdom:
-  philosophers:
-    - "尼采"
-    - "黑格尔"
-    - "庄子"
-    - "周易"
+  philosophers: ["尼采", "黑格尔", "庄子", "周易"]
   style: "大白话解释 + 关联现实生活"
 
-# 反馈历史统计（由 review.py 自动更新）
+# 反馈历史统计
 feedback_stats:
   total_likes: 0
   total_dislikes: 0
