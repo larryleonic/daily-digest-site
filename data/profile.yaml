@@ -7,7 +7,7 @@ interests:
     weight: 0.9
     tone: "有趣 > 硬核"
   - label: "投资/经济"
-    keywords: ["量化", "量化交易", "投资入门", "经济学", "自由职业", "理财", "股票", "crypto", "fintech", "indie hacker"]
+    keywords: ["量化", "量化交易", "投资入门", "经济学", "自由职业", "理财", "股票", "crypto", "fintech", "indie hacker", "FIRE", "passive income"]
     weight: 0.7
   - label: "英雄联盟"
     keywords: ["patch notes", "meta", "champion", "LoL", "League of Legends", "英雄联盟"]
@@ -17,6 +17,18 @@ interests:
     weight: 0.6
   - label: "历史/哲学"
     keywords: ["历史洞见", "哲学思想", "尼采", "黑格尔", "庄子", "周易", "历史", "philosophy", "essay"]
+    weight: 0.5
+  - label: "电影"
+    keywords: ["film", "movie", "cinema", "导演", "影评", "Oscar", "电影节", "review", "票房", "选角", "剧本"]
+    weight: 0.6
+  - label: "书籍"
+    keywords: ["book review", "novel", "literary", "读书", "书评", "fiction", "non-fiction", "出版", "author"]
+    weight: 0.5
+  - label: "心理学"
+    keywords: ["psychology", "behavioral science", "cognitive", "decision making", "心理", "认知", "行为", "bias", "therapy", "mental"]
+    weight: 0.6
+  - label: "游戏折扣"
+    keywords: ["Steam", "game deal", "discount", "free game", "sale", "折扣", "特惠", "indie game"]
     weight: 0.5
 
 content_preferences:
@@ -45,6 +57,7 @@ huggingface:
 
 # Twitter KOL: 作者原创观点
 twitter_kols:
+  # AI/Tech
   - handle: "AnthropicAI"
     name: "Anthropic"
     topic: "AI safety Claude"
@@ -63,6 +76,31 @@ twitter_kols:
   - handle: "karpathy"
     name: "Karpathy"
     topic: "AI research"
+  # 新增 KOL
+  - handle: "emollick"
+    name: "Ethan Mollick"
+    topic: "AI education behavioral science"
+  - handle: "naval"
+    name: "Naval Ravikant"
+    topic: "philosophy investing indie"
+  - handle: "drjimfan"
+    name: "Jim Fan"
+    topic: "AI research NVIDIA"
+  - handle: "benthompson"
+    name: "Ben Thompson"
+    topic: "tech business strategy"
+  - handle: "MarkManson"
+    name: "Mark Manson"
+    topic: "psychology philosophy life"
+  - handle: "AlphaSignalAI"
+    name: "AlphaSignal"
+    topic: "AI news curated"
+  - handle: "chaabormath"
+    name: "Chamath"
+    topic: "investing tech markets"
+  - handle: "rowancheung"
+    name: "Rowan Cheung"
+    topic: "AI news digest"
 
 # ─── 社区策展 (2-hop) ───
 
@@ -72,6 +110,7 @@ hackernews:
 
 # YouTube: 作者自制内容
 youtube_channels:
+  # 科学/AI
   - name: Veritasium
     url: "https://www.youtube.com/@veritasium"
     category: "科学"
@@ -93,6 +132,31 @@ youtube_channels:
   - name: Philosophy Tube
     url: "https://www.youtube.com/@PhilosophyTube"
     category: "哲学"
+  # 新增频道
+  - name: Lessons from the Screenplay
+    url: "https://www.youtube.com/@LessonsFromTheScreenplay"
+    category: "电影"
+  - name: Cinema Therapy
+    url: "https://www.youtube.com/@CinemaTherapy"
+    category: "电影/心理学"
+  - name: Ben Felix
+    url: "https://www.youtube.com/@BenFelix"
+    category: "投资/经济"
+  - name: Patrick Boyle
+    url: "https://www.youtube.com/@PBoyle"
+    category: "投资/经济"
+  - name: Better Than Food
+    url: "https://www.youtube.com/@BetterThanFood"
+    category: "书籍"
+  - name: Economics Explained
+    url: "https://www.youtube.com/@EconomicsExplained"
+    category: "投资/经济"
+  - name: The Swedish Investor
+    url: "https://www.youtube.com/@TheSwedishInvestor"
+    category: "书籍/投资"
+  - name: Every Frame a Painting
+    url: "https://www.youtube.com/@everyframeapainting"
+    category: "电影"
 
 # B站频道
 bilibili_channels:
@@ -103,6 +167,27 @@ bilibili_channels:
   - name: "箭厂视频"
     mid: "13303681"
     category: "社会观察/纪录片"
+    max_videos: 3
+  # 新增 B站频道
+  - name: "木鱼水心"
+    mid: "927587"
+    category: "电影"
+    max_videos: 3
+  - name: "电影最TOP"
+    mid: "17819768"
+    category: "电影"
+    max_videos: 3
+  - name: "思维实验室"
+    mid: "378417670"
+    category: "心理学"
+    max_videos: 3
+  - name: "小Lin说"
+    mid: "520819684"
+    category: "投资/经济"
+    max_videos: 3
+  - name: "图灵的猫"
+    mid: "441381282"
+    category: "书籍"
     max_videos: 3
 
 # ─── 官方页面监控 (1-hop) ───
@@ -137,3 +222,15 @@ feedback_stats:
   total_dislikes: 0
   category_scores: {}
   blocked_sources: []
+
+# 探索板块 — 非固定领域，临时关注的话题/人物/站点
+explore:
+  enabled: true
+  # 轮换关注点（每次随机选 2-3 个）
+  topics:
+    - label: "Philosophy of Science"
+      urls: ["https://plato.stanford.edu/new.html"]
+    - label: "写作与创意"
+      urls: ["https://www.themarginalian.org/"]
+    - label: "设计灵感"
+      urls: ["https://www.itsnicethat.com/"]
