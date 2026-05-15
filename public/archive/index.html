@@ -13,7 +13,7 @@
 * { box-sizing: border-box; margin: 0; padding: 0; }
 body { font-family: var(--font-body); background: var(--bg); color: var(--ink); }
 a { color: inherit; text-decoration: none; }
-.masthead { border-bottom: 3px solid var(--rule); padding: 20px 0 16px; text-align: center; background: var(--bg); }
+.masthead { border-bottom: 3px solid var(--rule); padding: 20px 0 16px; background: var(--bg); }
 .masthead-inner { max-width: 700px; margin: 0 auto; padding: 0 24px; display: flex; align-items: center; justify-content: space-between; }
 .masthead-brand { font-family: var(--font-display); font-size: 28px; font-weight: 900; letter-spacing: -0.5px; }
 .masthead-brand .accent { color: var(--accent); }
@@ -25,10 +25,11 @@ a { color: inherit; text-decoration: none; }
 .archive-list { border-top: 2px solid var(--rule); }
 .archive-row { display: flex; align-items: center; gap: 16px; padding: 18px 16px; border-bottom: 1px solid var(--rule-light); transition: background 0.2s; }
 .archive-row:hover { background: var(--surface-alt); }
-.archive-date { font-family: var(--font-mono); font-size: 16px; font-weight: 600; letter-spacing: 0.5px; }
-.archive-weekday { font-size: 13px; color: var(--ink-muted); }
-.archive-arrow { margin-left: auto; font-size: 16px; color: var(--ink-faint); transition: color 0.2s; }
+.archive-date { font-family: var(--font-mono); font-size: 16px; font-weight: 600; letter-spacing: 0.5px; white-space: nowrap; }
+.archive-weekday { font-size: 13px; color: var(--ink-muted); white-space: nowrap; }
+.archive-arrow { font-size: 16px; color: var(--ink-faint); transition: color 0.2s; white-space: nowrap; }
 .archive-row:hover .archive-arrow { color: var(--accent); }
+.archive-headline { flex: 1; font-size: 13px; color: var(--ink-light); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .footer { text-align: center; font-size: 11px; color: var(--ink-faint); margin-top: 60px; padding: 20px; border-top: 2px solid var(--rule); font-family: var(--font-mono); letter-spacing: 1px; }
 </style>
 </head>
@@ -44,7 +45,7 @@ a { color: inherit; text-decoration: none; }
     <h1 class="page-title">Archive</h1>
     <p class="page-subtitle">3 EDITIONS</p>
     <div class="archive-list">
-        <a href="2026-05-14.html" class="archive-row"><span class="archive-date">2026-05-14</span><span class="archive-weekday">周四</span><span class="archive-arrow">&rarr;</span></a><a href="2026-05-13.html" class="archive-row"><span class="archive-date">2026-05-13</span><span class="archive-weekday">周三</span><span class="archive-arrow">&rarr;</span></a><a href="2026-05-12.html" class="archive-row"><span class="archive-date">2026-05-12</span><span class="archive-weekday">周二</span><span class="archive-arrow">&rarr;</span></a>
+        <a href="2026-05-14.html" class="archive-row"><span class="archive-date">2026-05-14</span><span class="archive-weekday">周四</span><span class="archive-headline">Significant-Gravitas/AutoGPT</span><span class="archive-arrow">&rarr;</span></a><a href="2026-05-13.html" class="archive-row"><span class="archive-date">2026-05-13</span><span class="archive-weekday">周三</span><span class="archive-headline">arXiv:2604.17587</span><span class="archive-arrow">&rarr;</span></a><a href="2026-05-12.html" class="archive-row"><span class="archive-date">2026-05-12</span><span class="archive-weekday">周二</span><span class="archive-arrow">&rarr;</span></a>
     </div>
     <div class="footer">Daily Digest Archive</div>
 </main>
