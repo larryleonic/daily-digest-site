@@ -101,6 +101,22 @@ twitter_kols:
   - handle: "rowancheung"
     name: "Rowan Cheung"
     topic: "AI news digest"
+  # 新增 KOL（参考 aihot.virxact.com 高产信源）
+  - handle: "berryxia"
+    name: "Berry Xia"
+    topic: "AI product tools 中文速报"
+  - handle: "AYi_AInotes"
+    name: "阿易 AI Notes"
+    topic: "AI industry 中文深度观察"
+  - handle: "kimmonismus"
+    name: "Kim (Chubby)"
+    topic: "AI chips geopolitics industry"
+  - handle: "_akhaliq"
+    name: "AK"
+    topic: "AI papers HuggingFace daily"
+  - handle: "testingcatalog"
+    name: "Testing Catalog"
+    topic: "AI product launches news"
 
 # ─── 社区策展 (2-hop) ───
 

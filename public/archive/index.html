@@ -8,33 +8,81 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@400;500;700&family=JetBrains+Mono:wght@400;600&family=Noto+Serif+SC:wght@600;900&display=swap" rel="stylesheet">
 <style>
-:root { --bg: #f8f5f0; --surface: #ffffff; --surface-alt: #f2ede6; --ink: #1a1a1a; --ink-light: #4a4a4a; --ink-muted: #7a7a7a; --ink-faint: #b0b0b0; --accent: #c41e3a; --rule: #1a1a1a; --rule-light: rgba(0,0,0,0.08); --font-display: "Playfair Display", "Noto Serif SC", Georgia, serif; --font-body: "DM Sans", "PingFang SC", sans-serif; --font-mono: "JetBrains Mono", "SF Mono", monospace; }
-[data-theme="dark"] { --bg: #111; --surface: #1a1a1a; --surface-alt: #222; --ink: #e8e8e8; --ink-light: #b0b0b0; --ink-muted: #777; --ink-faint: #444; --accent: #e8364f; --rule: #e8e8e8; --rule-light: rgba(255,255,255,0.08); }
+:root {
+    --bg: #f8f5f0; --surface: #ffffff; --surface-alt: #f2ede6;
+    --ink: #1a1a1a; --ink-light: #4a4a4a; --ink-muted: #7a7a7a; --ink-faint: #b0b0b0;
+    --accent: #c41e3a; --rule: #1a1a1a; --rule-light: rgba(0,0,0,0.08);
+    --font-display: 'Playfair Display', 'Noto Serif SC', Georgia, serif;
+    --font-body: 'DM Sans', 'PingFang SC', sans-serif;
+    --font-mono: 'JetBrains Mono', 'SF Mono', monospace;
+}
+[data-theme="dark"] {
+    --bg: #111; --surface: #1a1a1a; --surface-alt: #222;
+    --ink: #e8e8e8; --ink-light: #b0b0b0; --ink-muted: #777; --ink-faint: #444;
+    --accent: #e8364f; --rule: #e8e8e8; --rule-light: rgba(255,255,255,0.08);
+}
 * { box-sizing: border-box; margin: 0; padding: 0; }
 body { font-family: var(--font-body); background: var(--bg); color: var(--ink); }
 a { color: inherit; text-decoration: none; }
-.masthead { border-bottom: 3px solid var(--rule); padding: 20px 0 16px; background: var(--bg); }
-.masthead-inner { max-width: 700px; margin: 0 auto; padding: 0 24px; display: flex; align-items: center; justify-content: space-between; }
-.masthead-brand { font-family: var(--font-display); font-size: 28px; font-weight: 900; letter-spacing: -0.5px; }
+.masthead {
+    border-bottom: 3px solid var(--rule); padding: 20px 0 16px; text-align: center;
+    background: var(--bg);
+}
+.masthead-inner {
+    max-width: 700px; margin: 0 auto; padding: 0 24px;
+    display: flex; align-items: center; justify-content: space-between;
+}
+.masthead-brand {
+    font-family: var(--font-display); font-size: 28px; font-weight: 900;
+    letter-spacing: -0.5px;
+}
 .masthead-brand .accent { color: var(--accent); }
-.back-link { font-family: var(--font-mono); font-size: 12px; color: var(--ink-muted); letter-spacing: 1px; transition: color 0.2s; }
+.back-link {
+    font-family: var(--font-mono); font-size: 12px; color: var(--ink-muted);
+    letter-spacing: 1px; transition: color 0.2s;
+}
 .back-link:hover { color: var(--accent); }
 .page-body { max-width: 700px; margin: 0 auto; padding: 40px 24px 80px; }
-.page-title { font-family: var(--font-display); font-size: 24px; font-weight: 900; margin-bottom: 8px; }
-.page-subtitle { font-family: var(--font-mono); font-size: 12px; color: var(--ink-muted); letter-spacing: 1px; margin-bottom: 32px; }
+.page-title {
+    font-family: var(--font-display); font-size: 24px; font-weight: 900;
+    margin-bottom: 8px;
+}
+.page-subtitle {
+    font-family: var(--font-mono); font-size: 12px; color: var(--ink-muted);
+    letter-spacing: 1px; margin-bottom: 32px;
+}
 .archive-list { border-top: 2px solid var(--rule); }
-.archive-row { display: flex; align-items: center; gap: 16px; padding: 18px 16px; border-bottom: 1px solid var(--rule-light); transition: background 0.2s; }
+.archive-row {
+    display: flex; align-items: center; gap: 16px;
+    padding: 18px 16px; border-bottom: 1px solid var(--rule-light);
+    transition: background 0.2s;
+}
 .archive-row:hover { background: var(--surface-alt); }
-.archive-date { font-family: var(--font-mono); font-size: 16px; font-weight: 600; letter-spacing: 0.5px; white-space: nowrap; }
-.archive-weekday { font-size: 13px; color: var(--ink-muted); white-space: nowrap; }
-.archive-arrow { font-size: 16px; color: var(--ink-faint); transition: color 0.2s; white-space: nowrap; }
+.archive-date {
+    font-family: var(--font-mono); font-size: 16px; font-weight: 600;
+    letter-spacing: 0.5px;
+}
+.archive-weekday {
+    font-size: 13px; color: var(--ink-muted);
+}
+.archive-arrow {
+    margin-left: auto; font-size: 16px; color: var(--ink-faint);
+    transition: color 0.2s;
+}
 .archive-row:hover .archive-arrow { color: var(--accent); }
-.archive-headline { flex: 1; font-size: 13px; color: var(--ink-light); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.footer { text-align: center; font-size: 11px; color: var(--ink-faint); margin-top: 60px; padding: 20px; border-top: 2px solid var(--rule); font-family: var(--font-mono); letter-spacing: 1px; }
+.archive-headline {
+    flex: 1; font-size: 13px; color: var(--ink-light);
+    overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+.footer {
+    text-align: center; font-size: 11px; color: var(--ink-faint);
+    margin-top: 60px; padding: 20px; border-top: 2px solid var(--rule);
+    font-family: var(--font-mono); letter-spacing: 1px;
+}
 </style>
 </head>
 <body>
-<script>(function(){ var t=localStorage.getItem("digest-theme")||"editorial"; document.documentElement.setAttribute("data-theme",t); })();</script>
+<script>(function(){ var t=localStorage.getItem('digest-theme')||'editorial'; document.documentElement.setAttribute('data-theme',t); })();</script>
 <header class="masthead">
     <div class="masthead-inner">
         <div class="masthead-brand">DAILY<span class="accent">::</span>DIGEST</div>
@@ -43,9 +91,9 @@ a { color: inherit; text-decoration: none; }
 </header>
 <main class="page-body">
     <h1 class="page-title">Archive</h1>
-    <p class="page-subtitle">3 EDITIONS</p>
+    <p class="page-subtitle">4 EDITIONS</p>
     <div class="archive-list">
-        <a href="2026-05-14.html" class="archive-row"><span class="archive-date">2026-05-14</span><span class="archive-weekday">周四</span><span class="archive-headline">Significant-Gravitas/AutoGPT</span><span class="archive-arrow">&rarr;</span></a><a href="2026-05-13.html" class="archive-row"><span class="archive-date">2026-05-13</span><span class="archive-weekday">周三</span><span class="archive-headline">arXiv:2604.17587</span><span class="archive-arrow">&rarr;</span></a><a href="2026-05-12.html" class="archive-row"><span class="archive-date">2026-05-12</span><span class="archive-weekday">周二</span><span class="archive-arrow">&rarr;</span></a>
+        <a href="2026-05-15.html" class="archive-row"><span class="archive-date">2026-05-15</span><span class="archive-weekday">周五</span><span class="archive-arrow">&rarr;</span></a><a href="2026-05-14.html" class="archive-row"><span class="archive-date">2026-05-14</span><span class="archive-weekday">周四</span><span class="archive-headline">Significant-Gravitas/AutoGPT</span><span class="archive-arrow">&rarr;</span></a><a href="2026-05-13.html" class="archive-row"><span class="archive-date">2026-05-13</span><span class="archive-weekday">周三</span><span class="archive-headline">arXiv:2604.17587</span><span class="archive-arrow">&rarr;</span></a><a href="2026-05-12.html" class="archive-row"><span class="archive-date">2026-05-12</span><span class="archive-weekday">周二</span><span class="archive-arrow">&rarr;</span></a>
     </div>
     <div class="footer">Daily Digest Archive</div>
 </main>
