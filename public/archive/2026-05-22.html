@@ -1,0 +1,1059 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Daily Digest — 2026-05-22</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:ital,wght@0,400;0,500;0,700&family=JetBrains+Mono:wght@400;600&family=Noto+Serif+SC:wght@600;900&display=swap" rel="stylesheet">
+<style>
+:root {
+    --bg: #f8f5f0;
+    --surface: #ffffff;
+    --surface-alt: #f2ede6;
+    --ink: #1a1a1a;
+    --ink-light: #4a4a4a;
+    --ink-muted: #7a7a7a;
+    --ink-faint: #b0b0b0;
+    --accent: #c41e3a;
+    --accent-light: #e8364f;
+    --gold: #b8860b;
+    --rule: #1a1a1a;
+    --rule-light: rgba(0,0,0,0.08);
+    --rule-medium: rgba(0,0,0,0.15);
+
+    --font-display: 'Playfair Display', 'Noto Serif SC', Georgia, serif;
+    --font-body: 'DM Sans', 'PingFang SC', 'Hiragino Sans GB', sans-serif;
+    --font-mono: 'JetBrains Mono', 'SF Mono', monospace;
+    --font-serif-cn: 'Noto Serif SC', 'Songti SC', serif;
+
+    --col-gap: 32px;
+    --section-gap: 56px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+    font-family: var(--font-body);
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.7;
+    font-size: 15px;
+    -webkit-font-smoothing: antialiased;
+}
+
+a { color: inherit; text-decoration: none; }
+
+::selection { background: var(--accent); color: #fff; }
+
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--ink-faint); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--accent); }
+
+/* ─── Scroll Reveal ─── */
+.reveal {
+    opacity: 0; transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+/* ═══════════════════════════════════════
+   MASTHEAD — 报头
+   ═══════════════════════════════════════ */
+.masthead {
+    border-bottom: 3px solid var(--rule);
+    padding: 20px 0 16px;
+    text-align: center;
+    position: sticky; top: 0; z-index: 100;
+    background: var(--bg);
+}
+.masthead-inner {
+    max-width: 1100px; margin: 0 auto; padding: 0 24px;
+    display: flex; align-items: center; justify-content: space-between;
+}
+.masthead-brand {
+    font-family: var(--font-display);
+    font-size: 28px; font-weight: 900;
+    letter-spacing: -0.5px;
+    color: var(--ink);
+}
+.masthead-brand .accent { color: var(--accent); }
+.masthead-date {
+    font-family: var(--font-mono);
+    font-size: 12px; color: var(--ink-muted);
+    letter-spacing: 1px; text-transform: uppercase;
+}
+.archive-link {
+    color: var(--accent);
+    font-weight: 700;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s;
+}
+.archive-link:hover { border-bottom-color: var(--accent); }
+.masthead-rule {
+    border: none; border-top: 1px solid var(--rule-light);
+    margin-top: 12px;
+}
+
+/* ─── Nav ─── */
+.nav-bar {
+    max-width: 1100px; margin: 0 auto; padding: 10px 24px 0;
+    display: flex; align-items: center; gap: 0;
+    overflow-x: auto; border-bottom: 1px solid var(--rule-light);
+}
+.nav-link {
+    font-family: var(--font-body);
+    font-size: 12px; font-weight: 700;
+    color: var(--ink-muted);
+    padding: 8px 14px 10px;
+    white-space: nowrap;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    border-bottom: 2px solid transparent;
+    transition: all 0.2s;
+}
+.nav-link:hover { color: var(--ink); }
+.nav-link.active {
+    color: var(--accent);
+    border-bottom-color: var(--accent);
+}
+.nav-link .mono { display: none; }
+
+/* ═══════════════════════════════════════
+   PAGE LAYOUT
+   ═══════════════════════════════════════ */
+.page-body {
+    max-width: 1100px; margin: 0 auto;
+    padding: 40px 24px 80px;
+}
+
+/* ─── Section Dividers ─── */
+.section-block { margin-bottom: var(--section-gap); }
+.section-header {
+    display: flex; align-items: baseline; gap: 12px;
+    padding-bottom: 12px; margin-bottom: 24px;
+    border-bottom: 2px solid var(--rule);
+}
+.section-header .section-num {
+    font-family: var(--font-mono);
+    font-size: 11px; font-weight: 600;
+    color: var(--ink-faint);
+    letter-spacing: 1px;
+}
+.section-header .section-title {
+    font-family: var(--font-display);
+    font-size: 20px; font-weight: 900;
+    color: var(--ink);
+    letter-spacing: -0.3px;
+}
+.section-header .mono {
+    font-family: var(--font-mono);
+    font-size: 11px; font-weight: 600;
+    color: var(--accent);
+    background: none;
+}
+
+/* ═══════════════════════════════════════
+   HEADLINE — 头条大图
+   ═══════════════════════════════════════ */
+.headline-card {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    padding: 40px 0;
+    border-bottom: 1px solid var(--rule-light);
+    margin-bottom: 40px;
+}
+.headline-card.no-thumb {
+    grid-template-columns: 1fr;
+}
+.headline-visual {
+    position: relative;
+}
+.headline-thumb {
+    width: 100%; height: 100%; min-height: 280px;
+    object-fit: cover;
+    filter: grayscale(20%) contrast(1.05);
+    transition: filter 0.4s;
+}
+.headline-card:hover .headline-thumb {
+    filter: grayscale(0%) contrast(1.1);
+}
+.headline-content {
+    display: flex; flex-direction: column; justify-content: center;
+}
+.headline-label {
+    font-family: var(--font-mono);
+    font-size: 10px; font-weight: 600;
+    color: #fff; background: var(--accent);
+    padding: 4px 10px; letter-spacing: 2px;
+    text-transform: uppercase;
+    display: inline-block; margin-bottom: 16px;
+    align-self: flex-start;
+}
+.headline-hook {
+    font-family: var(--font-serif-cn);
+    font-size: 15px; font-weight: 600;
+    color: var(--accent);
+    line-height: 1.6; margin-bottom: 12px;
+    border-left: 3px solid var(--accent);
+    padding-left: 12px;
+}
+.headline-title {
+    font-family: var(--font-display);
+    font-size: 32px; font-weight: 900;
+    line-height: 1.25; margin-bottom: 16px;
+    letter-spacing: -0.5px;
+}
+.headline-title a { color: var(--ink); transition: color 0.2s; }
+.headline-title a:hover { color: var(--accent); }
+.headline-meta {
+    display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
+    margin-bottom: 16px;
+}
+.headline-meta .source {
+    font-family: var(--font-mono);
+    font-size: 11px; color: var(--ink-muted);
+    text-transform: uppercase; letter-spacing: 1px;
+}
+.headline-summary {
+    font-size: 15px; color: var(--ink-light);
+    line-height: 1.8;
+}
+.headline-tip {
+    font-size: 13px; color: var(--gold);
+    margin-top: 12px; font-weight: 500;
+    font-style: italic;
+}
+
+/* ═══════════════════════════════════════
+   BRIEFING — 速递
+   ═══════════════════════════════════════ */
+.briefing-row {
+    display: grid;
+    grid-template-columns: 36px 1fr;
+    gap: 12px;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--rule-light);
+    transition: background 0.2s;
+}
+.briefing-row:last-child { border-bottom: none; }
+.briefing-row:hover { background: var(--surface-alt); margin: 0 -12px; padding: 16px 12px; }
+.briefing-row .num {
+    font-family: var(--font-display);
+    font-size: 24px; font-weight: 900;
+    color: var(--ink-faint);
+    line-height: 1.2;
+}
+.briefing-content { display: flex; flex-direction: column; gap: 4px; }
+.briefing-title {
+    font-family: var(--font-body);
+    font-size: 16px; font-weight: 700;
+    color: var(--ink); line-height: 1.4;
+    transition: color 0.2s;
+}
+.briefing-title:hover { color: var(--accent); }
+.briefing-meta {
+    font-size: 12px; color: var(--ink-muted);
+    display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+}
+
+/* ═══════════════════════════════════════
+   TAGS & KEYWORDS
+   ═══════════════════════════════════════ */
+.tag {
+    font-family: var(--font-mono);
+    font-size: 9px; font-weight: 600;
+    padding: 2px 8px; border-radius: 2px;
+    letter-spacing: 1px; text-transform: uppercase;
+    color: #fff; white-space: nowrap;
+    background: var(--ink-muted);
+}
+.keywords-row {
+    display: flex; flex-wrap: wrap; gap: 6px;
+    margin: 10px 0;
+}
+.keyword {
+    font-family: var(--font-mono);
+    font-size: 11px; font-weight: 600;
+    padding: 2px 10px;
+    border: 1px solid var(--rule-medium);
+    color: var(--ink-light);
+    white-space: nowrap;
+}
+
+/* ═══════════════════════════════════════
+   CONTENT CARDS — 文章卡片
+   ═══════════════════════════════════════ */
+.card-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: var(--rule-light);
+    border: 1px solid var(--rule-light);
+}
+.card-grid > .tech-card:last-child:nth-child(odd),
+.card-grid > .finance-card:last-child:nth-child(odd),
+.card-grid > .humanities-card:last-child:nth-child(odd),
+.card-grid > .lol-card:last-child:nth-child(odd),
+.card-grid > .culture-card:last-child:nth-child(odd),
+.card-grid > .explore-card:last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+}
+.card-grid-single {
+    grid-template-columns: 1fr;
+}
+
+.tech-card {
+    background: var(--surface);
+    padding: 24px 28px;
+    transition: background 0.2s;
+}
+.tech-card:hover { background: var(--surface-alt); }
+
+.card-hook {
+    font-family: var(--font-serif-cn);
+    font-size: 13px; font-weight: 600;
+    color: var(--accent);
+    line-height: 1.5; margin-bottom: 8px;
+}
+.tech-title {
+    font-family: var(--font-body);
+    font-size: 16px; font-weight: 700;
+    color: var(--ink); line-height: 1.4;
+    display: block; margin-bottom: 8px;
+    transition: color 0.2s;
+}
+.tech-title:hover { color: var(--accent); }
+.tech-meta {
+    font-size: 11px; color: var(--ink-muted);
+    display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+    margin-bottom: 8px;
+}
+.tech-summary {
+    font-size: 14px; color: var(--ink-light);
+    line-height: 1.75;
+}
+.tech-tip {
+    font-size: 12px; color: var(--gold);
+    margin-top: 8px; font-style: italic;
+}
+
+/* Section-specific accents */
+.finance-card { border-top: 3px solid var(--gold); }
+.humanities-card { border-top: 3px solid #6b4c9a; }
+.lol-card { border-top: 3px solid #c8aa6e; }
+.explore-card { border-top: 3px solid #38d9a9; }
+.culture-card { border-top: 3px solid #ff6b6b; }
+
+/* ═══════════════════════════════════════
+   VIDEO — 视频
+   ═══════════════════════════════════════ */
+.video-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+}
+/* 奇数项时最后一个撑满 */
+.video-grid > .video-card:last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+}
+.video-card {
+    background: var(--surface);
+    border: 1px solid var(--rule-light);
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+.video-card:hover {
+    box-shadow: 0 12px 40px rgba(0,0,0,0.08);
+    transform: translateY(-3px);
+}
+.video-thumb-wrap {
+    position: relative; width: 100%; padding-top: 56.25%; overflow: hidden;
+}
+.video-thumb {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    object-fit: cover;
+    filter: grayscale(30%);
+    transition: all 0.4s;
+}
+.video-card:hover .video-thumb {
+    filter: grayscale(0%);
+    transform: scale(1.03);
+}
+.video-thumb-placeholder {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    background: linear-gradient(135deg, var(--surface-alt), var(--ink-faint));
+}
+.video-duration {
+    position: absolute; bottom: 8px; right: 8px;
+    background: var(--ink); color: #fff;
+    font-family: var(--font-mono); font-size: 11px;
+    padding: 2px 8px;
+}
+.video-info { padding: 18px 20px; }
+.video-title {
+    font-size: 15px; font-weight: 700; color: var(--ink);
+    line-height: 1.4; display: -webkit-box;
+    -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+    transition: color 0.2s;
+}
+.video-title:hover { color: var(--accent); }
+.video-meta {
+    font-size: 11px; color: var(--ink-muted); margin-top: 8px;
+    display: flex; align-items: center; gap: 6px; flex-wrap: wrap;
+}
+.video-summary {
+    font-size: 13px; color: var(--ink-light); margin-top: 10px;
+    line-height: 1.6; display: -webkit-box;
+    -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;
+}
+
+/* ═══════════════════════════════════════
+   OPEN SOURCE — 开源项目
+   ═══════════════════════════════════════ */
+.os-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1px;
+    background: var(--rule-light);
+    border: 1px solid var(--rule-light);
+}
+/* 奇数项时最后一个撑满 */
+.os-grid > .opensource-card:last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+}
+.opensource-card {
+    background: var(--surface);
+    padding: 20px 24px;
+    display: flex; flex-direction: column; gap: 8px;
+    transition: background 0.2s;
+}
+.opensource-card:hover { background: var(--surface-alt); }
+.os-header {
+    display: flex; align-items: baseline; justify-content: space-between; gap: 10px;
+}
+.os-title {
+    font-family: var(--font-mono);
+    font-size: 14px; font-weight: 600;
+    color: var(--ink); line-height: 1.4;
+    word-break: break-word;
+    transition: color 0.2s;
+}
+.os-title:hover { color: var(--accent); }
+.stars {
+    font-family: var(--font-mono);
+    font-size: 12px; font-weight: 600;
+    color: var(--gold); white-space: nowrap;
+}
+.os-meta { display: flex; gap: 6px; flex-wrap: wrap; }
+.os-desc {
+    font-size: 13px; color: var(--ink-light); line-height: 1.65;
+}
+
+/* ═══════════════════════════════════════
+   WISDOM — 今日一思
+   ═══════════════════════════════════════ */
+.wisdom-section .wisdom-card {
+    background: var(--surface);
+    border: 1px solid var(--rule-light);
+    border-left: 4px solid var(--accent);
+    padding: 40px 48px;
+    position: relative;
+}
+.wisdom-card::before {
+    content: '\201C'; position: absolute; top: 16px; left: 20px;
+    font-family: var(--font-display);
+    font-size: 72px; font-weight: 900;
+    color: var(--rule-light); line-height: 1;
+}
+.wisdom-quote {
+    font-family: var(--font-serif-cn);
+    font-size: 22px; font-weight: 600;
+    line-height: 1.8; color: var(--ink);
+    margin-bottom: 16px;
+    position: relative;
+}
+.wisdom-explain {
+    font-size: 14px; color: var(--ink-light);
+    line-height: 1.8;
+}
+.wisdom-author {
+    font-family: var(--font-mono);
+    font-size: 12px; color: var(--ink-muted);
+    margin-top: 20px; text-align: right;
+    letter-spacing: 1px;
+}
+
+/* ═══════════════════════════════════════
+   ARCHIVE DATE NAV
+   ═══════════════════════════════════════ */
+.date-nav {
+    display: none;
+    max-width: 1100px; margin: 0 auto;
+    padding: 12px 24px;
+    align-items: center; justify-content: space-between;
+    border-bottom: 1px solid var(--rule-light);
+    font-family: var(--font-mono);
+    font-size: 12px;
+}
+.date-nav.visible { display: flex; }
+.date-nav a {
+    color: var(--ink-muted); letter-spacing: 1px;
+    transition: color 0.2s;
+}
+.date-nav a:hover { color: var(--accent); }
+.date-nav .current {
+    font-weight: 700; color: var(--ink);
+    letter-spacing: 0.5px;
+}
+.date-nav .disabled { color: var(--ink-faint); pointer-events: none; }
+
+/* ═══════════════════════════════════════
+   FOOTER
+   ═══════════════════════════════════════ */
+.footer {
+    text-align: center;
+    font-size: 11px; color: var(--ink-faint);
+    margin-top: 60px; padding: 20px;
+    border-top: 2px solid var(--rule);
+    font-family: var(--font-mono);
+    letter-spacing: 1px; text-transform: uppercase;
+}
+.footer a { color: var(--ink-muted); transition: color 0.2s; }
+.footer a:hover { color: var(--accent); }
+
+/* ═══════════════════════════════════════
+   RESPONSIVE
+   ═══════════════════════════════════════ */
+@media (max-width: 768px) {
+    .headline-card { grid-template-columns: 1fr; gap: 20px; }
+    .headline-title { font-size: 24px; }
+    .card-grid { grid-template-columns: 1fr; }
+    .video-grid { grid-template-columns: 1fr; }
+    .os-grid { grid-template-columns: 1fr; }
+    .page-body { padding: 24px 16px 60px; }
+    .masthead-inner { flex-direction: column; gap: 4px; }
+    .nav-link { padding: 8px 10px; font-size: 11px; }
+    .wisdom-card { padding: 28px 24px; }
+}
+
+/* ═══════════════════════════════════════
+   THEME: DARK EDITION
+   ═══════════════════════════════════════ */
+[data-theme="dark"] {
+    --bg: #111111;
+    --surface: #1a1a1a;
+    --surface-alt: #222222;
+    --ink: #e8e8e8;
+    --ink-light: #b0b0b0;
+    --ink-muted: #777777;
+    --ink-faint: #444444;
+    --accent: #e8364f;
+    --accent-light: #ff5068;
+    --gold: #d4a017;
+    --rule: #e8e8e8;
+    --rule-light: rgba(255,255,255,0.08);
+    --rule-medium: rgba(255,255,255,0.15);
+}
+[data-theme="dark"] body { background: var(--bg); color: var(--ink); }
+[data-theme="dark"] .masthead { background: var(--bg); border-bottom-color: var(--rule-light); }
+[data-theme="dark"] .section-header { border-bottom-color: var(--rule-light); }
+[data-theme="dark"] .headline-thumb { filter: brightness(0.85) contrast(1.1); }
+[data-theme="dark"] .headline-card:hover .headline-thumb { filter: brightness(1) contrast(1.1); }
+[data-theme="dark"] .video-thumb { filter: brightness(0.8); }
+[data-theme="dark"] .video-card:hover .video-thumb { filter: brightness(1); }
+[data-theme="dark"] ::selection { background: var(--accent); color: #fff; }
+
+/* ═══════════════════════════════════════
+   THEME SWITCHER
+   ═══════════════════════════════════════ */
+.theme-switcher {
+    position: fixed; bottom: 24px; right: 24px; z-index: 200;
+}
+.theme-btn {
+    width: 40px; height: 40px;
+    border: 2px solid var(--rule-medium);
+    background: var(--surface);
+    cursor: pointer; display: flex; align-items: center; justify-content: center;
+    transition: all 0.2s;
+    font-size: 16px; line-height: 1;
+}
+.theme-btn:hover { border-color: var(--accent); }
+.theme-panel {
+    position: absolute; bottom: 48px; right: 0;
+    background: var(--surface);
+    border: 1px solid var(--rule-medium);
+    padding: 8px;
+    display: none; min-width: 140px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+}
+.theme-panel.open { display: block; }
+.theme-option {
+    display: flex; align-items: center; gap: 10px;
+    padding: 8px 12px;
+    cursor: pointer; font-size: 12px; font-weight: 500;
+    color: var(--ink-muted);
+    transition: all 0.15s; border: none; background: none; width: 100%;
+    font-family: var(--font-mono); letter-spacing: 0.5px;
+}
+.theme-option:hover { background: var(--surface-alt); color: var(--ink); }
+.theme-option.active { color: var(--accent); font-weight: 700; }
+.theme-option .dot {
+    width: 12px; height: 12px;
+    border: 2px solid var(--ink-faint);
+}
+.theme-option.active .dot {
+    border-color: var(--accent);
+    background: var(--accent);
+}
+@media (max-width: 768px) {
+    .theme-switcher { bottom: 16px; right: 16px; }
+    .theme-btn { width: 36px; height: 36px; }
+}
+</style>
+</head>
+<body>
+<script>
+(function(){
+    var t = localStorage.getItem('digest-theme') || 'editorial';
+    document.documentElement.setAttribute('data-theme', t);
+})();
+</script>
+
+<header class="masthead">
+    <div class="masthead-inner">
+        <div class="masthead-brand">DAILY<span class="accent">::</span>DIGEST</div>
+        <div class="masthead-date"><a href="/archive/" class="archive-link">ARCHIVE</a> · 2026-05-22 · 24 items</div>
+    </div>
+    <hr class="masthead-rule">
+    <nav class="nav-bar">
+        <a href="#headline" class="nav-link" data-section="headline">头条</a>
+<a href="#briefing" class="nav-link" data-section="briefing">速递</a>
+<a href="#finance" class="nav-link" data-section="finance">投资</a>
+<a href="#explore" class="nav-link" data-section="explore">探索</a>
+<a href="#video" class="nav-link" data-section="video">视频</a>
+<a href="#tech" class="nav-link" data-section="tech">科技</a>
+<a href="#papers" class="nav-link" data-section="papers">论文</a>
+<a href="#opensource" class="nav-link" data-section="opensource">开源</a>
+<a href="#wisdom" class="nav-link" data-section="wisdom">一思</a>
+
+    </nav>
+</header>
+
+<nav class="date-nav" id="dateNav">
+    <a id="navPrev" class="disabled">&larr; 上一期</a>
+    <span class="current">2026-05-22</span>
+    <a id="navNext" class="disabled">下一期 &rarr;</a>
+</nav>
+
+<div class="theme-switcher">
+    <button class="theme-btn" id="themeToggle" title="Switch Theme">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6" stroke="currentColor" stroke-width="1.5"/><path d="M8 2a6 6 0 0 1 0 12V2z" fill="currentColor"/></svg>
+    </button>
+    <div class="theme-panel" id="themePanel">
+        <button class="theme-option" data-theme="editorial">
+            <span class="dot"></span>Editorial
+        </button>
+        <button class="theme-option" data-theme="dark">
+            <span class="dot"></span>Dark
+        </button>
+    </div>
+</div>
+
+<main class="page-body">
+    <section id="headline" class="reveal">
+        <div class="headline-card no-thumb">
+    
+    <div class="headline-content">
+        <div class="headline-label">LEAD STORY</div>
+        <p class="headline-hook">毫秒级回滚整个沙箱，这个系统让AI代理可以随意试错了</p>
+        <h2 class="headline-title"><a href="https://arxiv.org/abs/2605.22781v1" target="_blank">DeltaBox: Scaling Stateful AI Agents with Millisecond-Level Sandbox Checkpoint/Rollback</a></h2>
+        <div class="headline-meta">
+            <span class="source">arXiv</span>
+            <span class="tag" style="color:#fff;background:#38d9a9">PAPER</span> <span class="tag" style="color:#fff;background:#5c7cfa">AI</span> <span class="tag">AI Infra</span> <span class="tag">强化学习</span>
+        </div>
+        <div class="keywords-row"><span class="keyword">DeltaBox</span> <span class="keyword">沙箱检查点</span> <span class="keyword">毫秒级回滚</span> <span class="keyword">有状态 AI 代理</span> <span class="keyword">测试时搜索</span></div>
+        <p class="headline-summary">DeltaBox 实现了毫秒级的沙箱状态检查点与回滚，直击有状态 AI 代理高频探索的性能瓶颈。其核心突破在于通过增量快照和状态一致性管理，将包含文件、内存、进程的完整沙箱状态保存与恢复时间压缩到毫秒级别，远非传统环境复制可比。→ 对于依赖测试时树搜索或强化学习的代理（如代码生成、游戏规划），这意味着原本受限于 I/O 的试错循环可以被彻底释放，实验效率可能提升数倍。开源后，建议所有在 GPU 集群上跑多轮交互实验的团队立刻关注。</p>
+        <p class="headline-tip">搞 AI Agent 和 RL 实验加速的必看</p>
+    </div>
+</div>
+    </section>
+
+    <section id="briefing" class="reveal">
+        <div class="section-block">
+    <div class="section-header"><span class="section-num">NO.02</span><span class="section-title">Quick Briefing</span></div>
+    <div class="briefing-row">
+    <span class="num">02</span>
+    <div class="briefing-content">
+        <a href="https://x.com/garrytan/status/2057636167525498961" target="_blank" class="briefing-title">@garrytan: Everyone should have an agent with a GBrain</a>
+        <div class="briefing-meta">X/@garrytan <span class="tag" style="color:#fff;background:#4dabf7">X/KOL</span> <span class="tag" style="color:#fff;background:#5c7cfa">AI</span> <span class="tag">AI趋势</span> <span class="tag">科技观点</span> · 创业者必看，这可能定义了下一个十年</div>
+    </div>
+</div><div class="briefing-row">
+    <span class="num">03</span>
+    <div class="briefing-content">
+        <a href="https://arxiv.org/abs/2605.22817v1" target="_blank" class="briefing-title">Vector Policy Optimization: Training for Diversity Improves Test-Time Search</a>
+        <div class="briefing-meta">arXiv <span class="tag" style="color:#fff;background:#38d9a9">PAPER</span> <span class="tag" style="color:#fff;background:#5c7cfa">AI</span> <span class="tag" style="color:#fff;background:#6b7280">书籍</span> <span class="tag">LLM 后训练</span> <span class="tag">强化学习</span> · 做 RLHF 和推理搜索优化的同学可以收藏</div>
+    </div>
+</div><div class="briefing-row">
+    <span class="num">04</span>
+    <div class="briefing-content">
+        <a href="https://www.indiehackers.com/post/i-launched-my-privacy-first-watermark-tool-3-weeks-ago-84-visitors-0-sales-what-am-i-missing-d7f5a277ff" target="_blank" class="briefing-title">I launched my privacy-first watermark tool 3 weeks ago. 84 visitors, 0 sales. What am I missing?</a>
+        <div class="briefing-meta">IndieHackers <span class="tag" style="color:#fff;background:#f59f00">FINANCE</span> <span class="tag" style="color:#fff;background:#6b7280">游戏折扣</span> <span class="tag">独立开发</span> <span class="tag">产品失败</span> · 独立开发者必看，这个坑说不定你正在踩。</div>
+    </div>
+</div>
+</div>
+    </section>
+
+    <section id="humanities" class="reveal">
+        
+    </section>
+
+    <section id="finance" class="reveal">
+        <div class="section-block">
+    <div class="section-header"><span class="section-num">NO.05</span><span class="section-title">投资 & 自由职业</span></div>
+    <div class="card-grid"><div class="tech-card finance-card">
+    <p class="card-hook">AI自动搞定70%分销，这位独立开发者的技术栈可以照抄</p>
+    <a href="https://www.indiehackers.com/post/ai-runs-70-of-my-distribution-the-exact-stack-fda9c0d2c9" target="_blank" class="tech-title">AI runs 70% of my distribution. The exact stack.</a>
+    <div class="tech-meta">IndieHackers <span class="tag" style="color:#fff;background:#f59f00">FINANCE</span> <span class="tag" style="color:#fff;background:#5c7cfa">AI</span> <span class="tag">AI应用</span> <span class="tag">自动化营销</span></div>
+    <div class="keywords-row"><span class="keyword">AI分销</span> <span class="keyword">70%自动化</span> <span class="keyword">技术栈</span> <span class="keyword">独立开发者</span> <span class="keyword">获客</span></div>
+    <p class="tech-summary">一位独立开发者透露，自己产品的分销工作已有70%完全交由AI自动化，并把整套技术栈公之于众。核心是结合了AI内容生成、邮件序列自动化和社交媒体定时发布，再通过Zapier串联各平台，几乎零人工干预就能持续获得新用户。
+
+这套玩法的价值不在工具本身，而在于「用AI把营销从艺术变成工程」。→ 如果你也在做独立产品，完全可以把这份清单当作操作手册，先跑通最小化获客闭环，再逐步优化转化。省下来的时间，继续打磨产品。</p>
+    <p class="tech-tip">做独立产品的朋友，这套工具链能让你每周少熬两个夜。</p>
+</div>
+<div class="tech-card finance-card">
+    <p class="card-hook">一个SaaS折腾9个月、重写3次才交付，完美主义如何拖垮独立开发者</p>
+    <a href="https://www.indiehackers.com/post/im-a-solo-founder-it-took-me-9-months-and-at-least-3-stack-rewrites-to-ship-my-saas-a66b5fbe33" target="_blank" class="tech-title">I&#x27;m a solo founder. It took me 9 months and at least 3 stack rewrites to ship my SaaS.</a>
+    <div class="tech-meta">IndieHackers <span class="tag" style="color:#fff;background:#f59f00">FINANCE</span> <span class="tag">独立开发</span> <span class="tag">创业教训</span></div>
+    <div class="keywords-row"><span class="keyword">9个月</span> <span class="keyword">3次重写</span> <span class="keyword">独立创始人</span> <span class="keyword">SaaS</span> <span class="keyword">完美主义</span></div>
+    <p class="tech-summary">这位独立创始人复盘了自己耗时9个月才交付SaaS的痛苦过程，光是技术栈就推倒重来了3次。每次重写的理由听起来都很合理——性能不够、体验不好、扩展性差——但回头一看，产品本身的功能逻辑根本没变过。
+
+他用真金白银买来的教训是：独立开发者的最大敌人不是技术，而是「在没人用的阶段追求完美架构」。→ 最明智的做法是把MVP当一次性筷子用，先验证有没有人愿意付钱，再考虑换不锈钢的。如果你正准备开始独立创业，这段经历值得刻在显示器边框上。</p>
+    <p class="tech-tip">准备单干的朋友，这篇复盘能帮你省下6个月弯路。</p>
+</div></div>
+</div>
+    </section>
+
+    <section id="lol" class="reveal">
+        
+    </section>
+
+    <section id="culture" class="reveal">
+        
+    </section>
+
+    <section id="explore" class="reveal">
+        <div class="section-block">
+    <div class="section-header"><span class="section-num">NO.11</span><span class="section-title">探索发现</span></div>
+    <div class="card-grid"><div class="tech-card explore-card">
+    <p class="card-hook">游戏输了就崩溃？青少年大脑对挫败的反应，竟暗藏自杀风险</p>
+    <a href="https://www.psypost.org/brain-scans-reveal-how-a-teenagers-reaction-to-loss-connects-impulsivity-and-suicidal-thoughts/" target="_blank" class="tech-title">Brain scans reveal how a teenager’s reaction to loss connects impulsivity and suicidal thoughts</a>
+    <div class="tech-meta">Psych/PsyPost <span class="tag" style="color:#fff;background:#9775fa">PSYCH</span> <span class="tag" style="color:#fff;background:#5c7cfa">AI</span> <span class="tag">青少年心理健康</span> <span class="tag">神经科学</span></div>
+    <div class="keywords-row"><span class="keyword">脑岛前部</span> <span class="keyword">青少年自杀</span> <span class="keyword">冲动性</span> <span class="keyword">损失反应</span> <span class="keyword">脑成像</span></div>
+    <p class="tech-summary">脑成像研究发现，青少年面对小额损失（如游戏失败）时，脑岛前部异常活跃，会显著增强冲动性与未来自杀念头之间的联系。换句话说，那些一遇小挫折就反应过度的孩子，如果本身又冲动，产生自杀想法的风险更高。
+
+为什么重要：过去难以从行为上准确识别高危青少年，这个发现意味着大脑反应可能成为可量化、可筛查的生物标记。→ 未来学校心理评估或可引入类似范式，在孩子们真正陷入绝望前就介入。家长和老师可以留意：总因为小事失控、事后又极度自责的孩子，不要简单归为“玻璃心”。</p>
+</div>
+<div class="tech-card explore-card">
+    <p class="card-hook">电子病历里藏着ADHD线索，AI提前几个月就能预警</p>
+    <a href="https://www.psypost.org/a-new-ai-tool-spots-hidden-signs-of-adult-adhd-months-before-a-formal-diagnosis/" target="_blank" class="tech-title">A new AI tool spots hidden signs of adult ADHD months before a formal diagnosis</a>
+    <div class="tech-meta">Psych/PsyPost <span class="tag" style="color:#fff;background:#9775fa">PSYCH</span> <span class="tag" style="color:#fff;background:#5c7cfa">AI</span> <span class="tag">AI医疗</span> <span class="tag">心理健康</span></div>
+    <div class="keywords-row"><span class="keyword">ADHD</span> <span class="keyword">机器学习</span> <span class="keyword">电子健康记录</span> <span class="keyword">早期筛查</span> <span class="keyword">物质滥用</span></div>
+    <p class="tech-summary">科学家用机器学习分析常规电子健康记录，能在正式诊断前数月发现成人ADHD的隐藏信号。模型捕捉到的危险模式包括频繁就诊和物质滥用史——这些往往是患者和医生都没往注意力缺陷方向想的关键碎片。
+
+成人ADHD漏诊率极高，很多患者在抑郁、焦虑中绕了几年弯路。→ 这类算法若嵌入医院系统，有望成为沉默的筛查哨兵，在开具第N次安眠药之前触发提醒。但需警惕：模型依赖既有就医记录，可能对医疗资源不足的人群产生误判。</p>
+</div>
+<div class="tech-card explore-card">
+    <p class="card-hook">更长、更难读、还夹带右翼私货，AI版维基百科翻车了</p>
+    <a href="https://www.psypost.org/ai-generated-grokipedia-articles-are-longer-less-readable-and-cite-fewer-sources-than-their-wikipedia-counterparts/" target="_blank" class="tech-title">AI-generated Grokipedia articles are longer, less readable, and cite fewer sources than their Wikipedia counterparts</a>
+    <div class="tech-meta">Psych/PsyPost <span class="tag" style="color:#fff;background:#9775fa">PSYCH</span> <span class="tag" style="color:#fff;background:#5c7cfa">AI</span> <span class="tag">AI伦理</span> <span class="tag">信息质量</span></div>
+    <div class="keywords-row"><span class="keyword">Grokpedia</span> <span class="keyword">AI生成内容</span> <span class="keyword">可读性</span> <span class="keyword">引用缺失</span> <span class="keyword">政治偏见</span></div>
+    <p class="tech-summary">大规模分析显示，AI自动生成的百科全书Grokpedia系统性地改写了维基百科：文章变长了，可读性却明显下降，引用的来源也更少。更要命的是，在涉及种族、性别等敏感文化议题时，内容出现了向右翼偏移的政治倾向。
+
+这不是简单的生成错误，而是AI在“蒸馏”人类知识时引入了自己的偏见。→ 当越来越多人用AI总结来了解世界，这种看似中立实则稀释真相的二次加工，可能比假新闻更难察觉。建议把AI输出当成可疑线索，而非可信结论，交叉验证来源是必修课。</p>
+</div>
+<div class="tech-card explore-card">
+    <p class="card-hook">听Joe Rogan节目，比登记为共和党人更能预测你投特朗普</p>
+    <a href="https://www.psypost.org/how-a-popular-comedy-podcast-transformed-into-a-major-arena-for-presidential-pol/" target="_blank" class="tech-title">Listening to Joe Rogan was a stronger predictor of a Trump vote than watching Fox News</a>
+    <div class="tech-meta">Psych/PsyPost <span class="tag" style="color:#fff;background:#9775fa">PSYCH</span> <span class="tag">政治传播</span> <span class="tag">媒体研究</span></div>
+    <div class="keywords-row"><span class="keyword">Joe Rogan</span> <span class="keyword">特朗普投票</span> <span class="keyword">播客影响</span> <span class="keyword">政治预测</span> <span class="keyword">Fox News</span></div>
+    <p class="tech-summary">一项追踪研究发现，《The Joe Rogan Experience》播客的收听行为，比基本的政党归属更能准确预测2024年特朗普投票。这个从喜剧访谈起步的节目，已经演变成了强大的公民平台，其政治动员力碾压了Fox News等传统保守媒体。
+
+这背后是新权力结构的信号：民调机构只问“你是哪个党”已经不够了，选民的媒体食谱才是更诚实的风向标。→ 政治传播的战场正在从有线电视转向播客和油管频道，下一轮选举的暗线较量很可能就藏在订阅按钮里。</p>
+</div>
+<div class="tech-card explore-card">
+    <p class="card-hook">被自恋母亲养大的女孩，为何总在崩溃边缘徘徊？</p>
+    <a href="https://www.psypost.org/how-a-mother-s-narcissism-might-shape-her-daughter-s-emotional-health/" target="_blank" class="tech-title">How a mother’s narcissism might shape her daughter’s emotional health</a>
+    <div class="tech-meta">Psych/PsyPost <span class="tag" style="color:#fff;background:#9775fa">PSYCH</span> <span class="tag">家庭心理</span> <span class="tag">女性心理健康</span></div>
+    <div class="keywords-row"><span class="keyword">自恋母亲</span> <span class="keyword">女儿情绪健康</span> <span class="keyword">压力调节</span> <span class="keyword">代际创伤</span> <span class="keyword">成年过渡</span></div>
+    <p class="tech-summary">研究表明，年轻女性如果从母亲那里感受到过度的自我中心和控制感，她们自身的压力调节系统会出问题，在成年过渡期情绪更不稳定。也就是说，母亲的自恋特质会“传染”给女儿，内化成难以安抚的自我苛责。
+
+为什么和我有关：很多女性陷在无法解释的焦虑和羞耻感里，根源可能不在自己，而在成长环境中长期缺乏共情的镜子。→ 治疗中如果只针对症状下药而不触及关系模式，效果往往打折。如果你身边有总觉得自己“不够好”的朋友，或许可以轻轻问一句：你的妈妈，真的看见过你吗？</p>
+</div></div>
+</div>
+    </section>
+
+    <section id="video" class="reveal">
+        <div class="section-block">
+    <div class="section-header"><span class="section-num">NO.06</span><span class="section-title">视频精选</span></div>
+    <div class="video-grid"><div class="video-card">
+    <div class="video-thumb-wrap">
+        <img class="video-thumb" src="http://i1.hdslb.com/bfs/archive/980cde53e18a8064f2480e194a1098f026004e9b.jpg" alt="" loading="lazy" />
+        
+    </div>
+    <div class="video-info">
+        <a href="https://www.bilibili.com/video/BV1vvLU6qEZc" target="_blank" class="video-title">剧TOP：新中国可该是我的敌人？难以复制的国民史诗《无悔追踪》P5 大结局</a>
+        <div class="video-meta">B站/电影最TOP <span class="tag" style="color:#fff;background:#4dabf7">B站</span> <span class="tag">剧评</span> <span class="tag">历史</span></div>
+        <p class="video-summary">老剧《无悔追踪》以北京胡同里的派出所所长和潜伏特务长达四十年的身份博弈，串联起1949到1988年的中国社会变迁，被称为「难以复制的国民史诗」。大结局中，历史浪潮退去，两位主人公在垂暮之年终于坦诚相见，没有审判没有抓捕，只剩一句「我累了」。
+
+这部剧最狠的地方是用小人物的命运消解宏大叙事：特务不再脸谱化，所长也并非伟光正，每个人都被时代裹挟。→ 在今天这个动辄「扣帽子」的互联网环境里，这种对复杂人性的包容尤显珍贵。建议结合原片弹幕食用，你会看到一部比《活着》更绵长的中国式悲剧。</p>
+    </div>
+</div></div>
+</div>
+    </section>
+
+    <section id="tech" class="reveal">
+        <div class="section-block">
+    <div class="section-header"><span class="section-num">NO.07</span><span class="section-title">科技新闻</span></div>
+    <div class="card-grid"><div class="tech-card">
+    <p class="card-hook">ChatGPT之后，四大不要审计师改抢AI专家了</p>
+    <a href="https://x.com/dotey/status/2057649372372860968" target="_blank" class="tech-title">@dotey: RT @jefflijun: “四大”会计师事务所正在从“招审计师”转向“招AI人才”。到 2026 年初，四大发布的招聘广告中，AI 专家的占比已经超过审计岗位占比。  ChatGPT 是一个明显的</a>
+    <div class="tech-meta">X/@dotey <span class="tag" style="color:#fff;background:#4dabf7">X/KOL</span> <span class="tag" style="color:#fff;background:#5c7cfa">AI</span> <span class="tag">科技动态</span> <span class="tag">投资/经济</span></div>
+    <div class="keywords-row"><span class="keyword">四大会计师事务所</span> <span class="keyword">AI人才</span> <span class="keyword">审计师</span> <span class="keyword">ChatGPT分水岭</span> <span class="keyword">招聘趋势</span></div>
+    <p class="tech-summary">根据招聘数据分析，四大会计师事务所（德勤/普华永道/安永/毕马威）的用人策略出现历史级转变：AI专家岗位在招聘广告中的占比，已经在2026年初正式超过传统的审计师岗位。ChatGPT的发布（2022年底）是明确的分水岭——此后AI岗位需求曲线陡峭上升，审计岗位则持续走平。
+
+→ 这不是简单的「技术升级」，而是商业模式根基在动：四大的核心产品从「出具审计意见」转向「卖AI解决方案」。对求职者来说，会计专业的「铁饭碗」标签正在褪色——未来的四大，可能更像一家人工智能咨询公司，考CPA的同时，你最好也能写点Python。如果你在财经赛道，这信号值得连夜改简历。</p>
+    <p class="tech-tip">学财经的朋友建议看看，这关乎你的饭碗</p>
+</div>
+<div class="tech-card">
+    <p class="card-hook">先让你用爽，再一刀切回收，微软这波内部AI工具大迁移意味着什么？</p>
+    <a href="https://x.com/dotey/status/2057646103697260783" target="_blank" class="tech-title">@dotey: 微软开始大规模收回内部员工的 Claude Code 许可证，要求开发者转向自家的 GitHub Copilot CLI。  据 The Verge 报道，微软去年 12 月开始在内部推广 Claud</a>
+    <div class="tech-meta">X/@dotey <span class="tag" style="color:#fff;background:#4dabf7">X/KOL</span> <span class="tag" style="color:#fff;background:#5c7cfa">AI</span> <span class="tag">科技巨头</span> <span class="tag">开发者工具</span></div>
+    <div class="keywords-row"><span class="keyword">微软</span> <span class="keyword">Claude Code</span> <span class="keyword">GitHub Copilot CLI</span> <span class="keyword">许可证回收</span> <span class="keyword">工具迁移</span></div>
+    <p class="tech-summary">微软正在内部大规模收回 Claude Code 许可证，强制要求上万名员工从 Claude Code 迁移到自家的 GitHub Copilot CLI。据 The Verge 报道，微软去年底还积极在非技术岗位推广 Claude Code，但半年后态度 180 度大转弯。
+
+这背后至少有三层信号：① 微软与 OpenAI 的关系正从「战略投资」转向直接竞争，尤其在 GitHub Copilot 这个最成功的付费 AI 编程产品上；② 微软可能在 Claude Code 上发现了不可控的安全或合规风险；③ GitHub Copilot CLI 已经足够好用，足以替代外部竞品。→ 对普通用户来说，这提醒我们：今天顺手的外部工具，明天可能就被内部替代品强制替换，选工具时要考虑生态绑定风险。</p>
+    <p class="tech-tip">搞开发的朋友值得花5分钟看看大厂的内部博弈</p>
+</div>
+<div class="tech-card">
+    <p class="card-hook">前推特CEO预言：AI代理遍地走的时代，你的内容到底值多少钱？</p>
+    <a href="https://x.com/benthompson/status/2057634001163034845" target="_blank" class="tech-title">@benthompson: RT @stratechery: 5-21-2026 ($)  An Interview with Parallel Founder Parag Agarwal About Valuing Conte</a>
+    <div class="tech-meta">X/@benthompson <span class="tag" style="color:#fff;background:#4dabf7">X/KOL</span> <span class="tag" style="color:#fff;background:#5c7cfa">AI</span> <span class="tag">内容产业</span> <span class="tag">AI生态</span></div>
+    <div class="keywords-row"><span class="keyword">Parag Agarwal</span> <span class="keyword">代理网络</span> <span class="keyword">内容估值</span> <span class="keyword">AI代理</span> <span class="keyword">Ben Thompson</span></div>
+    <p class="tech-summary">科技分析师 Ben Thompson 深度对话 Parallel 创始人 Parag Agarwal（前 Twitter CEO），探讨「代理网络时代的内容估值」这一前沿话题。核心矛盾在于：当 AI 代理代替人类浏览网页、做出决策时，传统的「流量驱动」内容变现模式将彻底失效。
+
+Parag 的观点非常犀利——他认为未来的内容估值应该基于「代理能否成功完成任务」，而不是页面点击量。→ 这意味着内容创作者需要从「吸引眼球」转向「提供指令级价值」，即你的内容必须能被 AI 代理直接解析、引用和信任。虽然对话细节需付费解锁，但这个框架本身就是今年内容产业最值得警惕的方向。</p>
+    <p class="tech-tip">做内容、做自媒体的人如果不看这个，三年后可能被淘汰</p>
+</div>
+<div class="tech-card">
+    <p class="card-hook">ChatGPT 杀进 PPT，以后「做片子」这三个字的意思要变了</p>
+    <a href="https://x.com/testingcatalog/status/2057613158479712277" target="_blank" class="tech-title">@testingcatalog: OPENAI 👀: ChatGPT is now available directly in PowerPoint, allowing users to create and edit slides.</a>
+    <div class="tech-meta">X/@testingcatalog <span class="tag" style="color:#fff;background:#4dabf7">X/KOL</span> <span class="tag" style="color:#fff;background:#5c7cfa">AI</span> <span class="tag">办公生产力</span> <span class="tag">AI应用</span></div>
+    <div class="keywords-row"><span class="keyword">ChatGPT</span> <span class="keyword">PowerPoint</span> <span class="keyword">OpenAI</span> <span class="keyword">微软365</span> <span class="keyword">演示文稿</span></div>
+    <p class="tech-summary">OpenAI 宣布 ChatGPT 已直接集成到微软 PowerPoint 中，用户可以在 PPT 里直接调用 AI 生成、编辑幻灯片。这不再是简单的插件，而是将 ChatGPT 作为演示文稿的原生创建引擎。
+
+这意味着两件事：第一，「做 PPT」的成本降到了几乎为零——你只需要给出一句话的指令，AI 就能自动完成结构、文案、配图和版式设计；第二，演示文稿的核心能力从「设计美观」彻底转向「逻辑清晰」。→ 对职场人来说，花时间磨 PPT 排版的技能正在加速贬值，而用语言精准描述需求的能力，正在成为新的硬通货。值得注意的是，这背后也印证了微软 365 作为 OpenAI 最核心分发渠道的地位。</p>
+    <p class="tech-tip">下周汇报前可以试试，可能省掉你两天的排版时间</p>
+</div>
+<div class="tech-card">
+    <p class="card-hook">不写病历、不填表，这家医院用ChatGPT让医生终于能只看病了</p>
+    <a href="https://openai.com/index/adventhealth" target="_blank" class="tech-title">AdventHealth advances whole-person care with OpenAI</a>
+    <div class="tech-meta">Blog/OpenAI <span class="tag" style="color:#fff;background:#5c7cfa">BLOG</span> <span class="tag" style="color:#fff;background:#5c7cfa">AI</span> <span class="tag">医疗AI</span> <span class="tag">产业落地</span></div>
+    <div class="keywords-row"><span class="keyword">AdventHealth</span> <span class="keyword">ChatGPT for Healthcare</span> <span class="keyword">医疗AI</span> <span class="keyword">行政减负</span> <span class="keyword">患者护理</span></div>
+    <p class="tech-summary">美国 AdventHealth 医疗系统正式部署 ChatGPT for Healthcare，目标非常具体：简化工作流、减轻行政负担，把时间还给患者护理。这并非炒概念，而是直接切入医疗行业的最大痛点——医生花在文书工作上的时间常常超过直接问诊时间。
+
+ChatGPT 在这里的角色是「隐形助手」：自动总结病历、生成医嘱草稿、处理保险编码等重复性工作。→ 这件事的真正信号在于，医疗AI已经从「辅助诊断」的科幻叙事，转向了「消灭琐碎流程」的现实落地。对国内从业者的启发是：AI在医院的第一步大规模价值，很可能不是看病，而是填表和沟通。这个方向监管阻力最小，ROI却最高。</p>
+    <p class="tech-tip">医疗行业的朋友可以看看，这可能是最无痛上AI的方式</p>
+</div></div>
+</div>
+    </section>
+
+    <section id="papers" class="reveal">
+        <div class="section-block">
+    <div class="section-header"><span class="section-num">NO.08</span><span class="section-title">论文精选</span></div>
+    <div class="card-grid"><div class="tech-card">
+    <p class="card-hook">共享 KV 缓存可能泄露隐私，这个 Guard 给多代理系统加了安全锁</p>
+    <a href="https://arxiv.org/abs/2605.22786v1" target="_blank" class="tech-title">LCGuard: Latent Communication Guard for Safe KV Sharing in Multi-Agent Systems</a>
+    <div class="tech-meta">arXiv <span class="tag" style="color:#fff;background:#38d9a9">PAPER</span> <span class="tag" style="color:#fff;background:#5c7cfa">AI</span> <span class="tag">多代理系统</span> <span class="tag">LLM 安全</span></div>
+    <div class="keywords-row"><span class="keyword">LCGuard</span> <span class="keyword">KV 缓存共享</span> <span class="keyword">多代理安全</span> <span class="keyword">潜在通信</span> <span class="keyword">隐私保护</span></div>
+    <p class="tech-summary">LCGuard 瞄准多代理系统中愈发流行的 KV 缓存共享机制，首次系统分析了其中潜藏的数据泄露和投毒风险，并给出一种轻量的潜在通信安全护栏。它在不牺牲通信效率的前提下，通过访问控制和隐空间信息校验，阻止恶意代理窃取或篡改共享的键值信息。→ 这为未来高吞吐、高度协作的 LLM agent 网络提供了安全基座，任何搭建多代理生产力框架的团队都应把它纳入风险评估清单。</p>
+    <p class="tech-tip">搞多智能体架构的，这篇能帮你避坑</p>
+</div>
+<div class="tech-card">
+    <p class="card-hook">导航时不知道自己在哪？这个 VLN 模型学会了「自我意识」</p>
+    <a href="https://arxiv.org/abs/2605.22816v1" target="_blank" class="tech-title">AwareVLN: Reasoning with Self-awareness for Vision-Language Navigation</a>
+    <div class="tech-meta">arXiv <span class="tag" style="color:#fff;background:#38d9a9">PAPER</span> <span class="tag" style="color:#fff;background:#5c7cfa">AI</span> <span class="tag">具身智能</span> <span class="tag">机器人导航</span></div>
+    <div class="keywords-row"><span class="keyword">AwareVLN</span> <span class="keyword">视觉语言导航</span> <span class="keyword">自我意识</span> <span class="keyword">VLM</span> <span class="keyword">具身智能</span></div>
+    <p class="tech-summary">AwareVLN 在视觉语言导航中首次引入显式的自我意识模块，让代理不仅能看懂指令，还能实时评估自己的位置置信度、指令理解程度和动作不确定性，从而做出更谨慎的动作决策。相比传统 VLM 端到端预测，这种自省机制显著减少了自信犯错，在复杂室内场景下的成功率大幅提升。→ 这是通往可靠具身智能的重要一步，对做机器人导航或人机协作定位的团队有很强的启发。</p>
+    <p class="tech-tip">做 VLN 和室内机器人的，这个思想值得借鉴</p>
+</div>
+<div class="tech-card">
+    <p class="card-hook">LLM 做数学不可靠？这个首次大规模评估说，加上形式化证明，真的能搞研究</p>
+    <a href="https://arxiv.org/abs/2605.22763v1" target="_blank" class="tech-title">Advancing Mathematics Research with AI-Driven Formal Proof Search</a>
+    <div class="tech-meta">arXiv <span class="tag" style="color:#fff;background:#38d9a9">PAPER</span> <span class="tag" style="color:#fff;background:#5c7cfa">AI</span> <span class="tag">数学</span> <span class="tag">形式化验证</span></div>
+    <div class="keywords-row"><span class="keyword">形式化证明</span> <span class="keyword">Lean</span> <span class="keyword">LLM 数学推理</span> <span class="keyword">自动定理证明</span> <span class="keyword">AI for Math</span></div>
+    <p class="tech-summary">研究首次对 LLM 生成 Lean 形式化证明用于数学研究的能力进行了大规模评估。结论是：原始 LLM 输出确实容易藏错，但结合形式化验证器形成「证明搜索-验证」闭环后，其在竞赛级数学问题上的成功率直线上升，可靠性逼近人类助教水平。→ 这预示着 AI 正从数学科普工具向研究帮手跃迁，学数学和做 AI 的人都能从中看到新的合作范式；文中开放的数据集和评估框架也提供了立刻上手复现的可能。</p>
+    <p class="tech-tip">想用 AI 辅助数学研究的，这篇是必读</p>
+</div></div>
+</div>
+    </section>
+
+    <section id="opensource" class="reveal">
+        <div class="section-block">
+    <div class="section-header"><span class="section-num">NO.09</span><span class="section-title">开源项目</span></div>
+    <div class="os-grid"><div class="opensource-card">
+    <div class="os-header">
+        <a href="https://github.com/AresLeVrai/celestial-launcher-releases" target="_blank" class="os-title">AresLeVrai/celestial-launcher-releases</a>
+        <span class="stars">★ 135</span>
+    </div>
+    <div class="os-meta"><span class="tag" style="color:#fff;background:#9775fa">GITHUB</span> <span class="tag" style="color:#fff;background:#5c7cfa">AI</span> <span class="tag" style="color:#fff;background:#c8aa6e">GAME</span> <span class="tag">开源项目</span> <span class="tag">英雄联盟</span></div>
+    <p class="os-desc">celestial-launcher 是一个专为《英雄联盟》打造的第三方皮肤管理器，把常年处于灰色地带的换肤需求做成了正经的开源工具。核心卖点是「配置隔离」——你可以给不同大号小号分别设置皮肤方案，不用担心冲突或封号风险（声明支持最新Win11）。
+
+→ 这玩意儿之所以能上 GitHub Trending，说明 LOL 玩家对官方的皮肤策略积怨已久。它本质是把「Mod 管理」的成熟范式搬到了 MOBA 领域——就像老滚5的 MO2 管理器一样，只不过管理的是 .fantome 文件。对于想体验至臻又不想氪穿奖池的玩家，这可能是当前最优雅的白嫖姿势。建议关注项目后续是否会被 Riot 法务盯上。</p>
+</div>
+<div class="opensource-card">
+    <div class="os-header">
+        <a href="https://github.com/zhayujie/CowAgent" target="_blank" class="os-title">zhayujie/CowAgent</a>
+        <span class="stars">★ 44.7k</span>
+    </div>
+    <div class="os-meta"><span class="tag" style="color:#fff;background:#9775fa">GITHUB</span> <span class="tag" style="color:#fff;background:#5c7cfa">AI</span> <span class="tag">开源项目</span> <span class="tag">AI Agent</span></div>
+    <p class="os-desc">CowAgent（原chatgpt-on-wechat）是一个把大模型接入主流IM工具的开源Agent框架。它不只是个聊天机器人——具备任务规划、操作系统访问、自定义Skill创建和长期记忆四大能力，你可以把它理解成一个能住在中国特色社交生态（微信/企微/飞书/钉钉）里的AI助理。
+
+相比近期爆火的OpenClaw，CowAgent的差异化在于「轻量」和「接地气」：部署门槛更低，且天然适配国内API（DeepSeek/GLM/Qwen/MiniMax）。→ 这意味着普通人不用折腾Discord或Telegram，就能在微信里让AI帮你查资料、写周报、管理日程。对于受限于网络环境、又想低成本体验Agent能力的国内用户，这是一个值得立刻docker-compose up的项目。</p>
+</div>
+<div class="opensource-card">
+    <div class="os-header">
+        <a href="https://github.com/macOS26/Agent" target="_blank" class="os-title">macOS26/Agent</a>
+        <span class="stars">★ 440</span>
+    </div>
+    <div class="os-meta"><span class="tag" style="color:#fff;background:#9775fa">GITHUB</span> <span class="tag" style="color:#fff;background:#5c7cfa">AI</span> <span class="tag">开源项目</span> <span class="tag">AI工具</span></div>
+    <p class="os-desc">Agent! 是一款把「AI编程Agent」做成原生macOS应用的开源项目，通用性极强——同时支持云端闭源模型（Claude/OpenAI/Gemini）和本地开源模型（Ollama/Qwen等12种以上）。它不是简单的聊天窗口，而是能直接操作系统、编写代码、甚至构建Xcode项目的自动化工具。
+
+→ 这个项目的真正价值在于把Agent能力「系统级」集成：它不需要浏览器沙盒，拥有macOS原生权限，可以直接操控你的开发环境。对比Copilot这类插件，Agent!更像一个能自主干活的全栈实习生——你只需要交代任务，它自己打开Xcode噼里啪啦干。建议Mac开发者优先体验，这可能是改变你工作流的那个开源神器。</p>
+</div>
+<div class="opensource-card">
+    <div class="os-header">
+        <a href="https://github.com/MemoriLabs/Memori" target="_blank" class="os-title">MemoriLabs/Memori</a>
+        <span class="stars">★ 14.7k</span>
+    </div>
+    <div class="os-meta"><span class="tag" style="color:#fff;background:#9775fa">GITHUB</span> <span class="tag" style="color:#fff;background:#5c7cfa">AI</span> <span class="tag">开源项目</span> <span class="tag">AI Infra</span></div>
+    <p class="os-desc">GitHub 热门开源项目 Memori 发布，定位为「AI 代理的原生记忆基础设施」。它本质上是一个与 LLM 无关的中间层，能将代理的执行日志和对话历史，自动转化为结构化的持久状态，用于生产级系统。
+
+为什么这很重要？当前的 AI 代理大多「健忘」——每次任务都像第一次见面，无法积累经验。Memori 解决了这个核心痛点，让代理能像人一样从历史中学习。→ 对开发者来说，这意味着你构建的客服机器人、自动化助手可以越用越聪明，而不是永远在重复第一次对话的水平。Python 生态、解耦设计、开源，这三个标签让它的落地成本很低。建议所有正在做 Agent 开发的同学放进整合测试清单。</p>
+</div></div>
+</div>
+    </section>
+
+    <section id="wisdom" class="reveal">
+        <div class="section-block wisdom-section">
+    <div class="section-header"><span class="section-num">NO.10</span><span class="section-title">今日一思</span></div>
+    <div class="wisdom-card">
+        <div class="wisdom-quote">"那些杀不死我的，终将使我更强大。"</div>
+        <div class="wisdom-explain">每次你扛过一个难关——加班赶 deadline、被拒绝、搞砸了重来——你不是回到原点，而是升级了。痛苦不是惩罚，是经验值。</div>
+        <div class="wisdom-author">— 尼采 · Was mich nicht umbringt, macht mich stärker.</div>
+    </div>
+</div>
+    </section>
+
+    <div class="footer">
+        Generated by <a href="https://daily-digest-site.vercel.app">Daily Digest</a> · Powered by Claude Code
+    </div>
+</main>
+
+<script>
+const DIGEST_DATA = [{"title": "DeltaBox: Scaling Stateful AI Agents with Millisecond-Level Sandbox Checkpoint/Rollback", "url": "https://arxiv.org/abs/2605.22781v1", "source": "arXiv", "type": "arxiv", "matched_categories": ["科技/AI"]}, {"title": "Vector Policy Optimization: Training for Diversity Improves Test-Time Search", "url": "https://arxiv.org/abs/2605.22817v1", "source": "arXiv", "type": "arxiv", "matched_categories": ["科技/AI", "书籍"]}, {"title": "LCGuard: Latent Communication Guard for Safe KV Sharing in Multi-Agent Systems", "url": "https://arxiv.org/abs/2605.22786v1", "source": "arXiv", "type": "arxiv", "matched_categories": ["科技/AI"]}, {"title": "AwareVLN: Reasoning with Self-awareness for Vision-Language Navigation", "url": "https://arxiv.org/abs/2605.22816v1", "source": "arXiv", "type": "arxiv", "matched_categories": ["科技/AI"]}, {"title": "Advancing Mathematics Research with AI-Driven Formal Proof Search", "url": "https://arxiv.org/abs/2605.22763v1", "source": "arXiv", "type": "arxiv", "matched_categories": ["科技/AI"]}, {"title": "AresLeVrai/celestial-launcher-releases", "url": "https://github.com/AresLeVrai/celestial-launcher-releases", "source": "GitHub/Trending", "type": "github_trending", "matched_categories": ["科技/AI", "英雄联盟"]}, {"title": "zhayujie/CowAgent", "url": "https://github.com/zhayujie/CowAgent", "source": "GitHub/Trending", "type": "github_trending", "matched_categories": ["科技/AI"]}, {"title": "macOS26/Agent", "url": "https://github.com/macOS26/Agent", "source": "GitHub/Trending", "type": "github_trending", "matched_categories": ["科技/AI"]}, {"title": "@garrytan: Everyone should have an agent with a GBrain", "url": "https://x.com/garrytan/status/2057636167525498961", "source": "X/@garrytan", "type": "twitter_kol", "matched_categories": ["科技/AI"]}, {"title": "@dotey: RT @jefflijun: “四大”会计师事务所正在从“招审计师”转向“招AI人才”。到 2026 年初，四大发布的招聘广告中，AI 专家的占比已经超过审计岗位占比。  ChatGPT 是一个明显的", "url": "https://x.com/dotey/status/2057649372372860968", "source": "X/@dotey", "type": "twitter_kol", "matched_categories": ["科技/AI"]}, {"title": "@dotey: 微软开始大规模收回内部员工的 Claude Code 许可证，要求开发者转向自家的 GitHub Copilot CLI。  据 The Verge 报道，微软去年 12 月开始在内部推广 Claud", "url": "https://x.com/dotey/status/2057646103697260783", "source": "X/@dotey", "type": "twitter_kol", "matched_categories": ["科技/AI"]}, {"title": "@benthompson: RT @stratechery: 5-21-2026 ($)  An Interview with Parallel Founder Parag Agarwal About Valuing Conte", "url": "https://x.com/benthompson/status/2057634001163034845", "source": "X/@benthompson", "type": "twitter_kol", "matched_categories": ["科技/AI"]}, {"title": "@testingcatalog: OPENAI 👀: ChatGPT is now available directly in PowerPoint, allowing users to create and edit slides.", "url": "https://x.com/testingcatalog/status/2057613158479712277", "source": "X/@testingcatalog", "type": "twitter_kol", "matched_categories": ["科技/AI"]}, {"title": "MemoriLabs/Memori", "url": "https://github.com/MemoriLabs/Memori", "source": "GitHub/Trending", "type": "github_trending", "matched_categories": ["科技/AI"]}, {"title": "AdventHealth advances whole-person care with OpenAI", "url": "https://openai.com/index/adventhealth", "source": "Blog/OpenAI", "type": "tech_blog", "matched_categories": ["科技/AI"]}, {"title": "Brain scans reveal how a teenager’s reaction to loss connects impulsivity and suicidal thoughts", "url": "https://www.psypost.org/brain-scans-reveal-how-a-teenagers-reaction-to-loss-connects-impulsivity-and-suicidal-thoughts/", "source": "Psych/PsyPost", "type": "psychology", "matched_categories": ["科技/AI"]}, {"title": "A new AI tool spots hidden signs of adult ADHD months before a formal diagnosis", "url": "https://www.psypost.org/a-new-ai-tool-spots-hidden-signs-of-adult-adhd-months-before-a-formal-diagnosis/", "source": "Psych/PsyPost", "type": "psychology", "matched_categories": ["科技/AI"]}, {"title": "AI-generated Grokipedia articles are longer, less readable, and cite fewer sources than their Wikipedia counterparts", "url": "https://www.psypost.org/ai-generated-grokipedia-articles-are-longer-less-readable-and-cite-fewer-sources-than-their-wikipedia-counterparts/", "source": "Psych/PsyPost", "type": "psychology", "matched_categories": ["科技/AI"]}, {"title": "Listening to Joe Rogan was a stronger predictor of a Trump vote than watching Fox News", "url": "https://www.psypost.org/how-a-popular-comedy-podcast-transformed-into-a-major-arena-for-presidential-pol/", "source": "Psych/PsyPost", "type": "psychology", "matched_categories": []}, {"title": "How a mother’s narcissism might shape her daughter’s emotional health", "url": "https://www.psypost.org/how-a-mother-s-narcissism-might-shape-her-daughter-s-emotional-health/", "source": "Psych/PsyPost", "type": "psychology", "matched_categories": []}, {"title": "剧TOP：新中国可该是我的敌人？难以复制的国民史诗《无悔追踪》P5 大结局", "url": "https://www.bilibili.com/video/BV1vvLU6qEZc", "source": "B站/电影最TOP", "type": "bilibili", "matched_categories": []}, {"title": "I launched my privacy-first watermark tool 3 weeks ago. 84 visitors, 0 sales. What am I missing?", "url": "https://www.indiehackers.com/post/i-launched-my-privacy-first-watermark-tool-3-weeks-ago-84-visitors-0-sales-what-am-i-missing-d7f5a277ff", "source": "IndieHackers", "type": "finance_indie", "matched_categories": ["游戏折扣"]}, {"title": "AI runs 70% of my distribution. The exact stack.", "url": "https://www.indiehackers.com/post/ai-runs-70-of-my-distribution-the-exact-stack-fda9c0d2c9", "source": "IndieHackers", "type": "finance_indie", "matched_categories": ["科技/AI"]}, {"title": "I'm a solo founder. It took me 9 months and at least 3 stack rewrites to ship my SaaS.", "url": "https://www.indiehackers.com/post/im-a-solo-founder-it-took-me-9-months-and-at-least-3-stack-rewrites-to-ship-my-saas-a66b5fbe33", "source": "IndieHackers", "type": "finance_indie", "matched_categories": []}];
+const API_URL = "/api/feedback";
+const DIGEST_DATE = "2026-05-22";
+
+// Scroll-spy
+const sections = document.querySelectorAll('main > section[id]');
+const navLinks = document.querySelectorAll('.nav-link');
+function updateActiveNav() {
+    let current = '';
+    sections.forEach(s => {
+        const r = s.getBoundingClientRect();
+        if (r.top <= 100 && r.bottom > 100) current = s.id;
+    });
+    navLinks.forEach(l => l.classList.toggle('active', l.dataset.section === current));
+}
+let ticking = false;
+window.addEventListener('scroll', () => {
+    if (!ticking) { requestAnimationFrame(() => { updateActiveNav(); ticking = false; }); ticking = true; }
+});
+updateActiveNav();
+
+// Smooth scroll
+navLinks.forEach(link => {
+    link.addEventListener('click', e => {
+        e.preventDefault();
+        const t = document.getElementById(link.dataset.section);
+        if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+});
+
+// Scroll reveal
+const ro = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.06, rootMargin: '0px 0px -30px 0px' });
+document.querySelectorAll('.reveal').forEach(el => ro.observe(el));
+
+// Theme Switcher
+const themeBtn = document.getElementById('themeToggle');
+const themePanel = document.getElementById('themePanel');
+const themeOptions = themePanel.querySelectorAll('.theme-option');
+function setTheme(name) {
+    document.documentElement.setAttribute('data-theme', name);
+    localStorage.setItem('digest-theme', name);
+    themeOptions.forEach(o => o.classList.toggle('active', o.dataset.theme === name));
+}
+themeBtn.addEventListener('click', e => {
+    e.stopPropagation();
+    themePanel.classList.toggle('open');
+});
+themeOptions.forEach(o => {
+    o.addEventListener('click', e => {
+        e.stopPropagation();
+        setTheme(o.dataset.theme);
+        themePanel.classList.remove('open');
+    });
+});
+document.addEventListener('click', () => themePanel.classList.remove('open'));
+setTheme(localStorage.getItem('digest-theme') || 'editorial');
+
+// Archive date navigation
+(function() {
+    var path = window.location.pathname;
+    var isArchive = path.indexOf('/archive/') !== -1 && path.match(/\d{4}-\d{2}-\d{2}/);
+    if (!isArchive) return;
+
+    var nav = document.getElementById('dateNav');
+    nav.classList.add('visible');
+
+    fetch('/archive/dates.json')
+        .then(function(r) { return r.json(); })
+        .then(function(dates) {
+            var current = DIGEST_DATE;
+            var idx = dates.indexOf(current);
+            if (idx === -1) return;
+
+            var prevLink = document.getElementById('navPrev');
+            var nextLink = document.getElementById('navNext');
+
+            // dates is sorted newest-first, so "prev" = older = higher index
+            if (idx < dates.length - 1) {
+                prevLink.href = '/archive/' + dates[idx + 1] + '.html';
+                prevLink.classList.remove('disabled');
+            }
+            if (idx > 0) {
+                nextLink.href = '/archive/' + dates[idx - 1] + '.html';
+                nextLink.classList.remove('disabled');
+            }
+        })
+        .catch(function() {});
+})();
+</script>
+</body>
+</html>
