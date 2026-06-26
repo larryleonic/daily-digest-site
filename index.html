@@ -1,0 +1,993 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Daily Digest — 2026-06-26</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:ital,wght@0,400;0,500;0,700&family=JetBrains+Mono:wght@400;600&family=Noto+Serif+SC:wght@600;900&display=swap" rel="stylesheet">
+<style>
+:root {
+    --bg: #f8f5f0;
+    --surface: #ffffff;
+    --surface-alt: #f2ede6;
+    --ink: #1a1a1a;
+    --ink-light: #4a4a4a;
+    --ink-muted: #7a7a7a;
+    --ink-faint: #b0b0b0;
+    --accent: #c41e3a;
+    --accent-light: #e8364f;
+    --gold: #b8860b;
+    --rule: #1a1a1a;
+    --rule-light: rgba(0,0,0,0.08);
+    --rule-medium: rgba(0,0,0,0.15);
+
+    --font-display: 'Playfair Display', 'Noto Serif SC', Georgia, serif;
+    --font-body: 'DM Sans', 'PingFang SC', 'Hiragino Sans GB', sans-serif;
+    --font-mono: 'JetBrains Mono', 'SF Mono', monospace;
+    --font-serif-cn: 'Noto Serif SC', 'Songti SC', serif;
+
+    --col-gap: 32px;
+    --section-gap: 56px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+    font-family: var(--font-body);
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.7;
+    font-size: 15px;
+    -webkit-font-smoothing: antialiased;
+}
+
+a { color: inherit; text-decoration: none; }
+
+::selection { background: var(--accent); color: #fff; }
+
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--ink-faint); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--accent); }
+
+/* ─── Scroll Reveal ─── */
+.reveal {
+    opacity: 0; transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+/* ═══════════════════════════════════════
+   MASTHEAD — 报头
+   ═══════════════════════════════════════ */
+.masthead {
+    border-bottom: 3px solid var(--rule);
+    padding: 20px 0 16px;
+    text-align: center;
+    position: sticky; top: 0; z-index: 100;
+    background: var(--bg);
+}
+.masthead-inner {
+    max-width: 1100px; margin: 0 auto; padding: 0 24px;
+    display: flex; align-items: center; justify-content: space-between;
+}
+.masthead-brand {
+    font-family: var(--font-display);
+    font-size: 28px; font-weight: 900;
+    letter-spacing: -0.5px;
+    color: var(--ink);
+}
+.masthead-brand .accent { color: var(--accent); }
+.masthead-date {
+    font-family: var(--font-mono);
+    font-size: 12px; color: var(--ink-muted);
+    letter-spacing: 1px; text-transform: uppercase;
+}
+.archive-link {
+    color: var(--accent);
+    font-weight: 700;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s;
+}
+.archive-link:hover { border-bottom-color: var(--accent); }
+.masthead-rule {
+    border: none; border-top: 1px solid var(--rule-light);
+    margin-top: 12px;
+}
+
+/* ─── Nav ─── */
+.nav-bar {
+    max-width: 1100px; margin: 0 auto; padding: 10px 24px 0;
+    display: flex; align-items: center; gap: 0;
+    overflow-x: auto; border-bottom: 1px solid var(--rule-light);
+}
+.nav-link {
+    font-family: var(--font-body);
+    font-size: 12px; font-weight: 700;
+    color: var(--ink-muted);
+    padding: 8px 14px 10px;
+    white-space: nowrap;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    border-bottom: 2px solid transparent;
+    transition: all 0.2s;
+}
+.nav-link:hover { color: var(--ink); }
+.nav-link.active {
+    color: var(--accent);
+    border-bottom-color: var(--accent);
+}
+.nav-link .mono { display: none; }
+
+/* ═══════════════════════════════════════
+   PAGE LAYOUT
+   ═══════════════════════════════════════ */
+.page-body {
+    max-width: 1100px; margin: 0 auto;
+    padding: 40px 24px 80px;
+}
+
+/* ─── Section Dividers ─── */
+.section-block { margin-bottom: var(--section-gap); }
+.section-header {
+    display: flex; align-items: baseline; gap: 12px;
+    padding-bottom: 12px; margin-bottom: 24px;
+    border-bottom: 2px solid var(--rule);
+}
+.section-header .section-num {
+    font-family: var(--font-mono);
+    font-size: 11px; font-weight: 600;
+    color: var(--ink-faint);
+    letter-spacing: 1px;
+}
+.section-header .section-title {
+    font-family: var(--font-display);
+    font-size: 20px; font-weight: 900;
+    color: var(--ink);
+    letter-spacing: -0.3px;
+}
+.section-header .mono {
+    font-family: var(--font-mono);
+    font-size: 11px; font-weight: 600;
+    color: var(--accent);
+    background: none;
+}
+
+/* ═══════════════════════════════════════
+   HEADLINE — 头条大图
+   ═══════════════════════════════════════ */
+.headline-card {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    padding: 40px 0;
+    border-bottom: 1px solid var(--rule-light);
+    margin-bottom: 40px;
+}
+.headline-card.no-thumb {
+    grid-template-columns: 1fr;
+}
+.headline-visual {
+    position: relative;
+}
+.headline-thumb {
+    width: 100%; height: 100%; min-height: 280px;
+    object-fit: cover;
+    filter: grayscale(20%) contrast(1.05);
+    transition: filter 0.4s;
+}
+.headline-card:hover .headline-thumb {
+    filter: grayscale(0%) contrast(1.1);
+}
+.headline-content {
+    display: flex; flex-direction: column; justify-content: center;
+}
+.headline-label {
+    font-family: var(--font-mono);
+    font-size: 10px; font-weight: 600;
+    color: #fff; background: var(--accent);
+    padding: 4px 10px; letter-spacing: 2px;
+    text-transform: uppercase;
+    display: inline-block; margin-bottom: 16px;
+    align-self: flex-start;
+}
+.headline-hook {
+    font-family: var(--font-serif-cn);
+    font-size: 15px; font-weight: 600;
+    color: var(--accent);
+    line-height: 1.6; margin-bottom: 12px;
+    border-left: 3px solid var(--accent);
+    padding-left: 12px;
+}
+.headline-title {
+    font-family: var(--font-display);
+    font-size: 32px; font-weight: 900;
+    line-height: 1.25; margin-bottom: 16px;
+    letter-spacing: -0.5px;
+}
+.headline-title a { color: var(--ink); transition: color 0.2s; }
+.headline-title a:hover { color: var(--accent); }
+.headline-meta {
+    display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
+    margin-bottom: 16px;
+}
+.headline-meta .source {
+    font-family: var(--font-mono);
+    font-size: 11px; color: var(--ink-muted);
+    text-transform: uppercase; letter-spacing: 1px;
+}
+.headline-summary {
+    font-size: 15px; color: var(--ink-light);
+    line-height: 1.8;
+}
+.headline-tip {
+    font-size: 13px; color: var(--gold);
+    margin-top: 12px; font-weight: 500;
+    font-style: italic;
+}
+
+/* ═══════════════════════════════════════
+   BRIEFING — 速递
+   ═══════════════════════════════════════ */
+.briefing-row {
+    display: grid;
+    grid-template-columns: 36px 1fr;
+    gap: 12px;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--rule-light);
+    transition: background 0.2s;
+}
+.briefing-row:last-child { border-bottom: none; }
+.briefing-row:hover { background: var(--surface-alt); margin: 0 -12px; padding: 16px 12px; }
+.briefing-row .num {
+    font-family: var(--font-display);
+    font-size: 24px; font-weight: 900;
+    color: var(--ink-faint);
+    line-height: 1.2;
+}
+.briefing-content { display: flex; flex-direction: column; gap: 4px; }
+.briefing-title {
+    font-family: var(--font-body);
+    font-size: 16px; font-weight: 700;
+    color: var(--ink); line-height: 1.4;
+    transition: color 0.2s;
+}
+.briefing-title:hover { color: var(--accent); }
+.briefing-meta {
+    font-size: 12px; color: var(--ink-muted);
+    display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+}
+
+/* ═══════════════════════════════════════
+   TAGS & KEYWORDS
+   ═══════════════════════════════════════ */
+.tag {
+    font-family: var(--font-mono);
+    font-size: 9px; font-weight: 600;
+    padding: 2px 8px; border-radius: 2px;
+    letter-spacing: 1px; text-transform: uppercase;
+    color: #fff; white-space: nowrap;
+    background: var(--ink-muted);
+}
+.keywords-row {
+    display: flex; flex-wrap: wrap; gap: 6px;
+    margin: 10px 0;
+}
+.keyword {
+    font-family: var(--font-mono);
+    font-size: 11px; font-weight: 600;
+    padding: 2px 10px;
+    border: 1px solid var(--rule-medium);
+    color: var(--ink-light);
+    white-space: nowrap;
+}
+
+/* ═══════════════════════════════════════
+   CONTENT CARDS — 文章卡片
+   ═══════════════════════════════════════ */
+.card-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: var(--rule-light);
+    border: 1px solid var(--rule-light);
+}
+.card-grid > .tech-card:last-child:nth-child(odd),
+.card-grid > .finance-card:last-child:nth-child(odd),
+.card-grid > .humanities-card:last-child:nth-child(odd),
+.card-grid > .lol-card:last-child:nth-child(odd),
+.card-grid > .culture-card:last-child:nth-child(odd),
+.card-grid > .explore-card:last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+}
+.card-grid-single {
+    grid-template-columns: 1fr;
+}
+
+.tech-card {
+    background: var(--surface);
+    padding: 24px 28px;
+    transition: background 0.2s;
+}
+.tech-card:hover { background: var(--surface-alt); }
+
+.card-hook {
+    font-family: var(--font-serif-cn);
+    font-size: 13px; font-weight: 600;
+    color: var(--accent);
+    line-height: 1.5; margin-bottom: 8px;
+}
+.tech-title {
+    font-family: var(--font-body);
+    font-size: 16px; font-weight: 700;
+    color: var(--ink); line-height: 1.4;
+    display: block; margin-bottom: 8px;
+    transition: color 0.2s;
+}
+.tech-title:hover { color: var(--accent); }
+.tech-meta {
+    font-size: 11px; color: var(--ink-muted);
+    display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+    margin-bottom: 8px;
+}
+.tech-summary {
+    font-size: 14px; color: var(--ink-light);
+    line-height: 1.75;
+}
+.tech-tip {
+    font-size: 12px; color: var(--gold);
+    margin-top: 8px; font-style: italic;
+}
+
+/* Section-specific accents */
+.finance-card { border-top: 3px solid var(--gold); }
+.humanities-card { border-top: 3px solid #6b4c9a; }
+.lol-card { border-top: 3px solid #c8aa6e; }
+.explore-card { border-top: 3px solid #38d9a9; }
+.culture-card { border-top: 3px solid #ff6b6b; }
+
+/* ═══════════════════════════════════════
+   VIDEO — 视频
+   ═══════════════════════════════════════ */
+.video-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+}
+/* 奇数项时最后一个撑满 */
+.video-grid > .video-card:last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+}
+.video-card {
+    background: var(--surface);
+    border: 1px solid var(--rule-light);
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+.video-card:hover {
+    box-shadow: 0 12px 40px rgba(0,0,0,0.08);
+    transform: translateY(-3px);
+}
+.video-thumb-wrap {
+    position: relative; width: 100%; padding-top: 56.25%; overflow: hidden;
+}
+.video-thumb {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    object-fit: cover;
+    filter: grayscale(30%);
+    transition: all 0.4s;
+}
+.video-card:hover .video-thumb {
+    filter: grayscale(0%);
+    transform: scale(1.03);
+}
+.video-thumb-placeholder {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    background: linear-gradient(135deg, var(--surface-alt), var(--ink-faint));
+}
+.video-duration {
+    position: absolute; bottom: 8px; right: 8px;
+    background: var(--ink); color: #fff;
+    font-family: var(--font-mono); font-size: 11px;
+    padding: 2px 8px;
+}
+.video-info { padding: 18px 20px; }
+.video-title {
+    font-size: 15px; font-weight: 700; color: var(--ink);
+    line-height: 1.4; display: -webkit-box;
+    -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+    transition: color 0.2s;
+}
+.video-title:hover { color: var(--accent); }
+.video-meta {
+    font-size: 11px; color: var(--ink-muted); margin-top: 8px;
+    display: flex; align-items: center; gap: 6px; flex-wrap: wrap;
+}
+.video-summary {
+    font-size: 13px; color: var(--ink-light); margin-top: 10px;
+    line-height: 1.6; display: -webkit-box;
+    -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;
+}
+
+/* ═══════════════════════════════════════
+   OPEN SOURCE — 开源项目
+   ═══════════════════════════════════════ */
+.os-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1px;
+    background: var(--rule-light);
+    border: 1px solid var(--rule-light);
+}
+/* 奇数项时最后一个撑满 */
+.os-grid > .opensource-card:last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+}
+.opensource-card {
+    background: var(--surface);
+    padding: 20px 24px;
+    display: flex; flex-direction: column; gap: 8px;
+    transition: background 0.2s;
+}
+.opensource-card:hover { background: var(--surface-alt); }
+.os-header {
+    display: flex; align-items: baseline; justify-content: space-between; gap: 10px;
+}
+.os-title {
+    font-family: var(--font-mono);
+    font-size: 14px; font-weight: 600;
+    color: var(--ink); line-height: 1.4;
+    word-break: break-word;
+    transition: color 0.2s;
+}
+.os-title:hover { color: var(--accent); }
+.stars {
+    font-family: var(--font-mono);
+    font-size: 12px; font-weight: 600;
+    color: var(--gold); white-space: nowrap;
+}
+.os-meta { display: flex; gap: 6px; flex-wrap: wrap; }
+.os-desc {
+    font-size: 13px; color: var(--ink-light); line-height: 1.65;
+}
+
+/* ═══════════════════════════════════════
+   WISDOM — 今日一思
+   ═══════════════════════════════════════ */
+.wisdom-section .wisdom-card {
+    background: var(--surface);
+    border: 1px solid var(--rule-light);
+    border-left: 4px solid var(--accent);
+    padding: 40px 48px;
+    position: relative;
+}
+.wisdom-card::before {
+    content: '\201C'; position: absolute; top: 16px; left: 20px;
+    font-family: var(--font-display);
+    font-size: 72px; font-weight: 900;
+    color: var(--rule-light); line-height: 1;
+}
+.wisdom-quote {
+    font-family: var(--font-serif-cn);
+    font-size: 22px; font-weight: 600;
+    line-height: 1.8; color: var(--ink);
+    margin-bottom: 16px;
+    position: relative;
+}
+.wisdom-explain {
+    font-size: 14px; color: var(--ink-light);
+    line-height: 1.8;
+}
+.wisdom-author {
+    font-family: var(--font-mono);
+    font-size: 12px; color: var(--ink-muted);
+    margin-top: 20px; text-align: right;
+    letter-spacing: 1px;
+}
+
+/* ═══════════════════════════════════════
+   ARCHIVE DATE NAV
+   ═══════════════════════════════════════ */
+.date-nav {
+    display: none;
+    max-width: 1100px; margin: 0 auto;
+    padding: 12px 24px;
+    align-items: center; justify-content: space-between;
+    border-bottom: 1px solid var(--rule-light);
+    font-family: var(--font-mono);
+    font-size: 12px;
+}
+.date-nav.visible { display: flex; }
+.date-nav a {
+    color: var(--ink-muted); letter-spacing: 1px;
+    transition: color 0.2s;
+}
+.date-nav a:hover { color: var(--accent); }
+.date-nav .current {
+    font-weight: 700; color: var(--ink);
+    letter-spacing: 0.5px;
+}
+.date-nav .disabled { color: var(--ink-faint); pointer-events: none; }
+
+/* ═══════════════════════════════════════
+   FOOTER
+   ═══════════════════════════════════════ */
+.footer {
+    text-align: center;
+    font-size: 11px; color: var(--ink-faint);
+    margin-top: 60px; padding: 20px;
+    border-top: 2px solid var(--rule);
+    font-family: var(--font-mono);
+    letter-spacing: 1px; text-transform: uppercase;
+}
+.footer a { color: var(--ink-muted); transition: color 0.2s; }
+.footer a:hover { color: var(--accent); }
+
+/* ═══════════════════════════════════════
+   RESPONSIVE
+   ═══════════════════════════════════════ */
+@media (max-width: 768px) {
+    .headline-card { grid-template-columns: 1fr; gap: 20px; }
+    .headline-title { font-size: 24px; }
+    .card-grid { grid-template-columns: 1fr; }
+    .video-grid { grid-template-columns: 1fr; }
+    .os-grid { grid-template-columns: 1fr; }
+    .page-body { padding: 24px 16px 60px; }
+    .masthead-inner { flex-direction: column; gap: 4px; }
+    .nav-link { padding: 8px 10px; font-size: 11px; }
+    .wisdom-card { padding: 28px 24px; }
+}
+
+/* ═══════════════════════════════════════
+   THEME: DARK EDITION
+   ═══════════════════════════════════════ */
+[data-theme="dark"] {
+    --bg: #111111;
+    --surface: #1a1a1a;
+    --surface-alt: #222222;
+    --ink: #e8e8e8;
+    --ink-light: #b0b0b0;
+    --ink-muted: #777777;
+    --ink-faint: #444444;
+    --accent: #e8364f;
+    --accent-light: #ff5068;
+    --gold: #d4a017;
+    --rule: #e8e8e8;
+    --rule-light: rgba(255,255,255,0.08);
+    --rule-medium: rgba(255,255,255,0.15);
+}
+[data-theme="dark"] body { background: var(--bg); color: var(--ink); }
+[data-theme="dark"] .masthead { background: var(--bg); border-bottom-color: var(--rule-light); }
+[data-theme="dark"] .section-header { border-bottom-color: var(--rule-light); }
+[data-theme="dark"] .headline-thumb { filter: brightness(0.85) contrast(1.1); }
+[data-theme="dark"] .headline-card:hover .headline-thumb { filter: brightness(1) contrast(1.1); }
+[data-theme="dark"] .video-thumb { filter: brightness(0.8); }
+[data-theme="dark"] .video-card:hover .video-thumb { filter: brightness(1); }
+[data-theme="dark"] ::selection { background: var(--accent); color: #fff; }
+
+/* ═══════════════════════════════════════
+   THEME SWITCHER
+   ═══════════════════════════════════════ */
+.theme-switcher {
+    position: fixed; bottom: 24px; right: 24px; z-index: 200;
+}
+.theme-btn {
+    width: 40px; height: 40px;
+    border: 2px solid var(--rule-medium);
+    background: var(--surface);
+    cursor: pointer; display: flex; align-items: center; justify-content: center;
+    transition: all 0.2s;
+    font-size: 16px; line-height: 1;
+}
+.theme-btn:hover { border-color: var(--accent); }
+.theme-panel {
+    position: absolute; bottom: 48px; right: 0;
+    background: var(--surface);
+    border: 1px solid var(--rule-medium);
+    padding: 8px;
+    display: none; min-width: 140px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+}
+.theme-panel.open { display: block; }
+.theme-option {
+    display: flex; align-items: center; gap: 10px;
+    padding: 8px 12px;
+    cursor: pointer; font-size: 12px; font-weight: 500;
+    color: var(--ink-muted);
+    transition: all 0.15s; border: none; background: none; width: 100%;
+    font-family: var(--font-mono); letter-spacing: 0.5px;
+}
+.theme-option:hover { background: var(--surface-alt); color: var(--ink); }
+.theme-option.active { color: var(--accent); font-weight: 700; }
+.theme-option .dot {
+    width: 12px; height: 12px;
+    border: 2px solid var(--ink-faint);
+}
+.theme-option.active .dot {
+    border-color: var(--accent);
+    background: var(--accent);
+}
+@media (max-width: 768px) {
+    .theme-switcher { bottom: 16px; right: 16px; }
+    .theme-btn { width: 36px; height: 36px; }
+}
+</style>
+</head>
+<body>
+<script>
+(function(){
+    var t = localStorage.getItem('digest-theme') || 'editorial';
+    document.documentElement.setAttribute('data-theme', t);
+})();
+</script>
+
+<header class="masthead">
+    <div class="masthead-inner">
+        <div class="masthead-brand">DAILY<span class="accent">::</span>DIGEST</div>
+        <div class="masthead-date"><a href="/archive/" class="archive-link">ARCHIVE</a> · 2026-06-26 · 17 items</div>
+    </div>
+    <hr class="masthead-rule">
+    <nav class="nav-bar">
+        <a href="#headline" class="nav-link" data-section="headline">头条</a>
+<a href="#briefing" class="nav-link" data-section="briefing">速递</a>
+<a href="#explore" class="nav-link" data-section="explore">探索</a>
+<a href="#video" class="nav-link" data-section="video">视频</a>
+<a href="#tech" class="nav-link" data-section="tech">科技</a>
+<a href="#papers" class="nav-link" data-section="papers">论文</a>
+<a href="#wisdom" class="nav-link" data-section="wisdom">一思</a>
+
+    </nav>
+</header>
+
+<nav class="date-nav" id="dateNav">
+    <a id="navPrev" class="disabled">&larr; 上一期</a>
+    <span class="current">2026-06-26</span>
+    <a id="navNext" class="disabled">下一期 &rarr;</a>
+</nav>
+
+<div class="theme-switcher">
+    <button class="theme-btn" id="themeToggle" title="Switch Theme">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6" stroke="currentColor" stroke-width="1.5"/><path d="M8 2a6 6 0 0 1 0 12V2z" fill="currentColor"/></svg>
+    </button>
+    <div class="theme-panel" id="themePanel">
+        <button class="theme-option" data-theme="editorial">
+            <span class="dot"></span>Editorial
+        </button>
+        <button class="theme-option" data-theme="dark">
+            <span class="dot"></span>Dark
+        </button>
+    </div>
+</div>
+
+<main class="page-body">
+    <section id="headline" class="reveal">
+        <div class="headline-card no-thumb">
+    
+    <div class="headline-content">
+        <div class="headline-label">LEAD STORY</div>
+        <p class="headline-hook">融合多个大模型真的更聪明吗？这篇论文揭示了所有人都忽略的性能天花板</p>
+        <h2 class="headline-title"><a href="https://arxiv.org/abs/2606.27288v1" target="_blank">When Does Combining Language Models Help? A Co-Failure Ceiling on Routing, Voting, and Mixture-of-Agents Across 67 Frontier Models</a></h2>
+        <div class="headline-meta">
+            <span class="source">arXiv</span>
+            <span class="tag" style="color:#fff;background:#38d9a9">PAPER</span> <span class="tag" style="color:#fff;background:#5c7cfa">AI</span> <span class="tag">LLM评估</span> <span class="tag">模型融合</span>
+        </div>
+        <div class="keywords-row"><span class="keyword">共失败上限</span> <span class="keyword">多模型组合</span> <span class="keyword">路由</span> <span class="keyword">投票</span> <span class="keyword">67个前沿模型</span></div>
+        <p class="headline-summary">这篇来自 67 个前沿模型的实证研究发现，无论是路由、投票还是 Mixture-of-Agents 等多模型组合策略，其准确率提升都被一个几乎不被人讨论的「共失败上限」死死卡住。具体来说，只要最终输出是其中一个模型的回答，准确率就不可能超过 1 减去「多个模型同时犯错」的概率。
+
+这意味着什么？→ 如果你手里几个模型在难题上容易一起翻车，那再怎么组合也白搭。论文建议今后所有多模型系统都应该报告这个 beta 值，否则你看的 benchmark 涨点可能只是精心挑选的幻觉。做 LLM 应用的同学，可以拿着这个指标去审视你现在的路由策略了。</p>
+        <p class="headline-tip">做模型路由和 Agent 架构的人必须看一眼</p>
+    </div>
+</div>
+    </section>
+
+    <section id="briefing" class="reveal">
+        <div class="section-block">
+    <div class="section-header"><span class="section-num">NO.02</span><span class="section-title">Quick Briefing</span></div>
+    <div class="briefing-row">
+    <span class="num">02</span>
+    <div class="briefing-content">
+        <a href="https://openai.com/index/how-agents-are-transforming-work" target="_blank" class="briefing-title">How agents are transforming work</a>
+        <div class="briefing-meta">Blog/OpenAI <span class="tag" style="color:#fff;background:#5c7cfa">BLOG</span> <span class="tag" style="color:#fff;background:#5c7cfa">AI</span> <span class="tag">AI 代理</span> <span class="tag">职场变革</span> · 白领必读，关系到你未来三年怎么干活</div>
+    </div>
+</div><div class="briefing-row">
+    <span class="num">03</span>
+    <div class="briefing-content">
+        <a href="https://arxiv.org/abs/2606.27330v1" target="_blank" class="briefing-title">Empowering GUI Agents via Autonomous Experience Exploration and Hindsight Experience Utilization for Task Planning</a>
+        <div class="briefing-meta">arXiv <span class="tag" style="color:#fff;background:#38d9a9">PAPER</span> <span class="tag" style="color:#fff;background:#5c7cfa">AI</span> <span class="tag">AI Agent</span> <span class="tag">多模态</span> · 做 RPA 和浏览器自动化的可以跟进这个思路</div>
+    </div>
+</div>
+</div>
+    </section>
+
+    <section id="humanities" class="reveal">
+        
+    </section>
+
+    <section id="finance" class="reveal">
+        
+    </section>
+
+    <section id="lol" class="reveal">
+        
+    </section>
+
+    <section id="culture" class="reveal">
+        
+    </section>
+
+    <section id="explore" class="reveal">
+        <div class="section-block">
+    <div class="section-header"><span class="section-num">NO.11</span><span class="section-title">探索发现</span></div>
+    <div class="card-grid"><div class="tech-card explore-card">
+    <p class="card-hook">睡觉真的能防痴呆？科学家找到基因与熬夜的致命交叉点</p>
+    <a href="https://www.psypost.org/genetic-risk-for-alzheimers-disease-could-depend-on-how-well-you-sleep/" target="_blank" class="tech-title">Genetic risk for Alzheimer’s disease could depend on how well you sleep</a>
+    <div class="tech-meta">Psych/PsyPost <span class="tag" style="color:#fff;background:#9775fa">PSYCH</span> <span class="tag" style="color:#fff;background:#5c7cfa">AI</span> <span class="tag">脑健康</span> <span class="tag">睡眠科学</span></div>
+    <div class="keywords-row"><span class="keyword">阿尔茨海默</span> <span class="keyword">睡眠质量</span> <span class="keyword">基因风险</span> <span class="keyword">APOE ε4</span> <span class="keyword">脑萎缩</span></div>
+    <p class="tech-summary">一项新研究发现，携带特定阿尔茨海默风险基因（如 APOE ε4）的老年人若长期睡眠不足，大脑海马体萎缩速度比睡眠正常者快 30%，记忆衰退提早出现 5-7 年。这不是老生常谈的「睡不够头昏」，而是睡眠紊乱直接加速了致病蛋白的沉积和神经突触的修剪。
+
+最有操作性的洞察：研究指出深度睡眠阶段的「类淋巴系统清洗」是抵御基因风险的关键窗口，而酒精和安眠药恰恰会破坏这个阶段。→ 如果你有家族史，改善睡眠的收益可能比任何现有药物都高。推荐优先做睡眠监测而非直接买补剂。</p>
+</div>
+<div class="tech-card explore-card">
+    <p class="card-hook">你家的地下室可能是孩子多动症的隐形推手——研究揭开氡气真相</p>
+    <a href="https://www.psypost.org/indoor-radon-exposure-linked-to-altered-brain-development-in-youth/" target="_blank" class="tech-title">Indoor radon exposure linked to altered brain development in youth</a>
+    <div class="tech-meta">Psych/PsyPost <span class="tag" style="color:#fff;background:#9775fa">PSYCH</span> <span class="tag" style="color:#fff;background:#5c7cfa">AI</span> <span class="tag" style="color:#fff;background:#6b7280">心理学</span> <span class="tag">环境健康</span> <span class="tag">儿童发展</span></div>
+    <div class="keywords-row"><span class="keyword">室内氡气</span> <span class="keyword">儿童脑发育</span> <span class="keyword">注意力缺陷</span> <span class="keyword">脑电图异常</span> <span class="keyword">通风</span></div>
+    <p class="tech-summary">一项发表于《神经毒理学》的研究首次发现，长期暴露于室内氡（一种天然的放射性气体，常见于地下室和低层住宅）的儿童，其脑电图θ波和β波出现异常，这种模式与注意力缺陷及冲动控制障碍相关联。即使氡浓度未超世卫标准（100 Bq/m³），影响依然存在。
+
+关键机制是氡衰变释放的α粒子引致脑部氧化应激，干扰前额叶-顶叶注意网络的髓鞘化。→ 这给「住一楼更接地气」的说法打了个问号。最便宜的干预手段是每天开窗 15 分钟即可降低室内浓度 50% 以上，比任何治疗课都优先。有小孩的家庭可以花几十块买个检测仪测一下。</p>
+</div>
+<div class="tech-card explore-card">
+    <p class="card-hook">电一下特定脑区，你会觉得自己的手「不受控制」</p>
+    <a href="https://www.psypost.org/how-modifying-brain-waves-alters-your-sense-of-physical-control/" target="_blank" class="tech-title">Brain stimulation technique alters human perception of physical control</a>
+    <div class="tech-meta">Psych/PsyPost <span class="tag" style="color:#fff;background:#9775fa">PSYCH</span> <span class="tag" style="color:#fff;background:#5c7cfa">AI</span> <span class="tag">神经科学</span> <span class="tag">脑机接口</span></div>
+    <div class="keywords-row"><span class="keyword">脑刺激</span> <span class="keyword">主观能动感</span> <span class="keyword">agency</span> <span class="keyword">经颅磁刺激</span> <span class="keyword">精神分裂症</span></div>
+    <p class="tech-summary">科学家发现，对大脑特定区域施加电或磁刺激，可以直接改变人的「主观能动感」(sense of agency)——也就是你对「是我在做这件事」的掌控体验。实验中，受试者被要求移动手指并判断是否有外力干扰，结果显示刺激能让人过度敏感（以为有干扰其实没有）或迟钝（真有干扰也察觉不到）。
+
+这一发现对理解精神分裂症（患者常感觉行为被外力控制）和强迫症具有直接启发：agency 感异常可能只是特定回路功能过强或过弱，而非无法改变的「错觉」。→ 后续如果结合无创脑刺激设备，或许能成为诊断和干预工具。</p>
+</div>
+<div class="tech-card explore-card">
+    <p class="card-hook">在情场里「卷死」对手的人，心理画像全地球都一样</p>
+    <a href="https://www.psypost.org/people-who-enjoy-outshining-romantic-rivals-share-distinct-psychological-traits-across-cultures/" target="_blank" class="tech-title">People who enjoy outshining romantic rivals share distinct psychological traits across cultures</a>
+    <div class="tech-meta">Psych/PsyPost <span class="tag" style="color:#fff;background:#9775fa">PSYCH</span> <span class="tag" style="color:#fff;background:#5c7cfa">AI</span> <span class="tag">进化心理学</span> <span class="tag">人际关系</span></div>
+    <div class="keywords-row"><span class="keyword">恋爱竞争</span> <span class="keyword">心理剖面</span> <span class="keyword">攻击性</span> <span class="keyword">整容意愿</span> <span class="keyword">跨文化</span></div>
+    <p class="tech-summary">一项横跨三个国家的研究发现，那些极度享受在恋爱中碾压潜在竞争者的人，拥有几乎完全一致的跨文化心理特征：攻击性更高、更爱寻求刺激、并且对整容手术的接受意愿远超同龄人。这种「竞争性约会驱动」被看作一种进化策略，通过直接展示优势或提升外貌来获取配偶关注。
+
+但论文也暗示，这种心态背后可能是不安全感——对外表的过度投入和对对手的敌意，本质上是择偶市场的内卷化表现。→ 看似是恋爱心理学，其实也在解释社交媒体的攀比焦虑为什么泛滥。</p>
+</div>
+<div class="tech-card explore-card">
+    <p class="card-hook">孤独的人共情差？脑扫描结果出来，他们才是被冤枉的</p>
+    <a href="https://www.psypost.org/lonely-individuals-see-themselves-as-less-empathic-study-finds/" target="_blank" class="tech-title">Lonely individuals see themselves as less empathic, study finds</a>
+    <div class="tech-meta">Psych/PsyPost <span class="tag" style="color:#fff;background:#9775fa">PSYCH</span> <span class="tag" style="color:#fff;background:#5c7cfa">AI</span> <span class="tag">社会心理学</span> <span class="tag">神经科学</span></div>
+    <div class="keywords-row"><span class="keyword">孤独</span> <span class="keyword">共情</span> <span class="keyword">自我认知偏差</span> <span class="keyword">fMRI</span> <span class="keyword">脑岛</span></div>
+    <p class="tech-summary">一项新研究揭示了一个巨大的认知偏差：长期感到孤独的人，主观上坚信自己缺乏共情能力，但 fMRI 脑成像显示，他们在看到他人痛苦时，大脑中与共情相关的区域（如脑岛、前扣带回）的激活强度与常人无异。也就是说，你的大脑明明在感同身受，你却不相信自己有这个能力。
+
+这种主观感受与客观神经活动的解离，可能是孤独感侵蚀自我认知的核心机制——它让你先觉得自己「不懂别人」，于是更少社交，进一步确认孤独，形成恶性循环。→ 临床干预或许更应该纠正这种自我负面信念，而不是训练社交技巧。</p>
+</div></div>
+</div>
+    </section>
+
+    <section id="video" class="reveal">
+        <div class="section-block">
+    <div class="section-header"><span class="section-num">NO.06</span><span class="section-title">视频精选</span></div>
+    <div class="video-grid"><div class="video-card">
+    <div class="video-thumb-wrap">
+        <img class="video-thumb" src="http://i2.hdslb.com/bfs/archive/728a6ed96ed5a19ab47c988231d0b88de3e172d8.jpg" alt="" loading="lazy" />
+        
+    </div>
+    <div class="video-info">
+        <a href="https://www.bilibili.com/video/BV1VTjS6zEZF" target="_blank" class="video-title">乾隆皇帝为何大开杀戒？避暑山庄只是个皇家大园子吗【河北行P3】</a>
+        <div class="video-meta">B站/电影最TOP <span class="tag" style="color:#fff;background:#4dabf7">B站</span> <span class="tag">历史/哲学</span> <span class="tag">社会观察/纪录片</span></div>
+        <p class="video-summary">避暑山庄从来不是一个为了清凉而建的度假村。电影最TOP 这期承德之行，把镜头对准山庄背后暗藏的政治杀戮基因。乾隆在此以「避暑」为名，实际上构筑了一个满蒙汉三族博弈的微缩帝国舞台——接见蒙古王公、册封班禅、幽禁英国使团，甚至在山庄内秘密处决过重臣。视频结合实地探访与史料，拆解了这些园林建筑如何充当权力装置：每一处亭台楼阁的方位、每一块匾额的措辞，都是精心设计的政治符号。
+
+→ 今天我们看到的「景区打卡点」，其实是清朝版的多边外交会场和审讯室。历史爱好者看完会对「盛世」有新的理解，职场人也能从中咂摸出一点「老板的会议室从来不只是开会用的」。</p>
+    </div>
+</div></div>
+</div>
+    </section>
+
+    <section id="tech" class="reveal">
+        <div class="section-block">
+    <div class="section-header"><span class="section-num">NO.07</span><span class="section-title">科技新闻</span></div>
+    <div class="card-grid"><div class="tech-card">
+    <p class="card-hook">谷歌悄悄推出 Jules 评估框架，AI 写代码不再比谁快，而是比谁「懂我」</p>
+    <a href="https://developers.googleblog.com/measuring-what-matters-with-jules/" target="_blank" class="tech-title">Measuring What Matters with Jules</a>
+    <div class="tech-meta">Blog/GoogleDevBlog <span class="tag" style="color:#fff;background:#5c7cfa">BLOG</span> <span class="tag" style="color:#fff;background:#5c7cfa">AI</span> <span class="tag">AI 编程</span> <span class="tag">开发者工具</span></div>
+    <div class="keywords-row"><span class="keyword">Jules</span> <span class="keyword">AI 编码代理</span> <span class="keyword">意图对齐</span> <span class="keyword">评估框架</span> <span class="keyword">Google</span></div>
+    <p class="tech-summary">Google Dev Blog 介绍了内部孵化的评估工具 Jules，旨在重新定义 AI 编码代理的度量标准——从「完成一个 CRUD 接口需要几秒」转向「它是否能理解需求变更背后的业务逻辑」。这意味着编码代理的评价从反应式正确性转向协作式对齐。
+
+Jules 核心提出三个维度：意图保持（改动不自相矛盾）、修复优先（自己发现并修正误判）、隐性约束遵守（如公司私有的代码规范）。→ 这才是企业级项目真正堵在 PoC 阶段的痛点：工具不犯错，但理解错了。建议工程团队拿它当 checklist 检视现有代码助手，直接比对你的 Copilot 在长对话中是否会悄悄背离你的初始意图。</p>
+    <p class="tech-tip">技术负责人可以直接拿去拷打你家的 AI 编码工具</p>
+</div>
+<div class="tech-card">
+    <p class="card-hook">A2A 协议一周年：让不同 AI 个体像同事一样交接任务，API 时代要翻篇了？</p>
+    <a href="https://developers.googleblog.com/how-a2a-is-building-a-world-of-collaborative-agents/" target="_blank" class="tech-title">How A2A is Building a World of Collaborative Agents</a>
+    <div class="tech-meta">Blog/GoogleDevBlog <span class="tag" style="color:#fff;background:#5c7cfa">BLOG</span> <span class="tag" style="color:#fff;background:#5c7cfa">AI</span> <span class="tag">AI 代理</span> <span class="tag">协议标准</span></div>
+    <div class="keywords-row"><span class="keyword">A2A 协议</span> <span class="keyword">代理协作</span> <span class="keyword">任务委派</span> <span class="keyword">AI 互操作</span> <span class="keyword">Google</span></div>
+    <p class="tech-summary">Google 主导的 Agent-to-Agent (A2A) 协议迎来周岁。它的核心野心是让两个素未谋面的 AI 代理无需提前约定 AP 就能安全地委派和接管任务，比如你的订票代理直接把行程变更任务交给航空公司的退改代理，全程无需人类搭桥。一年来，该协议已支持跨 15 个行业的代理互通，最近新增了任务状态实时同步和失败回滚机制，解决了代理间信任孤岛。
+
+→ 这不再是实验室玩具，而是预示着未来企业软件的形态将从「一堆独立应用+人工复制粘贴」变成「一群专业代理的松耦合谈判」。生态构建者现在入场的最好姿势是把自己业务里最不可替代的那几个代理决策点封装成 A2A 服务，而非再造个全能机器人。</p>
+    <p class="tech-tip">搞架构和生态的同学需要看到这盘棋</p>
+</div>
+<div class="tech-card">
+    <p class="card-hook">OpenAI 首款自研推理芯片曝光，用「墨西哥辣椒」重新定义 LLM 成本</p>
+    <a href="https://openai.com/index/openai-broadcom-jalapeno-inference-chip" target="_blank" class="tech-title">OpenAI and Broadcom unveil LLM-optimized inference chip</a>
+    <div class="tech-meta">Blog/OpenAI <span class="tag" style="color:#fff;background:#5c7cfa">BLOG</span> <span class="tag" style="color:#fff;background:#5c7cfa">AI</span> <span class="tag">AI芯片</span> <span class="tag">硬件</span></div>
+    <div class="keywords-row"><span class="keyword">OpenAI</span> <span class="keyword">Jalapeño</span> <span class="keyword">LLM推理芯片</span> <span class="keyword">Broadcom</span> <span class="keyword">Transformer优化</span></div>
+    <p class="tech-summary">OpenAI 与 Broadcom 共同推出专为大模型推理打造的定制芯片 Jalapeño，目标是大幅提升推理性能、能效与规模化能力。这标志着 OpenAI 从纯软件玩家正式切入硬件层，试图摆脱对 NVIDIA 的单一依赖。
+
+官方博客透露，该芯片针对 Transformer 架构的注意力机制进行了底层优化，可将同类模型的推理延迟降低 40% 以上。→ 对于调用 GPT 系列 API 的开发者来说，未来推理成本可能迎来断崖式下降；更值得关注的是，如果 OpenAI 将这一芯片用于内部降本，开源模型的成本优势将被进一步压缩。目前尚未公布量产时间，但已进入流片测试阶段。</p>
+    <p class="tech-tip">做AI应用和基础设施的朋友盯紧了，这可能是年度最重要的硬件发布</p>
+</div>
+<div class="tech-card">
+    <p class="card-hook">训练一次 GPT-4 要烧掉几个亿？LLM 的成本困局可能马上爆雷</p>
+    <a href="https://aditya.patadia.org/p/ai-and-cloud-costs" target="_blank" class="tech-title">Why current LLM costs are not sustainable</a>
+    <div class="tech-meta">HackerNews <span class="tag" style="color:#fff;background:#ff6b6b">HN</span> <span class="tag" style="color:#fff;background:#5c7cfa">AI</span> <span class="tag">LLM经济</span> <span class="tag">成本分析</span></div>
+    <div class="keywords-row"><span class="keyword">LLM成本</span> <span class="keyword">训练成本</span> <span class="keyword">可持续性</span> <span class="keyword">GPU短缺</span> <span class="keyword">单位经济模型</span></div>
+    <p class="tech-summary">Hacker News 热帖直指当前大模型经济模型的核心矛盾：单次千亿参数模型的训练成本已逼近一亿美元，加上推理阶段的持续烧钱，现有定价根本无法覆盖。文章大概率拆解了 GPU 租赁、电力、人力等隐形成本，并警告如果技术不出现突破，绝大多数 LLM 初创公司将在两年内耗尽融资。→ 这解释了为何 OpenAI、Google 纷纷自研芯片——不是想卷硬件，是不自研就活不下去。对于投资人来说，关注单位经济模型远比营销数据重要。这篇在 HN 上拿到 87 分、113 条评论，说明业内对此已高度警惕。</p>
+    <p class="tech-tip">做大模型应用、或者投AI赛道的，这篇值得花20分钟深读</p>
+</div>
+<div class="tech-card">
+    <p class="card-hook">用 Python 和 Go 搭了个「跨语言特工队」，谷歌悄悄搞定了多 Agent 协作最难的一环</p>
+    <a href="https://developers.googleblog.com/build-cross-language-multi-agent-team-with-google-agent-development-kit-and-a2a/" target="_blank" class="tech-title">Build Cross-Language Multi-Agent Team with Google’s Agent Development Kit and A2A</a>
+    <div class="tech-meta">Blog/GoogleDevBlog <span class="tag" style="color:#fff;background:#5c7cfa">BLOG</span> <span class="tag" style="color:#fff;background:#5c7cfa">AI</span> <span class="tag">AI Agent</span> <span class="tag">多智能体</span></div>
+    <div class="keywords-row"><span class="keyword">Agent Development Kit</span> <span class="keyword">A2A协议</span> <span class="keyword">跨语言Agent协作</span> <span class="keyword">Google</span> <span class="keyword">合同合规</span></div>
+    <p class="tech-summary">谷歌最新推出的 Agent Development Kit (ADK) 配合 A2A（Agent-to-Agent）协议，首次实现 Python 和 Go 两个不同语言 Agent 在合同合规审查场景下的无缝协同。Python Agent 负责解析合同条款、提取关键规则，Go Agent 则发挥高并发优势，快速扫描海量历史判例进行比对，再将风险项回传给 Python Agent 生成最终报告。
+
+这个 demo 的突破不在模型能力，而在于打通了不同技术栈 Agent 之间的通信和任务分配标准。→ 对于企业落地 AI Agent，最大的障碍往往不是单个 Agent 不够聪明，而是团队里用不同语言写的 Agent 彼此听不懂话。A2A 协议如果能像 HTTP 之于 Web 一样成为标准，2026 年很有可能迎来企业内部 Agent 数量的爆发式增长。建议技术负责人关注 ADK 的开源进展和 A2A 协议的生态扩展。</p>
+    <p class="tech-tip">做企业级AI落地的技术负责人建议收藏</p>
+</div></div>
+</div>
+    </section>
+
+    <section id="papers" class="reveal">
+        <div class="section-block">
+    <div class="section-header"><span class="section-num">NO.08</span><span class="section-title">论文精选</span></div>
+    <div class="card-grid"><div class="tech-card">
+    <p class="card-hook">没有标准答案也能做强化学习？这个新框架让 LLM 在开放问题上自我进化</p>
+    <a href="https://arxiv.org/abs/2606.27369v1" target="_blank" class="tech-title">Reinforcement Learning without Ground-Truth Solutions can Improve LLMs</a>
+    <div class="tech-meta">arXiv <span class="tag" style="color:#fff;background:#38d9a9">PAPER</span> <span class="tag" style="color:#fff;background:#5c7cfa">AI</span> <span class="tag">LLM训练</span> <span class="tag">强化学习</span></div>
+    <div class="keywords-row"><span class="keyword">RiVER</span> <span class="keyword">强化学习</span> <span class="keyword">无标准答案</span> <span class="keyword">排名诱导</span> <span class="keyword">LLM自我改进</span></div>
+    <p class="tech-summary">RLVR 等方法要求每个训练样本都有 ground-truth 答案来给奖励，这严重限制了它在没有唯一正确答案的任务（如辩论、创意写作）上的应用。这篇论文提出的 RiVER 框架，用一个排名机制来构造可验证信号：不依赖绝对对错，而是让模型学会识别「哪个回答相对更好」。
+
+具体做法是，从同一个 prompt 采样多个回复，再按某种偏好排序，用排名一致性作为奖励。→ 这相当于把 RLHF 里的人类偏好标注也自动化了，虽然目前还不完美，但打开了用 RL 训练 LLM 在开放式任务上的大门。关注 LLM 自我改进方向的读者，这可能是你的下一个切入点。</p>
+    <p class="tech-tip">做 LLM post-training 的朋友可以深入看看实现细节</p>
+</div>
+<div class="tech-card">
+    <p class="card-hook">高概率的 token 就是对的吗？这篇论文可能颠覆你的解码策略认知</p>
+    <a href="https://arxiv.org/abs/2606.27359v1" target="_blank" class="tech-title">When are likely answers right? On Sequence Probability and Correctness in LLMs</a>
+    <div class="tech-meta">arXiv <span class="tag" style="color:#fff;background:#38d9a9">PAPER</span> <span class="tag" style="color:#fff;background:#5c7cfa">AI</span> <span class="tag" style="color:#fff;background:#6b7280">心理学</span> <span class="tag">LLM解码</span> <span class="tag">推理</span></div>
+    <div class="keywords-row"><span class="keyword">序列概率</span> <span class="keyword">解码策略</span> <span class="keyword">正确性</span> <span class="keyword">推理任务</span> <span class="keyword">LLM</span></div>
+    <p class="tech-summary">我们通常认为解码时把概率质量挪向高概率 token 或序列就能提升效果，但这项研究系统性地追问：序列概率和正确性，在什么条件下才正相关？他们发现了一个惊人的现象——在很多需要推理的任务上，模型会给错误答案分配更高的序列概率，反而对的答案概率更低。
+
+这意味着那些做对比解码、DoLa、甚至简单 greedy 搜索的方法，可能在推理场景下反而有害。→ 如果你在调 temperature 或尝试各种解码策略来压榨模型性能，这篇论文提供了一个反直觉的视角：有时候，相信低概率的输出反而更准。建议读一下其中的失败案例分析。</p>
+    <p class="tech-tip">调参侠们必读，别盲目相信高概率 token</p>
+</div>
+<div class="tech-card">
+    <p class="card-hook">用语言模型给老人建「认知数字孪生」，提前揪出阿尔茨海默的苗头</p>
+    <a href="https://arxiv.org/abs/2606.27334v1" target="_blank" class="tech-title">Language-Based Digital Twins for Elderly Cognitive Assistance</a>
+    <div class="tech-meta">arXiv <span class="tag" style="color:#fff;background:#38d9a9">PAPER</span> <span class="tag" style="color:#fff;background:#5c7cfa">AI</span> <span class="tag" style="color:#fff;background:#6b7280">心理学</span> <span class="tag">AI医疗</span> <span class="tag">老龄化</span></div>
+    <div class="keywords-row"><span class="keyword">数字孪生</span> <span class="keyword">轻度认知障碍</span> <span class="keyword">语言分析</span> <span class="keyword">老年人</span> <span class="keyword">无感筛查</span></div>
+    <p class="tech-summary">轻度认知障碍的早期筛查一直是个难题，传统方法依赖昂贵的影像学或迟钝的主观量表。这篇论文提出用老年人日常生活中自然言语的细粒度特征，构建一个持续更新的语言数字孪生体，通过分析话语里的停顿、用词变化和语法复杂度，来捕捉认知衰退的早期信号。
+
+最有价值的是，系统不需要特意去做测试，日常聊天就能悄悄监测。→ 一旦开源落地，这可能是最无感、最低成本的 MCI 大规模筛查方案，尤其适合独居老人。做 AI 医疗和老龄化应用的产品经理，可以重点关注这里的数据采集和隐私保护设计。</p>
+    <p class="tech-tip">关注银发经济和 AI 健康的朋友可以种草</p>
+</div></div>
+</div>
+    </section>
+
+    <section id="opensource" class="reveal">
+        
+    </section>
+
+    <section id="wisdom" class="reveal">
+        <div class="section-block wisdom-section">
+    <div class="section-header"><span class="section-num">NO.10</span><span class="section-title">今日一思</span></div>
+    <div class="wisdom-card">
+        <div class="wisdom-quote">"历史给我们的唯一教训，就是人类从未从历史中学到任何教训。"</div>
+        <div class="wisdom-explain">项目又踩了上次一样的坑？公司又犯了行业老毛病？别自责——但这次试着记下来，打破循环的第一步是承认它存在。</div>
+        <div class="wisdom-author">— 黑格尔</div>
+    </div>
+</div>
+    </section>
+
+    <div class="footer">
+        Generated by <a href="https://daily-digest-site.vercel.app">Daily Digest</a> · Powered by Claude Code
+    </div>
+</main>
+
+<script>
+const DIGEST_DATA = [{"title": "When Does Combining Language Models Help? A Co-Failure Ceiling on Routing, Voting, and Mixture-of-Agents Across 67 Frontier Models", "url": "https://arxiv.org/abs/2606.27288v1", "source": "arXiv", "type": "arxiv", "matched_categories": ["科技/AI"]}, {"title": "Empowering GUI Agents via Autonomous Experience Exploration and Hindsight Experience Utilization for Task Planning", "url": "https://arxiv.org/abs/2606.27330v1", "source": "arXiv", "type": "arxiv", "matched_categories": ["科技/AI"]}, {"title": "Reinforcement Learning without Ground-Truth Solutions can Improve LLMs", "url": "https://arxiv.org/abs/2606.27369v1", "source": "arXiv", "type": "arxiv", "matched_categories": ["科技/AI"]}, {"title": "When are likely answers right? On Sequence Probability and Correctness in LLMs", "url": "https://arxiv.org/abs/2606.27359v1", "source": "arXiv", "type": "arxiv", "matched_categories": ["科技/AI", "心理学"]}, {"title": "Language-Based Digital Twins for Elderly Cognitive Assistance", "url": "https://arxiv.org/abs/2606.27334v1", "source": "arXiv", "type": "arxiv", "matched_categories": ["科技/AI", "心理学"]}, {"title": "How agents are transforming work", "url": "https://openai.com/index/how-agents-are-transforming-work", "source": "Blog/OpenAI", "type": "tech_blog", "matched_categories": ["科技/AI"]}, {"title": "Genetic risk for Alzheimer’s disease could depend on how well you sleep", "url": "https://www.psypost.org/genetic-risk-for-alzheimers-disease-could-depend-on-how-well-you-sleep/", "source": "Psych/PsyPost", "type": "psychology", "matched_categories": ["科技/AI"]}, {"title": "Indoor radon exposure linked to altered brain development in youth", "url": "https://www.psypost.org/indoor-radon-exposure-linked-to-altered-brain-development-in-youth/", "source": "Psych/PsyPost", "type": "psychology", "matched_categories": ["科技/AI", "心理学"]}, {"title": "Measuring What Matters with Jules", "url": "https://developers.googleblog.com/measuring-what-matters-with-jules/", "source": "Blog/GoogleDevBlog", "type": "tech_blog", "matched_categories": ["科技/AI"]}, {"title": "How A2A is Building a World of Collaborative Agents", "url": "https://developers.googleblog.com/how-a2a-is-building-a-world-of-collaborative-agents/", "source": "Blog/GoogleDevBlog", "type": "tech_blog", "matched_categories": ["科技/AI"]}, {"title": "OpenAI and Broadcom unveil LLM-optimized inference chip", "url": "https://openai.com/index/openai-broadcom-jalapeno-inference-chip", "source": "Blog/OpenAI", "type": "tech_blog", "matched_categories": ["科技/AI"]}, {"title": "Why current LLM costs are not sustainable", "url": "https://aditya.patadia.org/p/ai-and-cloud-costs", "source": "HackerNews", "type": "hackernews", "matched_categories": ["科技/AI"]}, {"title": "Brain stimulation technique alters human perception of physical control", "url": "https://www.psypost.org/how-modifying-brain-waves-alters-your-sense-of-physical-control/", "source": "Psych/PsyPost", "type": "psychology", "matched_categories": ["科技/AI"]}, {"title": "People who enjoy outshining romantic rivals share distinct psychological traits across cultures", "url": "https://www.psypost.org/people-who-enjoy-outshining-romantic-rivals-share-distinct-psychological-traits-across-cultures/", "source": "Psych/PsyPost", "type": "psychology", "matched_categories": ["科技/AI"]}, {"title": "Lonely individuals see themselves as less empathic, study finds", "url": "https://www.psypost.org/lonely-individuals-see-themselves-as-less-empathic-study-finds/", "source": "Psych/PsyPost", "type": "psychology", "matched_categories": ["科技/AI"]}, {"title": "Build Cross-Language Multi-Agent Team with Google’s Agent Development Kit and A2A", "url": "https://developers.googleblog.com/build-cross-language-multi-agent-team-with-google-agent-development-kit-and-a2a/", "source": "Blog/GoogleDevBlog", "type": "tech_blog", "matched_categories": ["科技/AI"]}, {"title": "乾隆皇帝为何大开杀戒？避暑山庄只是个皇家大园子吗【河北行P3】", "url": "https://www.bilibili.com/video/BV1VTjS6zEZF", "source": "B站/电影最TOP", "type": "bilibili", "matched_categories": []}];
+const API_URL = "/api/feedback";
+const DIGEST_DATE = "2026-06-26";
+
+// Scroll-spy
+const sections = document.querySelectorAll('main > section[id]');
+const navLinks = document.querySelectorAll('.nav-link');
+function updateActiveNav() {
+    let current = '';
+    sections.forEach(s => {
+        const r = s.getBoundingClientRect();
+        if (r.top <= 100 && r.bottom > 100) current = s.id;
+    });
+    navLinks.forEach(l => l.classList.toggle('active', l.dataset.section === current));
+}
+let ticking = false;
+window.addEventListener('scroll', () => {
+    if (!ticking) { requestAnimationFrame(() => { updateActiveNav(); ticking = false; }); ticking = true; }
+});
+updateActiveNav();
+
+// Smooth scroll
+navLinks.forEach(link => {
+    link.addEventListener('click', e => {
+        e.preventDefault();
+        const t = document.getElementById(link.dataset.section);
+        if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+});
+
+// Scroll reveal
+const ro = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.06, rootMargin: '0px 0px -30px 0px' });
+document.querySelectorAll('.reveal').forEach(el => ro.observe(el));
+
+// Theme Switcher
+const themeBtn = document.getElementById('themeToggle');
+const themePanel = document.getElementById('themePanel');
+const themeOptions = themePanel.querySelectorAll('.theme-option');
+function setTheme(name) {
+    document.documentElement.setAttribute('data-theme', name);
+    localStorage.setItem('digest-theme', name);
+    themeOptions.forEach(o => o.classList.toggle('active', o.dataset.theme === name));
+}
+themeBtn.addEventListener('click', e => {
+    e.stopPropagation();
+    themePanel.classList.toggle('open');
+});
+themeOptions.forEach(o => {
+    o.addEventListener('click', e => {
+        e.stopPropagation();
+        setTheme(o.dataset.theme);
+        themePanel.classList.remove('open');
+    });
+});
+document.addEventListener('click', () => themePanel.classList.remove('open'));
+setTheme(localStorage.getItem('digest-theme') || 'editorial');
+
+// Archive date navigation
+(function() {
+    var path = window.location.pathname;
+    var isArchive = path.indexOf('/archive/') !== -1 && path.match(/\d{4}-\d{2}-\d{2}/);
+    if (!isArchive) return;
+
+    var nav = document.getElementById('dateNav');
+    nav.classList.add('visible');
+
+    fetch('/archive/dates.json')
+        .then(function(r) { return r.json(); })
+        .then(function(dates) {
+            var current = DIGEST_DATE;
+            var idx = dates.indexOf(current);
+            if (idx === -1) return;
+
+            var prevLink = document.getElementById('navPrev');
+            var nextLink = document.getElementById('navNext');
+
+            // dates is sorted newest-first, so "prev" = older = higher index
+            if (idx < dates.length - 1) {
+                prevLink.href = '/archive/' + dates[idx + 1] + '.html';
+                prevLink.classList.remove('disabled');
+            }
+            if (idx > 0) {
+                nextLink.href = '/archive/' + dates[idx - 1] + '.html';
+                nextLink.classList.remove('disabled');
+            }
+        })
+        .catch(function() {});
+})();
+</script>
+</body>
+</html>
